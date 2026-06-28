@@ -353,19 +353,23 @@ need by Friday — Net 30.</pre>
       <details class="card">
         <summary>
           <span class="idx" aria-hidden="true">01</span>
-          <span class="c-title">SEGYScribe</span>
-          <span class="c-hook">AI extraction of SEG-Y seismic metadata &mdash; 90%+ accuracy.</span>
+          <span class="c-title">Microscopy Computer Vision Suite</span>
+          <span class="c-hook">Four real-time microscopy image-processing modules.</span>
           <span class="chev" aria-hidden="true"></span>
         </summary>
         <div class="c-body">
-          <p>Clients ship SEG-Y files in every imaginable format; byte locations
-          for trace headers must usually be found by hand. This finds them.</p>
+          <p>Built solo at Aurox, each module from scratch in ~2 weeks, for
+          manufacturing and QC of microscopy equipment.</p>
+          <figure class="c-shot">
+            <img src="assets/microscopy-flatness.jpg" alt="Mirror-flatness interferometry app: interference fringes over the mirror region of interest, the Fourier view of the first harmonic, and the reconstructed mirror-surface colormap." decoding="async" fetchpriority="low">
+            <figcaption>Mirror-flatness interferometry &mdash; FFT fringe analysis, first-harmonic isolation, and reconstructed surface map. Built from scratch and shipped as a standalone app.</figcaption>
+          </figure>
           <ul class="deep">
-            <li>Chain-of-thought reasoning proposes byte-location hypotheses, statistically validated and refined in a loop until consistent.</li>
-            <li>80+ attribute ontology; 90%+ accuracy; ~4,000 lines across ~13 modules; built from scratch in ~2 weeks.</li>
+            <li>Mirror-flatness interferometry (FFT/vision); a Photoshop-like GUI for final-product testing; calibration-target alignment; triplet-lens alignment.</li>
+            <li>OpenCV, tkinter, multithreading, camera-SDK integration &mdash; real-time throughout.</li>
           </ul>
-          <ul class="tags"><li>chain-of-thought</li><li>SEG-Y</li><li>validation</li></ul>
-          <a class="go" href="https://github.com/owenloh/SEGYScribe" rel="noopener" target="_blank">github.com/owenloh/SEGYScribe<span class="arr" aria-hidden="true">&#8599;</span></a>
+          <ul class="tags"><li>computer vision</li><li>real-time</li><li>optics</li></ul>
+          <span class="go muted">Proprietary &mdash; no repo</span>
         </div>
       </details>
 
@@ -392,48 +396,25 @@ need by Friday — Net 30.</pre>
       <details class="card">
         <summary>
           <span class="idx" aria-hidden="true">03</span>
-          <span class="c-title">Microscopy Computer Vision Suite</span>
-          <span class="c-hook">Four real-time microscopy image-processing modules.</span>
+          <span class="c-title">SEGYScribe</span>
+          <span class="c-hook">AI extraction of SEG-Y seismic metadata &mdash; 90%+ accuracy.</span>
           <span class="chev" aria-hidden="true"></span>
         </summary>
         <div class="c-body">
-          <p>Built solo at Aurox, each module from scratch in ~2 weeks, for
-          manufacturing and QC of microscopy equipment.</p>
-          <figure class="c-shot">
-            <img src="assets/microscopy-flatness.jpg" alt="Mirror-flatness interferometry app: interference fringes over the mirror region of interest, the Fourier view of the first harmonic, and the reconstructed mirror-surface colormap." decoding="async" fetchpriority="low">
-            <figcaption>Mirror-flatness interferometry &mdash; FFT fringe analysis, first-harmonic isolation, and reconstructed surface map. Built from scratch and shipped as a standalone app.</figcaption>
-          </figure>
+          <p>Clients ship SEG-Y files in every imaginable format; byte locations
+          for trace headers must usually be found by hand. This finds them.</p>
           <ul class="deep">
-            <li>Mirror-flatness interferometry (FFT/vision); a Photoshop-like GUI for final-product testing; calibration-target alignment; triplet-lens alignment.</li>
-            <li>OpenCV, tkinter, multithreading, camera-SDK integration &mdash; real-time throughout.</li>
+            <li>Chain-of-thought reasoning proposes byte-location hypotheses, statistically validated and refined in a loop until consistent.</li>
+            <li>80+ attribute ontology; 90%+ accuracy; ~4,000 lines across ~13 modules; built from scratch in ~2 weeks.</li>
           </ul>
-          <ul class="tags"><li>computer vision</li><li>real-time</li><li>optics</li></ul>
-          <span class="go muted">Proprietary &mdash; no repo</span>
+          <ul class="tags"><li>chain-of-thought</li><li>SEG-Y</li><li>validation</li></ul>
+          <a class="go" href="https://github.com/owenloh/SEGYScribe" rel="noopener" target="_blank">github.com/owenloh/SEGYScribe<span class="arr" aria-hidden="true">&#8599;</span></a>
         </div>
       </details>
 
       <details class="card">
         <summary>
           <span class="idx" aria-hidden="true">04</span>
-          <span class="c-title">Alistair-MCP</span>
-          <span class="c-hook">The backend for my personal-assistant OS.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>One assistant identity that follows me across clients, backed by a
-          single bridge instead of a pile of disconnected integrations.</p>
-          <ul class="deep">
-            <li>A FastAPI bridge unifying Notion, Google Calendar and a Microsoft To-Do in-tray behind one HTTP/MCP API.</li>
-            <li>Skills are loaded at runtime from a manifest; a real-time voice front end (Pipecat) streams from the model API while heavy agentic work runs in the background.</li>
-          </ul>
-          <ul class="tags"><li>FastAPI</li><li>MCP</li><li>personal OS</li></ul>
-          <a class="go" href="https://github.com/owenloh/Alistair-MCP" rel="noopener" target="_blank">github.com/owenloh/Alistair-MCP<span class="arr" aria-hidden="true">&#8599;</span></a>
-        </div>
-      </details>
-
-      <details class="card">
-        <summary>
-          <span class="idx" aria-hidden="true">05</span>
           <span class="c-title">YT Title Tracker</span>
           <span class="c-hook">Makes YouTube&rsquo;s invisible title A/B tests visible.</span>
           <span class="chev" aria-hidden="true"></span>
@@ -452,6 +433,25 @@ need by Friday — Net 30.</pre>
             <a class="go" href="https://youtubetitleabtestcompiler-production.up.railway.app/" rel="noopener" target="_blank">live dashboard<span class="arr" aria-hidden="true">&#8599;</span></a>
             <a class="go" href="https://github.com/owenloh/YT_Title_Tracker" rel="noopener" target="_blank">github.com/owenloh/YT_Title_Tracker<span class="arr" aria-hidden="true">&#8599;</span></a>
           </div>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <span class="idx" aria-hidden="true">05</span>
+          <span class="c-title">Alistair-MCP</span>
+          <span class="c-hook">The backend for my personal-assistant OS.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>One assistant identity that follows me across clients, backed by a
+          single bridge instead of a pile of disconnected integrations.</p>
+          <ul class="deep">
+            <li>A FastAPI bridge unifying Notion, Google Calendar and a Microsoft To-Do in-tray behind one HTTP/MCP API.</li>
+            <li>Skills are loaded at runtime from a manifest; a real-time voice front end (Pipecat) streams from the model API while heavy agentic work runs in the background.</li>
+          </ul>
+          <ul class="tags"><li>FastAPI</li><li>MCP</li><li>personal OS</li></ul>
+          <a class="go" href="https://github.com/owenloh/Alistair-MCP" rel="noopener" target="_blank">github.com/owenloh/Alistair-MCP<span class="arr" aria-hidden="true">&#8599;</span></a>
         </div>
       </details>
 
