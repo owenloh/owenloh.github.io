@@ -353,19 +353,23 @@ need by Friday — Net 30.</pre>
       <details class="card">
         <summary>
           <span class="idx" aria-hidden="true">01</span>
-          <span class="c-title">SEGYScribe</span>
-          <span class="c-hook">AI extraction of SEG-Y seismic metadata &mdash; 90%+ accuracy.</span>
+          <span class="c-title">Microscopy Computer Vision Suite</span>
+          <span class="c-hook">Four real-time microscopy image-processing modules.</span>
           <span class="chev" aria-hidden="true"></span>
         </summary>
         <div class="c-body">
-          <p>Clients ship SEG-Y files in every imaginable format; byte locations
-          for trace headers must usually be found by hand. This finds them.</p>
+          <p>Built solo at Aurox, each module from scratch in ~2 weeks, for
+          manufacturing and QC of microscopy equipment.</p>
+          <figure class="c-shot">
+            <img src="assets/microscopy-flatness.jpg" alt="Mirror-flatness interferometry app: interference fringes over the mirror region of interest, the Fourier view of the first harmonic, and the reconstructed mirror-surface colormap." decoding="async" fetchpriority="low">
+            <figcaption>Mirror-flatness interferometry &mdash; FFT fringe analysis, first-harmonic isolation, and reconstructed surface map. Built from scratch and shipped as a standalone app.</figcaption>
+          </figure>
           <ul class="deep">
-            <li>Chain-of-thought reasoning proposes byte-location hypotheses, statistically validated and refined in a loop until consistent.</li>
-            <li>80+ attribute ontology; 90%+ accuracy; ~4,000 lines across ~13 modules; built from scratch in ~2 weeks.</li>
+            <li>Mirror-flatness interferometry (FFT/vision); a Photoshop-like GUI for final-product testing; calibration-target alignment; triplet-lens alignment.</li>
+            <li>OpenCV, tkinter, multithreading, camera-SDK integration &mdash; real-time throughout.</li>
           </ul>
-          <ul class="tags"><li>chain-of-thought</li><li>SEG-Y</li><li>validation</li></ul>
-          <a class="go" href="https://github.com/owenloh/SEGYScribe" rel="noopener" target="_blank">github.com/owenloh/SEGYScribe<span class="arr" aria-hidden="true">&#8599;</span></a>
+          <ul class="tags"><li>computer vision</li><li>real-time</li><li>optics</li></ul>
+          <span class="go muted">Proprietary &mdash; no repo</span>
         </div>
       </details>
 
@@ -392,29 +396,49 @@ need by Friday — Net 30.</pre>
       <details class="card">
         <summary>
           <span class="idx" aria-hidden="true">03</span>
-          <span class="c-title">Microscopy Computer Vision Suite</span>
-          <span class="c-hook">Four real-time microscopy image-processing modules.</span>
+          <span class="c-title">SEGYScribe</span>
+          <span class="c-hook">AI extraction of SEG-Y seismic metadata &mdash; 90%+ accuracy.</span>
           <span class="chev" aria-hidden="true"></span>
         </summary>
         <div class="c-body">
-          <p>Built solo at Aurox, each module from scratch in ~2 weeks, for
-          manufacturing and QC of microscopy equipment.</p>
-          <figure class="c-shot">
-            <img src="assets/microscopy-flatness.jpg" alt="Mirror-flatness interferometry app: interference fringes over the mirror region of interest, the Fourier view of the first harmonic, and the reconstructed mirror-surface colormap." decoding="async" fetchpriority="low">
-            <figcaption>Mirror-flatness interferometry &mdash; FFT fringe analysis, first-harmonic isolation, and reconstructed surface map. Built from scratch and shipped as a standalone app.</figcaption>
-          </figure>
+          <p>Clients ship SEG-Y files in every imaginable format; byte locations
+          for trace headers must usually be found by hand. This finds them.</p>
           <ul class="deep">
-            <li>Mirror-flatness interferometry (FFT/vision); a Photoshop-like GUI for final-product testing; calibration-target alignment; triplet-lens alignment.</li>
-            <li>OpenCV, tkinter, multithreading, camera-SDK integration &mdash; real-time throughout.</li>
+            <li>Chain-of-thought reasoning proposes byte-location hypotheses, statistically validated and refined in a loop until consistent.</li>
+            <li>80+ attribute ontology; 90%+ accuracy; ~4,000 lines across ~13 modules; built from scratch in ~2 weeks.</li>
           </ul>
-          <ul class="tags"><li>computer vision</li><li>real-time</li><li>optics</li></ul>
-          <span class="go muted">Proprietary &mdash; no repo</span>
+          <ul class="tags"><li>chain-of-thought</li><li>SEG-Y</li><li>validation</li></ul>
+          <a class="go" href="https://github.com/owenloh/SEGYScribe" rel="noopener" target="_blank">github.com/owenloh/SEGYScribe<span class="arr" aria-hidden="true">&#8599;</span></a>
         </div>
       </details>
 
       <details class="card">
         <summary>
           <span class="idx" aria-hidden="true">04</span>
+          <span class="c-title">YT Title Tracker</span>
+          <span class="c-hook">Makes YouTube&rsquo;s invisible title A/B tests visible.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>YouTube quietly A/B-tests video titles, but each viewer is locked to
+          one &ldquo;sticky&rdquo; variant &mdash; so the experiments are invisible.
+          After watching <em>Veritasium</em> reword the same video over and over, I
+          wanted to actually see what was being tested, so I built a tracker.</p>
+          <ul class="deep">
+            <li>The trick: rather than scrape fragile HTML, it calls YouTube&rsquo;s internal <b>InnerTube API</b> and rotates a fresh <code>visitorData</code> identity per request &mdash; so every sample looks like a different viewer, surfacing variants a single account never could.</li>
+            <li>Watches 18+ channels via RSS, samples new uploads immediately and re-samples hourly, then posts a timestamped variant history once a title stabilizes. Flask + PostgreSQL, deployed on Railway.</li>
+          </ul>
+          <ul class="tags"><li>InnerTube</li><li>identity rotation</li><li>Flask</li></ul>
+          <div class="pane-links">
+            <a class="go" href="https://youtubetitleabtestcompiler-production.up.railway.app/" rel="noopener" target="_blank">live dashboard<span class="arr" aria-hidden="true">&#8599;</span></a>
+            <a class="go" href="https://github.com/owenloh/YT_Title_Tracker" rel="noopener" target="_blank">github.com/owenloh/YT_Title_Tracker<span class="arr" aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <span class="idx" aria-hidden="true">05</span>
           <span class="c-title">Alistair-MCP</span>
           <span class="c-hook">The backend for my personal-assistant OS.</span>
           <span class="chev" aria-hidden="true"></span>
