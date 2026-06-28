@@ -147,7 +147,6 @@
     { label: "Instrument — computable sensitivities", key: "go", act: function () { jump("#instrument"); } },
     { label: "Selected work", key: "go", act: function () { jump("#work"); } },
     { label: "Research — battery state-of-health", key: "go", act: function () { jump("#research"); } },
-    { label: "Awards", key: "go", act: function () { jump("#awards"); } },
     { label: "Open GitHub", key: "↗", act: function () { open_("https://github.com/owenloh"); } },
     { label: "Open LinkedIn", key: "↗", act: function () { open_("https://www.linkedin.com/in/olzm"); } },
     { label: "Email Owen", key: "↗", act: function () { open_("mailto:owenloh0607@gmail.com"); } },
@@ -223,16 +222,213 @@
     window.addEventListener("resize", onScroll); onScroll();
   }
 
-  if (!reduceMotion && "IntersectionObserver" in window) {
-    var blocks = [].slice.call(document.querySelectorAll(".block"));
-    blocks.forEach(function (el) { el.classList.add("reveal"); });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.05 });
-    blocks.forEach(function (el) { io.observe(el); });
-    // safety net: never leave content hidden
-    setTimeout(function () { blocks.forEach(function (el) { el.classList.add("in"); }); }, 2200);
-  }
+  /* ====================== Project demos (lazy-init on open) ====================== */
+  (function () {
+    var demoRedraws = [];
+    var inited = [];
+    function dpr() { return Math.min(window.devicePixelRatio || 1, 2); }
+    function sizeCanvas(cv) {
+      var w = cv.clientWidth || cv.width;
+      var h = w * (cv.height / cv.width || 0.4);
+      var d = dpr();
+      cv.width = w * d; cv.height = h * d; cv.style.height = h + "px";
+      var ctx = cv.getContext("2d"); ctx.setTransform(d, 0, 0, d, 0, 0);
+      cv._w = w; cv._h = h; return ctx;
+    }
+    var registry = { catalon: catalon, seismic: seismic, crispr: crispr, battery: battery };
+    function boot(d) {
+      if (inited.indexOf(d) !== -1) return;
+      var fn = registry[d.getAttribute("data-demo")];
+      var box = d.querySelector("[data-demo-body]");
+      if (!fn || !box) return;
+      inited.push(d);
+      try { fn(box); } catch (e) {}
+    }
+    [].forEach.call(document.querySelectorAll("details[data-demo]"), function (d) {
+      if (d.open) boot(d);
+      d.addEventListener("toggle", function () { if (d.open) boot(d); });
+    });
+    var rt;
+    window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { demoRedraws.forEach(function (f) { try { f(); } catch (e) {} }); }, 160); });
+    themeListeners.push(function () { demoRedraws.forEach(function (f) { try { f(); } catch (e) {} }); });
+
+    /* ---- Catalon: agentic PO pipeline ---- */
+    function catalon(box) {
+      var btn = box.querySelector("[data-act=run]");
+      var stages = [].slice.call(box.querySelectorAll(".stages span"));
+      var out = box.querySelector(".po-out");
+      if (!btn) return;
+      function rowEl(a, b) { return '<div class="po-row"><span>' + a + '</span><span>' + b + '</span></div>'; }
+      btn.addEventListener("click", function () {
+        btn.disabled = true; out.hidden = true; out.innerHTML = "";
+        stages.forEach(function (s) { s.className = ""; });
+        var i = 0;
+        (function step() {
+          if (i > 0) stages[i - 1].className = "done";
+          if (i < stages.length) { stages[i].className = "on"; i++; setTimeout(step, 380); }
+          else {
+            out.hidden = false;
+            out.innerHTML =
+              '<div class="po-meta">&#10003; customer resolved &middot; ERP draft ready &middot; 2.7 s</div>' +
+              rowEl("Acetone &middot; technical 99.5%", "2 drums &rarr; 110 gal") +
+              rowEl("Isopropanol &middot; usual grade", "500 gal") +
+              rowEl("terms", "Net 30 &middot; deliver Fri") +
+              rowEl("status", "awaiting 1-click approval");
+            btn.disabled = false; btn.textContent = "Run again ▸";
+          }
+        })();
+      });
+    }
+
+    /* ---- Seismic: natural-language navigation ---- */
+    function seismic(box) {
+      var cv = box.querySelector(".seis"); if (!cv) return;
+      var ctx = cv.getContext("2d");
+      var input = box.querySelector(".cmd"), echo = box.querySelector(".cmd-echo");
+      var faultX = 0.62, raf = 0;
+      var st = { cx: 0.5, zoom: 1, vel: 0 }, tg = { cx: 0.5, zoom: 1, vel: 0 };
+      function size() { ctx = sizeCanvas(cv); }
+      function draw() {
+        var W = cv._w, H = cv._h; if (!W) return;
+        var line = css("--line"), accent = css("--accent"), faint = css("--faint"), muted = css("--muted");
+        ctx.clearRect(0, 0, W, H);
+        var half = 0.5 / st.zoom, x0 = st.cx - half;
+        if (st.vel) {
+          var g = ctx.createLinearGradient(0, 0, W, 0);
+          g.addColorStop(0, "rgba(90,140,230,0.12)"); g.addColorStop(0.5, "rgba(120,200,170,0.10)"); g.addColorStop(1, "rgba(230,130,90,0.14)");
+          ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+        }
+        var layers = 13;
+        for (var li = 0; li < layers; li++) {
+          var yBase = (li + 0.6) / (layers + 0.5);
+          ctx.beginPath();
+          for (var px = 0; px <= W; px += 3) {
+            var u = x0 + (px / W) * (2 * half);
+            var amp = 0.012 + 0.009 * Math.sin(li * 0.9 + 1);
+            var y = yBase + amp * Math.sin(u * 20 + li * 0.7);
+            if (u > faultX) y += 0.05;
+            var Y = y * H;
+            if (px === 0) ctx.moveTo(px, Y); else ctx.lineTo(px, Y);
+          }
+          ctx.strokeStyle = st.vel ? "rgba(255,255,255,0.28)" : muted;
+          ctx.globalAlpha = st.vel ? 0.7 : 0.55; ctx.lineWidth = 1.4; ctx.stroke(); ctx.globalAlpha = 1;
+        }
+        if (faultX > x0 && faultX < x0 + 2 * half) {
+          var fx = ((faultX - x0) / (2 * half)) * W;
+          ctx.strokeStyle = accent; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.3;
+          ctx.beginPath(); ctx.moveTo(fx, 0); ctx.lineTo(fx, H); ctx.stroke(); ctx.setLineDash([]);
+          ctx.fillStyle = accent; ctx.font = "10px ui-monospace,monospace";
+          ctx.fillText("fault", Math.min(fx + 5, W - 32), 13);
+        }
+        ctx.fillStyle = faint; ctx.font = "10px ui-monospace,monospace";
+        ctx.fillText("IL " + Math.round(900 + st.cx * 300) + " · ×" + st.zoom.toFixed(1) + (st.vel ? " · velocity" : ""), 6, H - 7);
+      }
+      function animate() {
+        cancelAnimationFrame(raf);
+        (function tick() {
+          st.cx += (tg.cx - st.cx) * 0.16; st.zoom += (tg.zoom - st.zoom) * 0.16; st.vel = tg.vel;
+          draw();
+          if (Math.abs(tg.cx - st.cx) > 0.002 || Math.abs(tg.zoom - st.zoom) > 0.01) raf = requestAnimationFrame(tick);
+        })();
+      }
+      function run(cmd) {
+        cmd = (cmd || "").toLowerCase(); var m;
+        if (/fault/.test(cmd)) { tg.cx = faultX; tg.zoom = Math.max(tg.zoom, 1.9); m = "→ navigated to the fault · IL 1024 / XL 2030"; }
+        else if (/gas|bright|amplitude/.test(cmd)) { tg.cx = 0.28; tg.zoom = 2.1; m = "→ navigated to the bright (gas) zone"; }
+        else if (/in\b|closer|zoom in/.test(cmd)) { tg.zoom = clamp(tg.zoom * 1.4, 1, 6); m = "→ zoom in ×" + tg.zoom.toFixed(1); }
+        else if (/out|wider|zoom out/.test(cmd)) { tg.zoom = clamp(tg.zoom / 1.4, 1, 6); m = "→ zoom out ×" + tg.zoom.toFixed(1); }
+        else if (/vel/.test(cmd)) { tg.vel = st.vel ? 0 : 1; m = "→ velocity model " + (tg.vel ? "on" : "off"); }
+        else if (/left|west/.test(cmd)) { tg.cx = clamp(tg.cx - 0.16, 0.1, 0.9); m = "→ pan left"; }
+        else if (/right|east/.test(cmd)) { tg.cx = clamp(tg.cx + 0.16, 0.1, 0.9); m = "→ pan right"; }
+        else if (/reset|home|default/.test(cmd)) { tg.cx = 0.5; tg.zoom = 1; tg.vel = 0; m = "→ reset to default view"; }
+        else { m = "? couldn't parse — try: go to the fault · zoom in · toggle velocity · reset"; }
+        echo.textContent = m; animate();
+      }
+      if (input) input.addEventListener("keydown", function (e) { if (e.key === "Enter") { run(input.value); input.value = ""; } });
+      [].forEach.call(box.querySelectorAll(".chips button"), function (b) { b.addEventListener("click", function () { run(b.getAttribute("data-cmd")); }); });
+      demoRedraws.push(function () { size(); draw(); });
+      size(); draw();
+    }
+
+    /* ---- CRISPR: complexity O(mn) vs O(m log n) ---- */
+    function crispr(box) {
+      var cv = box.querySelector(".cplx"); if (!cv) return;
+      var ctx = cv.getContext("2d");
+      var sl = box.querySelector(".n"), nO = box.querySelector(".n-out");
+      var tN = box.querySelector(".t-naive"), tF = box.querySelector(".t-fast"), tS = box.querySelector(".t-speed");
+      var C_FAST = 1.09, C_NAIVE = 1.545, LO = 3, HI = 9;
+      function fmtN(n) { return n >= 1e9 ? (n / 1e9).toFixed(1) + "B bp" : n >= 1e6 ? (n / 1e6).toFixed(0) + "M bp" : n >= 1e3 ? (n / 1e3).toFixed(0) + "k bp" : Math.round(n) + " bp"; }
+      function fmtT(s) { return s < 1 ? (s * 1000).toFixed(0) + " ms" : s < 90 ? s.toFixed(1) + " s" : s < 5400 ? (s / 60).toFixed(1) + " min" : s < 172800 ? (s / 3600).toFixed(1) + " h" : s < 3.15e7 ? (s / 86400).toFixed(1) + " days" : (s / 3.15e7).toFixed(1) + " yr"; }
+      function fmtBig(x) { return x >= 1e6 ? (x / 1e6).toFixed(1) + "M" : x >= 1e3 ? (x / 1e3).toFixed(0) + "k" : Math.round(x).toString(); }
+      function draw() {
+        var n = Math.pow(10, +sl.value), naive = n * C_NAIVE, fast = Math.log2(n) * C_FAST;
+        nO.textContent = fmtN(n);
+        tN.textContent = fmtT(naive); tN.style.color = css("--accent-2");
+        tF.textContent = fmtT(fast); tF.style.color = css("--accent");
+        tS.textContent = "×" + fmtBig(naive / fast);
+        ctx = sizeCanvas(cv); var W = cv._w, H = cv._h, padL = 8, padR = 8, padT = 10, padB = 10;
+        var accent = css("--accent"), a2 = css("--accent-2"), faint = css("--faint");
+        ctx.clearRect(0, 0, W, H);
+        var tmin = Math.log2(Math.pow(10, LO)) * C_FAST, tmax = Math.pow(10, HI) * C_NAIVE;
+        var lgmin = Math.log10(tmin), lgmax = Math.log10(tmax);
+        function X(l) { return padL + ((l - LO) / (HI - LO)) * (W - padL - padR); }
+        function Y(t) { return (H - padB) - ((Math.log10(Math.max(t, 1e-6)) - lgmin) / (lgmax - lgmin)) * (H - padT - padB); }
+        function plot(f, c) { ctx.strokeStyle = c; ctx.lineWidth = 2; ctx.beginPath(); for (var l = LO; l <= HI; l += 0.05) { var x = X(l), y = Y(f(l)); l === LO ? ctx.moveTo(x, y) : ctx.lineTo(x, y); } ctx.stroke(); }
+        plot(function (l) { return Math.pow(10, l) * C_NAIVE; }, a2);
+        plot(function (l) { return Math.log2(Math.pow(10, l)) * C_FAST; }, accent);
+        var lc = Math.log10(n);
+        ctx.strokeStyle = faint; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(X(lc), padT); ctx.lineTo(X(lc), H - padB); ctx.stroke(); ctx.setLineDash([]);
+        function dot(y, c) { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(X(lc), y, 3.5, 0, 7); ctx.fill(); }
+        dot(Y(naive), a2); dot(Y(fast), accent);
+      }
+      sl.addEventListener("input", draw); demoRedraws.push(draw); draw();
+    }
+
+    /* ---- Battery: OCV decomposition fit ---- */
+    function battery(box) {
+      var cv = box.querySelector(".ocv"); if (!cv) return;
+      var ctx = cv.getContext("2d");
+      var lam = box.querySelector(".lam"), lli = box.querySelector(".lli");
+      var lamO = box.querySelector(".lam-out"), lliO = box.querySelector(".lli-out");
+      var rmseO = box.querySelector(".rmse"), fitO = box.querySelector(".fitq");
+      var TRUE = { lam: 15, lli: -4 };
+      function cathode(z) { return 4.2 - 0.9 * z - 0.25 * Math.tanh((z - 0.5) * 6); }
+      function anode(z) { return 0.09 + 0.34 * Math.exp(-z * 7) + 0.09 * Math.exp(-(z - 0.5) * (z - 0.5) * 38); }
+      function cell(soc, L, S) {
+        var peLo = 0.03 + L / 100 * 0.55, peHi = 0.97 - L / 100 * 0.55;
+        var neLo = 0.02 + S / 100, neHi = 0.95 + S / 100;
+        return cathode(peLo + soc * (peHi - peLo)) - anode(clamp(neLo + soc * (neHi - neLo), 0, 1));
+      }
+      function arr(L, S) { var a = []; for (var i = 0; i <= 60; i++) a.push(cell(i / 60, L, S)); return a; }
+      var target = arr(TRUE.lam, TRUE.lli);
+      function draw() {
+        var L = +lam.value, S = +lli.value;
+        lamO.textContent = L.toFixed(1) + "%"; lliO.textContent = (S >= 0 ? "+" : "") + S.toFixed(1) + "%";
+        var cur = arr(L, S), e = 0;
+        for (var i = 0; i < cur.length; i++) { var d = cur[i] - target[i]; e += d * d; }
+        var rmse = Math.sqrt(e / cur.length);
+        rmseO.textContent = rmse.toFixed(4) + " V";
+        var q = rmse < 0.004 ? "excellent ✓" : rmse < 0.012 ? "good" : rmse < 0.03 ? "fair" : "poor";
+        fitO.textContent = q; fitO.style.color = rmse < 0.012 ? css("--accent") : css("--accent-2");
+        ctx = sizeCanvas(cv); var W = cv._w, H = cv._h, padL = 34, padR = 10, padT = 14, padB = 22;
+        var line = css("--line"), faint = css("--faint"), accent = css("--accent"), muted = css("--muted");
+        var vmin = 2.6, vmax = 4.35;
+        function X(s) { return padL + s * (W - padL - padR); }
+        function Y(v) { return (H - padB) - ((v - vmin) / (vmax - vmin)) * (H - padT - padB); }
+        ctx.clearRect(0, 0, W, H); ctx.font = "10px ui-monospace,monospace"; ctx.lineWidth = 1;
+        [3, 3.5, 4].forEach(function (v) { ctx.strokeStyle = line; ctx.globalAlpha = .5; ctx.beginPath(); ctx.moveTo(padL, Y(v)); ctx.lineTo(W - padR, Y(v)); ctx.stroke(); ctx.globalAlpha = 1; ctx.fillStyle = faint; ctx.fillText(v.toFixed(1), 6, Y(v) + 3); });
+        ctx.fillStyle = faint; ctx.fillText("SOC →", W - 48, H - 7); ctx.fillText("0%", padL - 2, H - 7);
+        ctx.strokeStyle = faint; ctx.setLineDash([2, 4]); ctx.lineWidth = 1.6; ctx.beginPath();
+        for (var t = 0; t < target.length; t++) { var x = X(t / 60), y = Y(target[t]); t ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.setLineDash([]);
+        ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.beginPath();
+        for (var j = 0; j < cur.length; j++) { var x2 = X(j / 60), y2 = Y(cur[j]); j ? ctx.lineTo(x2, y2) : ctx.moveTo(x2, y2); } ctx.stroke();
+        ctx.fillStyle = accent; ctx.fillText("— reconstructed", padL + 2, padT + 2);
+        ctx.fillStyle = faint; ctx.fillText("··· measured", padL + 110, padT + 2);
+      }
+      lam.addEventListener("input", draw); lli.addEventListener("input", draw);
+      demoRedraws.push(draw); draw();
+    }
+  })();
 
   /* ====================== Ambient hero field ====================== */
   var field = document.getElementById("field");
