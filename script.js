@@ -333,7 +333,7 @@
   var COMMANDS = [
     { label: "Coffee engine — physics demo", key: "tab", act: function () { activateTabByName("coffee"); } },
     { label: "Catalon — agentic AI demo", key: "tab", act: function () { activateTabByName("catalon"); } },
-    { label: "Seismic — NL navigation demo", key: "tab", act: function () { activateTabByName("seismic"); } },
+    { label: "Seismic — voice agent demo", key: "tab", act: function () { activateTabByName("seismic"); } },
     { label: "CRISPR — complexity demo", key: "tab", act: function () { activateTabByName("crispr"); } },
     { label: "Battery — OCV fit demo", key: "tab", act: function () { activateTabByName("battery"); } },
     { label: "More work", key: "go", act: function () { jump("#work"); } },
