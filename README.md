@@ -1,17 +1,27 @@
-# owenloh.github.io
+# owenloh.github.io — personal portfolio
 
-Personal portfolio for **Owen Loh** — a fast, single static page.
+A fast, single static page for **Owen Loh** that behaves like an instrument, not
+a résumé: drag two controls and watch a live extraction curve, flavour radar and
+`J = dy/dx` sensitivities respond.
 
-- `index.html` — markup, meta/Open Graph, and JSON-LD `Person` schema
-- `style.css` — dark (default) + light theme, responsive, monospace accents
-- `script.js` — optional progressive enhancement (theme toggle + scroll reveal)
-- `.nojekyll` — serve files as-is on GitHub Pages
+- `index.html` — markup, meta/Open Graph, JSON-LD `Person` schema, the
+  instrument, expandable `<details>` deep-dives, and the command-palette template
+- `style.css` — dark (default) + light theme, instrument/radar/slider styling,
+  responsive, motion-guarded
+- `script.js` — optional progressive enhancement: theme toggle, ambient physics
+  field, the instrument model + curve/radar/Jacobian, command palette (`k`),
+  scroll progress + reveal
+- `.github/workflows/deploy-pages.yml` — self-enabling GitHub Pages deploy
+- `.nojekyll` — serve files as-is
 
-No build step, no frameworks, no external requests, no trackers. Open
-`index.html` directly or serve the folder with any static server.
+No build step, no frameworks, no external requests, no trackers. The page is
+fully readable and navigable with JavaScript disabled; the interactivity is
+enhancement on top.
 
 ```sh
 python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 
-Deployed via GitHub Pages → https://owenloh.github.io
+The coffee instrument is an **illustrative toy model**, not the validated
+engine — the real one (a DFN extraction model) lives at
+https://github.com/owenloh/PourDynamics

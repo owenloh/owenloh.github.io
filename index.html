@@ -6,27 +6,23 @@
 <title>Owen Loh — Physicist-builder</title>
 <meta name="description" content="Owen Loh — physicist-builder. I reframe messy real-world domains (batteries, coffee, seismic, CRISPR) as physics and control-systems problems with computable sensitivities, then build the systems that compute and validate them.">
 <meta name="author" content="Owen Loh">
-<meta name="theme-color" content="#0b0d0f">
-<link rel="canonical" href="https://owenloh.github.io/">
+<meta name="theme-color" content="#0a0c0e">
+<link rel="canonical" href="https://owenloh.github.io/mywebsite/">
 
-<!-- Open Graph / Twitter -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Owen Loh — Physicist-builder">
-<meta property="og:description" content="I reframe messy real-world domains (batteries, coffee, seismic, CRISPR) as physics and control-systems problems with computable sensitivities, then build the systems that compute and validate them.">
-<meta property="og:url" content="https://owenloh.github.io/">
+<meta property="og:description" content="I reframe messy real-world domains as physics problems with computable sensitivities (J = dy/dx), then build the systems that compute and validate them. Includes a playable extraction instrument.">
+<meta property="og:url" content="https://owenloh.github.io/mywebsite/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Owen Loh — Physicist-builder">
-<meta name="twitter:description" content="I reframe messy real-world domains as physics problems with computable sensitivities, then build the systems that compute and validate them.">
+<meta name="twitter:description" content="A portfolio that behaves like an instrument: drag two controls and watch the cup — and its sensitivities — change.">
 
-<!-- Inline SVG favicon (no extra request) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0d0f'/%3E%3Ctext x='16' y='22' font-family='ui-monospace,monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%2378d2c4'%3Eol%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0e'/%3E%3Ctext x='16' y='22' font-family='ui-monospace,monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%237ad3c4'%3Eol%3C/text%3E%3C/svg%3E">
 
-<!-- Set theme before paint (no flash). Site still works fully without JS. -->
 <script>
+  /* Set theme before paint. Site works fully without JS. */
   (function () {
-    try {
-      document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
-    } catch (e) {}
+    try { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); } catch (e) {}
   })();
 </script>
 
@@ -37,28 +33,30 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Owen Loh",
-  "url": "https://owenloh.github.io/",
+  "url": "https://owenloh.github.io/mywebsite/",
   "jobTitle": "Physicist-builder",
   "description": "Physicist-builder who reframes messy real-world domains as physics and control-systems problems with computable sensitivities, then builds the systems to compute and validate them.",
   "alumniOf": "University of Oxford",
   "homeLocation": "London, United Kingdom",
   "email": "owenloh0607@gmail.com",
-  "sameAs": [
-    "https://github.com/owenloh",
-    "https://www.linkedin.com/in/olzm"
-  ]
+  "sameAs": ["https://github.com/owenloh", "https://www.linkedin.com/in/olzm"]
 }
 </script>
 </head>
 <body>
 <a class="skip" href="#work">Skip to work</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="topbar">
-  <a class="mark" href="#top" aria-label="Owen Loh — home">ol<span class="cursor" aria-hidden="true">_</span></a>
+  <a class="mark" href="#top" aria-label="Owen Loh — top">ol<span class="cursor" aria-hidden="true">_</span></a>
   <nav class="nav" aria-label="Primary">
+    <a href="#instrument">instrument</a>
     <a href="#work">work</a>
     <a href="#research">research</a>
     <a href="#awards">awards</a>
+    <button id="palette-open" class="kbtn" type="button" aria-haspopup="dialog" aria-label="Open command palette">
+      <span aria-hidden="true">⌘</span><kbd>K</kbd>
+    </button>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle light / dark">
       <span aria-hidden="true">◐</span>
     </button>
@@ -69,151 +67,278 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <p class="eyebrow">Owen Loh · London</p>
-    <h1>Owen Loh</h1>
-    <p class="tagline">
-      Physicist-builder. I reframe messy real-world domains &mdash;
-      <span class="hl">batteries</span>, <span class="hl">coffee</span>,
-      <span class="hl">seismic</span>, <span class="hl">CRISPR</span> &mdash;
-      as physics and control-systems problems with computable sensitivities,
-      then build the systems that compute and validate them.
-    </p>
-    <p class="subline">
-      MPhys Physics, University of Oxford (predicted First, full-ride Malaysian
-      Government scholarship). On leave for a self-directed startup residency.
-      Based in London.
-    </p>
-    <ul class="links" aria-label="Contact links">
-      <li><a href="https://github.com/owenloh" rel="me noopener" target="_blank">GitHub<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-      <li><a href="https://www.linkedin.com/in/olzm" rel="me noopener" target="_blank">LinkedIn<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-      <li><a href="mailto:owenloh0607@gmail.com">owenloh0607@gmail.com</a></li>
-    </ul>
+    <canvas id="field" class="field" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <p class="eyebrow">Owen Loh · London · <span class="dim">physicist-builder</span></p>
+      <h1>Owen Loh</h1>
+      <p class="tagline">
+        I reframe messy real-world domains &mdash;
+        <span class="hl">batteries</span>, <span class="hl">coffee</span>,
+        <span class="hl">seismic</span>, <span class="hl">CRISPR</span> &mdash;
+        as physics and control-systems problems with computable sensitivities,
+        then build the systems that compute and validate them.
+      </p>
+      <p class="subline">
+        MPhys Physics, University of Oxford (predicted First, full-ride Malaysian
+        Government scholarship). On leave for a self-directed startup residency.
+      </p>
+      <ul class="links" aria-label="Contact links">
+        <li><a href="https://github.com/owenloh" rel="me noopener" target="_blank">GitHub<span class="arr" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://www.linkedin.com/in/olzm" rel="me noopener" target="_blank">LinkedIn<span class="arr" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="mailto:owenloh0607@gmail.com">owenloh0607@gmail.com</a></li>
+      </ul>
+      <p class="hint" aria-hidden="true">scroll to operate the instrument &nbsp;·&nbsp; press <kbd>K</kbd> for anything</p>
+    </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about" id="about" aria-label="About">
-    <p>
-      My edge is science-based: first-principles derivation, cross-domain
-      transfer, and sensitivity thinking &mdash; the useful object is rarely the
-      full simulation but the Jacobian <code>J = dy/dx</code>, the map of which
-      variables actually move the outcome. The proof is in the shipping: a
-      built-and-exited startup, a publishable battery method, and a coffee
-      physics engine that borrows its equations from lithium-ion cells.
+  <!-- INSTRUMENT -->
+  <section class="block instrument" id="instrument" aria-labelledby="inst-h">
+    <div class="block-head">
+      <h2 id="inst-h">computable sensitivities</h2>
+      <span class="count" aria-hidden="true">J = dy/dx</span>
+    </div>
+    <p class="lead">
+      My edge in one interaction. Take a domain people treat as art &mdash; here,
+      pour-over coffee &mdash; reduce it to a model, then read off <em>which knobs
+      actually move the outcome</em>. Drag the two real control variables and
+      watch the cup, and its sensitivities, respond.
+    </p>
+
+    <div class="rig">
+      <div class="controls" role="group" aria-label="Brew controls">
+        <div class="ctrl">
+          <label for="grind">grind size <output id="o-grind">700 µm</output></label>
+          <input type="range" id="grind" min="200" max="1200" value="700" step="5">
+          <span class="scale" aria-hidden="true"><span>fine</span><span>coarse</span></span>
+        </div>
+        <div class="ctrl">
+          <label for="flow">flow rate <output id="o-flow">5.0 g/s</output></label>
+          <input type="range" id="flow" min="1" max="8" value="5" step="0.1">
+          <span class="scale" aria-hidden="true"><span>slow</span><span>fast</span></span>
+        </div>
+
+        <div class="readouts" aria-live="polite">
+          <div class="ro"><span>TDS</span><b id="o-tds">1.27%</b></div>
+          <div class="ro"><span>extraction yield</span><b id="o-ey">20.1%</b></div>
+        </div>
+
+        <div class="jac" aria-live="polite">
+          <p class="jac-title">local sensitivities <span class="dim">(finite-difference Jacobian)</span></p>
+          <div class="jrow"><code>&part;(bitter)/&part;(flow)</code><b id="j1">—</b></div>
+          <div class="jrow"><code>&part;(acidity)/&part;(grind)</code><b id="j2">—</b></div>
+          <div class="jrow"><code>&part;(body)/&part;(grind)</code><b id="j3">—</b></div>
+        </div>
+      </div>
+
+      <div class="viz">
+        <figure class="viz-fig">
+          <canvas id="curve" width="520" height="300" role="img" aria-label="Extraction yield versus contact time"></canvas>
+          <figcaption>extraction curve &mdash; yield vs contact time</figcaption>
+        </figure>
+        <figure class="viz-fig">
+          <svg id="radar" viewBox="-20 -10 260 240" role="img" aria-label="Flavour radar across acidity, sweetness, body, bitterness and clarity">
+            <g class="radar-grid" stroke-linejoin="round" fill="none">
+              <polygon points="110,32 184.2,85.9 155.8,173.1 64.2,173.1 35.8,85.9"></polygon>
+              <polygon points="110,71 147.1,98 132.9,141.5 87.1,141.5 72.9,98"></polygon>
+              <line x1="110" y1="110" x2="110" y2="32"></line>
+              <line x1="110" y1="110" x2="184.2" y2="85.9"></line>
+              <line x1="110" y1="110" x2="155.8" y2="173.1"></line>
+              <line x1="110" y1="110" x2="64.2" y2="173.1"></line>
+              <line x1="110" y1="110" x2="35.8" y2="85.9"></line>
+            </g>
+            <polygon id="radar-shape" points="110,70 150,95 140,150 80,150 70,95"></polygon>
+            <g class="radar-label">
+              <text x="110" y="22" text-anchor="middle">acidity</text>
+              <text x="196" y="86" text-anchor="start">sweet</text>
+              <text x="160" y="190" text-anchor="middle">body</text>
+              <text x="60" y="190" text-anchor="middle">bitter</text>
+              <text x="24" y="86" text-anchor="end">clarity</text>
+            </g>
+          </svg>
+          <figcaption>flavour radar</figcaption>
+        </figure>
+        <noscript><p class="caption">Enable JavaScript to operate the instrument.</p></noscript>
+      </div>
+    </div>
+
+    <p class="caption">
+      An interactive <em>toy</em> model &mdash; directional, not calibrated. The
+      real engine (a 2D-axisymmetric DFN model ported from battery
+      electrochemistry, validated against the analytical sphere solution) lives at
+      <a href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics</a>.
     </p>
   </section>
 
   <!-- SELECTED WORK -->
   <section class="block" id="work" aria-labelledby="work-h">
     <div class="block-head">
-      <h2 id="work-h">Selected work</h2>
-      <span class="count" aria-hidden="true">08</span>
+      <h2 id="work-h">selected work</h2>
+      <span class="count" aria-hidden="true">08 · click to expand</span>
     </div>
 
     <div class="grid">
 
-      <article class="card">
-        <header>
+      <details class="card">
+        <summary>
           <span class="idx" aria-hidden="true">01</span>
-          <h3>Catalon</h3>
-        </header>
-        <p>AI automation for chemical commercial teams. Cut purchase-order
-        processing from ~40&nbsp;min to ~3&nbsp;sec with a multi-agent pipeline
-        that sits on top of existing ERPs. As technical cofounder: 2 paying
-        distributors, $60K&nbsp;ARR and a $1.2M pipeline within 2 months &mdash;
-        then exited.</p>
-        <ul class="tags"><li>multi-agent</li><li>founder</li><li>exited</li></ul>
-        <a class="go" href="https://usecatalon.com" rel="noopener" target="_blank">usecatalon.com<span class="arr" aria-hidden="true">&#8599;</span></a>
-      </article>
+          <span class="c-title">Catalon</span>
+          <span class="c-hook">AI automation for chemical commercial teams. Purchase-order processing, ~40&nbsp;min&nbsp;&rarr;&nbsp;~3&nbsp;sec.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>As technical cofounder I built a multi-agent pipeline that reads an
+          inbound PO email, resolves the customer, extracts and price-validates
+          line items, and drafts an ERP-ready order for one-click approval &mdash;
+          sub-3-second latency, sitting on top of existing ERPs with no
+          rip-and-replace.</p>
+          <ul class="deep">
+            <li>Deterministic prefilter &rarr; classify &rarr; hybrid SQL+LLM customer-resolve &rarr; schema extraction (chemical-synonym + density-unit math) &rarr; self-healing retry.</li>
+            <li>Schema-decoupled: a reusable core with per-customer &ldquo;context cartridges&rdquo; &mdash; a new deployment is eval-tune-and-swap, not a rewrite.</li>
+            <li>2 paying distributors, $60K&nbsp;ARR and a $1.2M pipeline within 2 months &mdash; then exited.</li>
+          </ul>
+          <ul class="tags"><li>multi-agent</li><li>founder</li><li>exited</li></ul>
+          <a class="go" href="https://usecatalon.com" rel="noopener" target="_blank">usecatalon.com<span class="arr" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </details>
 
-      <article class="card">
-        <header>
+      <details class="card">
+        <summary>
           <span class="idx" aria-hidden="true">02</span>
-          <h3>PourDynamics</h3>
-        </header>
-        <p>A multiscale physics engine mapping brewing variables to coffee
-        flavour. A 2D-axisymmetric Doyle&ndash;Fuller&ndash;Newman model ported
-        from battery electrochemistry, validated sub-0.2%, with a
-        self-validating simulation loop. The prize: <code>J&nbsp;=&nbsp;dy/dx</code>
-        &mdash; which knobs actually move flavour.</p>
-        <ul class="tags"><li>DFN / P2D</li><li>simulation</li><li>flagship</li></ul>
-        <a class="go" href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics<span class="arr" aria-hidden="true">&#8599;</span></a>
-      </article>
+          <span class="c-title">PourDynamics</span>
+          <span class="c-hook">A multiscale physics engine mapping brewing variables to coffee flavour.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>A 2D-axisymmetric Doyle&ndash;Fuller&ndash;Newman model ported from
+          lithium-ion battery electrochemistry &mdash; coffee extraction and a
+          battery are, mathematically, the same equations.</p>
+          <ul class="deep">
+            <li>Particle-scale diffusion coupled to a bed-scale advection&ndash;dispersion&ndash;extraction PDE; validated against Crank&rsquo;s analytical sphere solution (sub-0.2%).</li>
+            <li>Sensory layer: dose-over-threshold &rarr; Weber&ndash;Fechner compression &rarr; taste-weight mix &rarr; cross-modal masking, turning concentrations into perceived taste.</li>
+            <li>The prize is <code>J = dy/dx</code> &mdash; the Jacobian of which knobs move flavour. Strategy: open the method, close the product.</li>
+          </ul>
+          <ul class="tags"><li>DFN / P2D</li><li>simulation</li><li>flagship</li></ul>
+          <a class="go" href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics<span class="arr" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </details>
 
-      <article class="card">
-        <header>
+      <details class="card">
+        <summary>
           <span class="idx" aria-hidden="true">03</span>
-          <h3>3D-Software-MCP-Server</h3>
-        </header>
-        <p>Natural language &rarr; 3D seismic navigation inside the professional
-        software &ldquo;Tornado&rdquo; (multi-LLM, JSON-RPC, 20-level undo).
-        Built solo in ~3 weeks at Viridien on my own initiative; drew interest
-        from teams across China, the Netherlands, the US and Singapore.</p>
-        <ul class="tags"><li>MCP</li><li>seismic</li><li>agentic</li></ul>
-        <a class="go" href="https://github.com/owenloh/3D-Software-MCP-Server" rel="noopener" target="_blank">github.com/owenloh/3D-Software-MCP-Server<span class="arr" aria-hidden="true">&#8599;</span></a>
-      </article>
+          <span class="c-title">3D-Software-MCP-Server</span>
+          <span class="c-hook">Natural language &rarr; 3D seismic navigation inside pro software &ldquo;Tornado&rdquo;.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>An LLM/agent control layer that turns &ldquo;go to the gas area, toggle
+          the velocity model&rdquo; into live, validated commands against a
+          professional 3D seismic application.</p>
+          <ul class="deep">
+            <li>Natural language &rarr; JSON-RPC via an LLM, with a command validator, multi-LLM fallback, and a queued listener executing against the software&rsquo;s API.</li>
+            <li>20-level undo/redo over view state; bookmark engine; coordinate-transform between seismic and Cartesian space.</li>
+            <li>Built solo in ~3 weeks at Viridien on my own initiative; drew interest from teams across China, the Netherlands, the US and Singapore.</li>
+          </ul>
+          <ul class="tags"><li>MCP</li><li>seismic</li><li>agentic</li></ul>
+          <a class="go" href="https://github.com/owenloh/3D-Software-MCP-Server" rel="noopener" target="_blank">github.com/owenloh/3D-Software-MCP-Server<span class="arr" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </details>
 
-      <article class="card">
-        <header>
+      <details class="card">
+        <summary>
           <span class="idx" aria-hidden="true">04</span>
-          <h3>Agentic-SEGY-Metadata-Parser</h3>
-        </header>
-        <p>AI extraction of SEG-Y seismic metadata: 90%+ accuracy across an 80+
-        attribute ontology, using chain-of-thought reasoning and a
-        hypothesis-refinement loop. ~4,000 lines.</p>
-        <ul class="tags"><li>CoT</li><li>SEG-Y</li><li>validation</li></ul>
-        <a class="go" href="https://github.com/owenloh/Agentic-SEGY-Metadata-Parser" rel="noopener" target="_blank">github.com/owenloh/Agentic-SEGY-Metadata-Parser<span class="arr" aria-hidden="true">&#8599;</span></a>
-      </article>
+          <span class="c-title">Agentic-SEGY-Metadata-Parser</span>
+          <span class="c-hook">AI extraction of SEG-Y seismic metadata &mdash; 90%+ accuracy.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>Clients ship SEG-Y files in every imaginable format; byte locations
+          for trace headers must usually be found by hand. This finds them.</p>
+          <ul class="deep">
+            <li>Chain-of-thought reasoning proposes byte-location hypotheses, statistically validated and refined in a loop until consistent.</li>
+            <li>80+ attribute ontology; 90%+ accuracy; ~4,000 lines across ~13 modules; built from scratch in ~2 weeks.</li>
+          </ul>
+          <ul class="tags"><li>chain-of-thought</li><li>SEG-Y</li><li>validation</li></ul>
+          <a class="go" href="https://github.com/owenloh/Agentic-SEGY-Metadata-Parser" rel="noopener" target="_blank">github.com/owenloh/Agentic-SEGY-Metadata-Parser<span class="arr" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </details>
 
-      <article class="card">
-        <header>
+      <details class="card">
+        <summary>
           <span class="idx" aria-hidden="true">05</span>
-          <h3>FlowR <span class="alt">(MellowDrip)</span></h3>
-        </header>
-        <p>A physics-informed smart coffee brewer. Real-time PID flow-rate
-        control on an ESP8266 (C++), measuring output flow via the differential
-        of two scales &mdash; because flow rate and grind size are the only two
-        variables that matter. Showcased to 150 people.</p>
-        <ul class="tags"><li>PID</li><li>ESP8266</li><li>hardware</li></ul>
-        <span class="go muted">Hardware build &mdash; no repo</span>
-      </article>
+          <span class="c-title">FlowR <span class="alt">(MellowDrip)</span></span>
+          <span class="c-hook">A physics-informed smart coffee brewer.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>Modelling immersion vs percolation (Noyes&ndash;Whitney diffusion)
+          showed only two variables really matter: flow rate and grind size. So I
+          built hardware to control them.</p>
+          <ul class="deep">
+            <li>Measures <em>output</em> flow rate via the differential of two scales, feeding a PID loop on an ESP8266 (C++, real-time) that controls input flow.</li>
+            <li>FlowR v1 proved the concept; v2 added aesthetics and a Blynk IoT app. Showcased to 150 people.</li>
+          </ul>
+          <ul class="tags"><li>PID</li><li>ESP8266</li><li>hardware</li></ul>
+          <span class="go muted">Hardware build &mdash; no repo</span>
+        </div>
+      </details>
 
-      <article class="card">
-        <header>
+      <details class="card">
+        <summary>
           <span class="idx" aria-hidden="true">06</span>
-          <h3>Aurox CV suite</h3>
-        </header>
-        <p>Four real-time microscopy image-processing modules built solo:
-        mirror-flatness interferometry (FFT), a Photoshop-like GUI,
-        calibration-target alignment, and triplet-lens alignment. OpenCV,
-        tkinter, multithreading.</p>
-        <ul class="tags"><li>computer vision</li><li>real-time</li><li>optics</li></ul>
-        <span class="go muted">Proprietary &mdash; no repo</span>
-      </article>
+          <span class="c-title">Aurox CV suite</span>
+          <span class="c-hook">Four real-time microscopy image-processing modules.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>Built solo at Aurox, each module from scratch in ~2 weeks, for
+          manufacturing and QC of microscopy equipment.</p>
+          <ul class="deep">
+            <li>Mirror-flatness interferometry (FFT/vision); a Photoshop-like GUI for final-product testing; calibration-target alignment; triplet-lens alignment.</li>
+            <li>OpenCV, tkinter, multithreading, camera-SDK integration &mdash; real-time throughout.</li>
+          </ul>
+          <ul class="tags"><li>computer vision</li><li>real-time</li><li>optics</li></ul>
+          <span class="go muted">Proprietary &mdash; no repo</span>
+        </div>
+      </details>
 
-      <article class="card">
-        <header>
+      <details class="card">
+        <summary>
           <span class="idx" aria-hidden="true">07</span>
-          <h3>Alistair-MCP</h3>
-        </header>
-        <p>The backend for my personal-assistant OS: a FastAPI bridge unifying
-        Notion, Google Calendar and a Microsoft To-Do in-tray behind one
-        HTTP/MCP API, with runtime-loaded skills.</p>
-        <ul class="tags"><li>FastAPI</li><li>MCP</li><li>personal OS</li></ul>
-        <a class="go" href="https://github.com/owenloh/Alistair-MCP" rel="noopener" target="_blank">github.com/owenloh/Alistair-MCP<span class="arr" aria-hidden="true">&#8599;</span></a>
-      </article>
+          <span class="c-title">Alistair-MCP</span>
+          <span class="c-hook">The backend for my personal-assistant OS.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>One assistant identity that follows me across clients, backed by a
+          single bridge instead of a pile of disconnected integrations.</p>
+          <ul class="deep">
+            <li>A FastAPI bridge unifying Notion, Google Calendar and a Microsoft To-Do in-tray behind one HTTP/MCP API.</li>
+            <li>Skills are loaded at runtime from a manifest; a real-time voice front end (Pipecat) streams from the model API while heavy agentic work runs in the background.</li>
+          </ul>
+          <ul class="tags"><li>FastAPI</li><li>MCP</li><li>personal OS</li></ul>
+          <a class="go" href="https://github.com/owenloh/Alistair-MCP" rel="noopener" target="_blank">github.com/owenloh/Alistair-MCP<span class="arr" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </details>
 
-      <article class="card">
-        <header>
+      <details class="card">
+        <summary>
           <span class="idx" aria-hidden="true">08</span>
-          <h3>iGEM 2025 <span class="alt">(Oxford)</span></h3>
-        </header>
-        <p>Gold medal. A high-performance CRISPR guide-discovery search:
-        complexity reduced from <code>O(mn)</code> to <code>O(m&middot;log&nbsp;n)</code>
-        using BK-trees, tries and bitwise genome masking &mdash; 55M base pairs
-        in under 30 seconds.</p>
-        <ul class="tags"><li>bioinformatics</li><li>data structures</li><li>CUDA</li></ul>
-        <span class="go muted">Gold medal &mdash; private repo</span>
-      </article>
+          <span class="c-title">iGEM 2025 <span class="alt">(Oxford)</span></span>
+          <span class="c-hook">Gold medal &mdash; high-performance CRISPR guide discovery.</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="c-body">
+          <p>A genetic-sequence search for &ldquo;unique&rdquo; CRISPR guides that
+          hit target bacteria while sparing commensals &mdash; reframed as a
+          nearest-neighbour search problem, then engineered down.</p>
+          <ul class="deep">
+            <li>BK-trees, tries and bitwise genome masking; Cython inner loops, CUDA-batched lookups, shared-memory parallelism.</li>
+            <li>Complexity <code>O(mn)</code> &rarr; <code>O(m&middot;log&nbsp;n)</code>; 55M base pairs in under 30 seconds. Represented Oxford at iGEM 2025.</li>
+          </ul>
+          <ul class="tags"><li>bioinformatics</li><li>data structures</li><li>CUDA</li></ul>
+          <span class="go muted">Gold medal &mdash; private repo</span>
+        </div>
+      </details>
 
     </div>
   </section>
@@ -221,35 +346,43 @@
   <!-- RESEARCH -->
   <section class="block" id="research" aria-labelledby="research-h">
     <div class="block-head">
-      <h2 id="research-h">Research</h2>
+      <h2 id="research-h">research</h2>
       <span class="count" aria-hidden="true">01</span>
     </div>
-    <article class="research-item">
-      <h3>Battery State-of-Health</h3>
-      <p class="meta-line">Imperial College London &middot; Faraday Institution &middot; ongoing publication</p>
-      <p>A novel non-invasive method to recover a lithium-ion cell&rsquo;s
-      degradation modes straight from its open-circuit-voltage curves &mdash;
-      without ever opening the cell. I replaced a local-minimum
-      <code>scipy</code> fit with a Differential-Evolution global fit
-      (0.0004 vs 0.005 least-squares), then built <code>DV_fit</code> &mdash;
-      differential-voltage feature-matching via optimised Dynamic Time Warping
-      &mdash; and <code>Degraded_OCV_fit</code> over a Pchip-DTW degradation
-      manifold. NMC811&ndash;graphite, 41 cells.</p>
-    </article>
+    <details class="card wide" open>
+      <summary>
+        <span class="idx" aria-hidden="true">&#9656;</span>
+        <span class="c-title">Battery State-of-Health</span>
+        <span class="c-hook">Recovering how a cell degraded &mdash; from its voltage curves, without opening it.</span>
+        <span class="chev" aria-hidden="true"></span>
+      </summary>
+      <div class="c-body">
+        <p class="meta-line">Imperial College London &middot; Faraday Institution &middot; ongoing publication</p>
+        <p>Standard OCV-fitting gives spurious degradation modes for
+        NMC811&ndash;graphite. The root cause I found: <code>scipy.curve_fit</code>
+        returns a <em>local</em> minimum, heavily dependent on the initial
+        stoichiometric parameters.</p>
+        <ul class="deep">
+          <li><b>Differential Evolution</b> for a global fit &mdash; least-squares 0.0004 vs 0.005.</li>
+          <li><b>DV_fit</b>: differential-voltage feature-matching via optimised Dynamic Time Warping &mdash; peak/dip <em>locations</em> are invariant in lithiation even as their shape changes.</li>
+          <li><b>Degraded_OCV_fit</b>: uses DV_fit&rsquo;s predicted degraded cathode OCPs over a Pchip-DTW degradation manifold &mdash; the most consistent modes so far. NMC811&ndash;graphite, 41 cells; awaiting experimental verification.</li>
+        </ul>
+      </div>
+    </details>
   </section>
 
   <!-- AWARDS -->
   <section class="block" id="awards" aria-labelledby="awards-h">
     <div class="block-head">
-      <h2 id="awards-h">Awards</h2>
+      <h2 id="awards-h">awards</h2>
       <span class="count" aria-hidden="true">05</span>
     </div>
     <ul class="awards">
       <li><span class="a-title">Full-ride Malaysian Government (MOHE) scholarship</span><span class="a-note">to the University of Oxford</span></li>
-      <li><span class="a-title">iGEM 2025 &mdash; Gold medal</span><span class="a-note">Oxford, synthetic biology</span></li>
-      <li><span class="a-title">National Robotics Competition &mdash; Champion</span><span class="a-note">package-delivery automation</span></li>
-      <li><span class="a-title">SIRIM &mdash; Gold Award</span><span class="a-note">smart walking stick</span></li>
-      <li><span class="a-title">A-Levels &mdash; 4A*</span><span class="a-note">Maths, Further Maths, Physics, Economics</span></li>
+      <li><span class="a-title">iGEM 2025 — Gold medal</span><span class="a-note">Oxford · synthetic biology</span></li>
+      <li><span class="a-title">National Robotics Competition — Champion</span><span class="a-note">package-delivery automation</span></li>
+      <li><span class="a-title">SIRIM — Gold Award</span><span class="a-note">smart walking stick</span></li>
+      <li><span class="a-title">A-Levels — 4A*</span><span class="a-note">Maths · Further Maths · Physics · Economics</span></li>
     </ul>
   </section>
 
@@ -261,8 +394,17 @@
     <li><a href="https://www.linkedin.com/in/olzm" rel="me noopener" target="_blank">LinkedIn<span class="arr" aria-hidden="true">&#8599;</span></a></li>
     <li><a href="mailto:owenloh0607@gmail.com">owenloh0607@gmail.com</a></li>
   </ul>
-  <p class="colophon">Built as a single static page. No trackers, no build step.</p>
+  <p class="colophon">A single static page &mdash; no trackers, no build step, no external requests. Press <kbd>K</kbd> to navigate.</p>
 </footer>
+
+<!-- COMMAND PALETTE -->
+<div class="palette" id="palette" hidden>
+  <div class="palette-backdrop" data-close></div>
+  <div class="palette-box" role="dialog" aria-modal="true" aria-label="Command palette">
+    <input id="palette-input" class="palette-input" type="text" placeholder="Jump to… or type to filter (esc to close)" autocomplete="off" spellcheck="false">
+    <ul id="palette-list" class="palette-list" role="listbox" aria-label="Commands"></ul>
+  </div>
+</div>
 
 <script src="script.js" defer></script>
 </body>
