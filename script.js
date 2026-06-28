@@ -343,7 +343,7 @@
     { label: "Portfolio slides", key: "↗", act: function () { open_("https://1drv.ms/p/c/d26535d430fe7580/IQBM79UHrJJxT45lu3gBuvORAS9xCkHieKY0bC6gUYEi07g?e=sDbysZ"); } },
     { label: "PourDynamics repo", key: "↗", act: function () { open_("https://github.com/owenloh/PourDynamics"); } },
     { label: "Seismic Copilot repo (3D-MCP)", key: "↗", act: function () { open_("https://github.com/owenloh/3D-Software-MCP-Server"); } },
-    { label: "Agentic-SEGY-Metadata-Parser repo", key: "↗", act: function () { open_("https://github.com/owenloh/Agentic-SEGY-Metadata-Parser"); } },
+    { label: "SEGYScribe repo", key: "↗", act: function () { open_("https://github.com/owenloh/SEGYScribe"); } },
     { label: "Alistair-MCP repo", key: "↗", act: function () { open_("https://github.com/owenloh/Alistair-MCP"); } },
     { label: "usecatalon.com", key: "↗", act: function () { open_("https://usecatalon.com"); } },
     { label: "Toggle light / dark theme", key: "↹", act: function () { setTheme(root.getAttribute("data-theme") === "light" ? "dark" : "light"); } }
