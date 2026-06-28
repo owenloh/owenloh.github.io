@@ -455,30 +455,6 @@ need by Friday — Net 30.</pre>
         </div>
       </details>
 
-      <details class="card">
-        <summary>
-          <span class="idx" aria-hidden="true">05</span>
-          <span class="c-title">YT Title Tracker</span>
-          <span class="c-hook">Makes YouTube&rsquo;s invisible title A/B tests visible.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>YouTube quietly A/B-tests video titles, but each viewer is locked to
-          one &ldquo;sticky&rdquo; variant &mdash; so the experiments are invisible.
-          After watching <em>Veritasium</em> reword the same video over and over, I
-          wanted to actually see what was being tested, so I built a tracker.</p>
-          <ul class="deep">
-            <li>The trick: rather than scrape fragile HTML, it calls YouTube&rsquo;s internal <b>InnerTube API</b> and rotates a fresh <code>visitorData</code> identity per request &mdash; so every sample looks like a different viewer, surfacing variants a single account never could.</li>
-            <li>Watches 18+ channels via RSS, samples new uploads immediately and re-samples hourly, then posts a timestamped variant history once a title stabilizes. Flask + PostgreSQL, deployed on Railway.</li>
-          </ul>
-          <ul class="tags"><li>InnerTube</li><li>identity rotation</li><li>Flask</li></ul>
-          <div class="pane-links">
-            <a class="go" href="https://youtubetitleabtestcompiler-production.up.railway.app/" rel="noopener" target="_blank">live dashboard<span class="arr" aria-hidden="true">&#8599;</span></a>
-            <a class="go" href="https://github.com/owenloh/YT_Title_Tracker" rel="noopener" target="_blank">github.com/owenloh/YT_Title_Tracker<span class="arr" aria-hidden="true">&#8599;</span></a>
-          </div>
-        </div>
-      </details>
-
     </div>
   </section>
 
