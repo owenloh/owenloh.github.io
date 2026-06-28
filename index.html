@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://owenloh.github.io/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Owen Loh — Physics × AI">
-<meta name="twitter:description" content="A portfolio that behaves like an instrument: drag two controls and watch the cup — and its sensitivities — change.">
+<meta name="twitter:description" content="A portfolio you can operate: tab through playable demos of an agentic order pipeline, NL seismic navigation, an algorithmic speed-up, a battery fit, and a coffee-physics engine.">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0e'/%3E%3Ctext x='16' y='22' font-family='ui-monospace,monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%237ad3c4'%3Eol%3C/text%3E%3C/svg%3E">
 
@@ -44,15 +44,14 @@
 </script>
 </head>
 <body>
-<a class="skip" href="#work">Skip to work</a>
+<a class="skip" href="#play">Skip to demos</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="topbar">
   <a class="mark" href="#top" aria-label="Owen Loh — top">ol<span class="cursor" aria-hidden="true">_</span></a>
   <nav class="nav" aria-label="Primary">
-    <a href="#instrument">instrument</a>
+    <a href="#play">interactive</a>
     <a href="#work">work</a>
-    <a href="#research">research</a>
     <button id="palette-open" class="kbtn" type="button" aria-haspopup="dialog" aria-label="Open command palette">
       <span aria-hidden="true">⌘</span><kbd>K</kbd>
     </button>
@@ -86,200 +85,245 @@
         <li><a href="https://www.linkedin.com/in/olzm" rel="me noopener" target="_blank">LinkedIn<span class="arr" aria-hidden="true">&#8599;</span></a></li>
         <li><a href="mailto:owenloh0607@gmail.com">owenloh0607@gmail.com</a></li>
       </ul>
-      <p class="hint" aria-hidden="true">scroll to operate the instrument &nbsp;·&nbsp; press <kbd>K</kbd> for anything</p>
+      <p class="hint" aria-hidden="true">↓ tab through the work below &mdash; each one is playable &nbsp;·&nbsp; press <kbd>K</kbd> for anything</p>
     </div>
   </section>
 
-  <!-- INSTRUMENT -->
-  <section class="block instrument" id="instrument" aria-labelledby="inst-h">
+  <!-- INTERACTIVE SHOWCASE -->
+  <section class="block showcase" id="play" aria-labelledby="play-h">
     <div class="block-head">
-      <h2 id="inst-h">computable sensitivities</h2>
-      <span class="count" aria-hidden="true">J = dy/dx</span>
+      <h2 id="play-h">interactive</h2>
+      <span class="count" aria-hidden="true">play with the work — pick a tab</span>
     </div>
-    <p class="lead">
-      My edge in one interaction. Take a domain people treat as art &mdash; here,
-      pour-over coffee &mdash; reduce it to a model, then read off <em>which knobs
-      actually move the outcome</em>. Drag the two real control variables and
-      watch the cup, and its sensitivities, respond.
-    </p>
 
-    <div class="rig">
-      <div class="controls" role="group" aria-label="Brew controls">
-        <div class="ctrl">
-          <label for="grind">grind size <output id="o-grind">700 µm</output></label>
-          <input type="range" id="grind" min="200" max="1200" value="700" step="5">
-          <span class="scale" aria-hidden="true"><span>fine</span><span>coarse</span></span>
-        </div>
-        <div class="ctrl">
-          <label for="flow">flow rate <output id="o-flow">5.0 g/s</output></label>
-          <input type="range" id="flow" min="1" max="8" value="5" step="0.1">
-          <span class="scale" aria-hidden="true"><span>slow</span><span>fast</span></span>
-        </div>
+    <div class="tabs" role="tablist" aria-label="Interactive projects">
+      <button role="tab" id="tab-coffee"  aria-controls="panel-coffee"  aria-selected="true"  tabindex="0">Coffee&nbsp;engine <span class="t-sub">physics</span></button>
+      <button role="tab" id="tab-catalon" aria-controls="panel-catalon" aria-selected="false" tabindex="-1">Catalon <span class="t-sub">agentic AI</span></button>
+      <button role="tab" id="tab-seismic" aria-controls="panel-seismic" aria-selected="false" tabindex="-1">Seismic <span class="t-sub">NL&nbsp;nav</span></button>
+      <button role="tab" id="tab-crispr"  aria-controls="panel-crispr"  aria-selected="false" tabindex="-1">CRISPR <span class="t-sub">algorithms</span></button>
+      <button role="tab" id="tab-battery" aria-controls="panel-battery" aria-selected="false" tabindex="-1">Battery <span class="t-sub">research</span></button>
+    </div>
 
-        <div class="readouts" aria-live="polite">
-          <div class="ro"><span>TDS</span><b id="o-tds">1.27%</b></div>
-          <div class="ro"><span>extraction yield</span><b id="o-ey">20.1%</b></div>
-        </div>
-
-        <div class="jac" aria-live="polite">
-          <p class="jac-title">local sensitivities <span class="dim">(finite-difference Jacobian)</span></p>
-          <div class="jrow"><code>&part;(bitter)/&part;(flow)</code><b id="j1">—</b></div>
-          <div class="jrow"><code>&part;(acidity)/&part;(grind)</code><b id="j2">—</b></div>
-          <div class="jrow"><code>&part;(body)/&part;(grind)</code><b id="j3">—</b></div>
-        </div>
+    <!-- COFFEE -->
+    <div class="panel" role="tabpanel" id="panel-coffee" aria-labelledby="tab-coffee" tabindex="0">
+      <div class="pane-desc">
+        <h3>PourDynamics</h3>
+        <p class="c-hook">A multiscale physics engine mapping brewing variables to coffee flavour.</p>
+        <p>A 2D-axisymmetric Doyle&ndash;Fuller&ndash;Newman model ported from
+        lithium-ion battery electrochemistry &mdash; coffee extraction and a
+        battery are, mathematically, the same equations &mdash; validated against
+        Crank&rsquo;s analytical sphere solution (sub-0.2%).</p>
+        <ul class="deep">
+          <li>A sensory layer turns simulated concentrations into perceived taste: dose-over-threshold &rarr; Weber&ndash;Fechner compression &rarr; taste-weight mix &rarr; cross-modal masking.</li>
+          <li>The prize is <code>J = dy/dx</code> &mdash; the Jacobian of which knobs actually move flavour. Strategy: open the method, close the product.</li>
+        </ul>
+        <ul class="tags"><li>DFN / P2D</li><li>simulation</li><li>flagship</li></ul>
+        <a class="go" href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics<span class="arr" aria-hidden="true">&#8599;</span></a>
       </div>
-
-      <div class="viz">
-        <figure class="viz-fig">
-          <canvas id="curve" width="520" height="300" role="img" aria-label="Extraction yield versus contact time"></canvas>
-          <figcaption>extraction curve &mdash; yield vs contact time</figcaption>
-        </figure>
-        <figure class="viz-fig">
-          <svg id="radar" viewBox="-20 -10 260 240" role="img" aria-label="Flavour radar across acidity, sweetness, body, bitterness and clarity">
-            <g class="radar-grid" stroke-linejoin="round" fill="none">
-              <polygon points="110,32 184.2,85.9 155.8,173.1 64.2,173.1 35.8,85.9"></polygon>
-              <polygon points="110,71 147.1,98 132.9,141.5 87.1,141.5 72.9,98"></polygon>
-              <line x1="110" y1="110" x2="110" y2="32"></line>
-              <line x1="110" y1="110" x2="184.2" y2="85.9"></line>
-              <line x1="110" y1="110" x2="155.8" y2="173.1"></line>
-              <line x1="110" y1="110" x2="64.2" y2="173.1"></line>
-              <line x1="110" y1="110" x2="35.8" y2="85.9"></line>
-            </g>
-            <polygon id="radar-shape" points="110,70 150,95 140,150 80,150 70,95"></polygon>
-            <g class="radar-label">
-              <text x="110" y="22" text-anchor="middle">acidity</text>
-              <text x="196" y="86" text-anchor="start">sweet</text>
-              <text x="160" y="190" text-anchor="middle">body</text>
-              <text x="60" y="190" text-anchor="middle">bitter</text>
-              <text x="24" y="86" text-anchor="end">clarity</text>
-            </g>
-          </svg>
-          <figcaption>flavour radar</figcaption>
-        </figure>
-        <noscript><p class="caption">Enable JavaScript to operate the instrument.</p></noscript>
+      <div class="pane-demo">
+        <div class="rig">
+          <div class="controls" role="group" aria-label="Brew controls">
+            <div class="ctrl">
+              <label for="grind">grind size <output id="o-grind">700 µm</output></label>
+              <input type="range" id="grind" min="200" max="1200" value="700" step="5">
+              <span class="scale" aria-hidden="true"><span>fine</span><span>coarse</span></span>
+            </div>
+            <div class="ctrl">
+              <label for="flow">flow rate <output id="o-flow">5.0 g/s</output></label>
+              <input type="range" id="flow" min="1" max="8" value="5" step="0.1">
+              <span class="scale" aria-hidden="true"><span>slow</span><span>fast</span></span>
+            </div>
+            <div class="readouts" aria-live="polite">
+              <div class="ro"><span>TDS</span><b id="o-tds">1.27%</b></div>
+              <div class="ro"><span>extraction yield</span><b id="o-ey">20.2%</b></div>
+            </div>
+            <div class="jac" aria-live="polite">
+              <p class="jac-title">local sensitivities <span class="dim">(finite-difference Jacobian)</span></p>
+              <div class="jrow"><code>&part;(bitter)/&part;(flow)</code><b id="j1">—</b></div>
+              <div class="jrow"><code>&part;(acidity)/&part;(grind)</code><b id="j2">—</b></div>
+              <div class="jrow"><code>&part;(body)/&part;(grind)</code><b id="j3">—</b></div>
+            </div>
+          </div>
+          <div class="viz">
+            <figure class="viz-fig">
+              <canvas id="curve" width="520" height="300" role="img" aria-label="Extraction yield versus contact time"></canvas>
+              <figcaption>extraction curve &mdash; yield vs contact time</figcaption>
+            </figure>
+            <figure class="viz-fig">
+              <svg id="radar" viewBox="-20 -10 260 240" role="img" aria-label="Flavour radar across acidity, sweetness, body, bitterness and clarity">
+                <g class="radar-grid" stroke-linejoin="round" fill="none">
+                  <polygon points="110,32 184.2,85.9 155.8,173.1 64.2,173.1 35.8,85.9"></polygon>
+                  <polygon points="110,71 147.1,98 132.9,141.5 87.1,141.5 72.9,98"></polygon>
+                  <line x1="110" y1="110" x2="110" y2="32"></line>
+                  <line x1="110" y1="110" x2="184.2" y2="85.9"></line>
+                  <line x1="110" y1="110" x2="155.8" y2="173.1"></line>
+                  <line x1="110" y1="110" x2="64.2" y2="173.1"></line>
+                  <line x1="110" y1="110" x2="35.8" y2="85.9"></line>
+                </g>
+                <polygon id="radar-shape" points="110,70 150,95 140,150 80,150 70,95"></polygon>
+                <g class="radar-label">
+                  <text x="110" y="22" text-anchor="middle">acidity</text>
+                  <text x="196" y="86" text-anchor="start">sweet</text>
+                  <text x="160" y="190" text-anchor="middle">body</text>
+                  <text x="60" y="190" text-anchor="middle">bitter</text>
+                  <text x="24" y="86" text-anchor="end">clarity</text>
+                </g>
+              </svg>
+              <figcaption>flavour radar</figcaption>
+            </figure>
+          </div>
+        </div>
+        <p class="caption">An interactive <em>toy</em> model &mdash; directional,
+        not calibrated. The real engine (a DFN model validated against the
+        analytical sphere solution) lives at
+        <a href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics</a>.</p>
       </div>
     </div>
 
-    <p class="caption">
-      An interactive <em>toy</em> model &mdash; directional, not calibrated. The
-      real engine (a 2D-axisymmetric DFN model ported from battery
-      electrochemistry, validated against the analytical sphere solution) lives at
-      <a href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics</a>.
-    </p>
-  </section>
-
-  <!-- SELECTED WORK -->
-  <section class="block" id="work" aria-labelledby="work-h">
-    <div class="block-head">
-      <h2 id="work-h">selected work</h2>
-      <span class="count" aria-hidden="true">08 · expand for live demos</span>
-    </div>
-    <p class="lead">Eight builds across <em>agentic AI</em>, <em>ML</em> and
-    <em>physics</em>. The badged cards are playable &mdash; expand one to run the
-    actual idea in your browser: an agentic order pipeline, natural-language
-    seismic navigation, an algorithmic speed-up, and a battery-physics fit.</p>
-
-    <div class="grid">
-
-      <details class="card" data-demo="catalon">
-        <summary>
-          <span class="idx" aria-hidden="true">01</span>
-          <span class="c-title">Catalon</span>
-          <span class="c-hook"><span class="badge">▶ live demo</span> AI automation for chemical commercial teams. Purchase-order processing, ~40&nbsp;min&nbsp;&rarr;&nbsp;~3&nbsp;sec.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>As technical cofounder I built the agentic pipeline behind Catalon. It
-          reads an inbound purchase-order email, classifies intent, resolves the
-          customer against their ERP, extracts and price-validates every line item
-          &mdash; chemical-synonym resolution, density-based lbs&harr;gal conversion,
-          customer-specific rules &mdash; and drafts an ERP-ready order for one-click
-          human approval. Sub-3-second latency, sitting on top of existing systems
-          with no rip-and-replace and no retraining.</p>
-          <ul class="deep">
-            <li>Multi-stage state machine: deterministic prefilter (~15% never hit the LLM) &rarr; LLM classify &rarr; hybrid SQL+LLM customer-resolve &rarr; schema-driven extraction &rarr; self-healing retry &mdash; with a circuit breaker, token-bucket rate limiter, exponential backoff, audit trail and dead-letter queue for production resilience.</li>
-            <li>Schema-decoupled: a reusable inference core with hot-swappable per-customer &ldquo;context cartridges&rdquo; (prompts, schemas, rules, domain reference). A new deployment is eval-tune-and-swap, not a rewrite &mdash; eval-driven tuning, not fine-tuning &rarr; 99%+ accuracy.</li>
-            <li>2 paying distributors, $60K&nbsp;ARR and a $1.2M pipeline within 2 months &mdash; then exited.</li>
-          </ul>
-          <div class="demo" data-demo-body>
-            <div class="demo-head"><span class="demo-tag">try it</span> watch a messy email become a structured order</div>
-            <pre class="po-email">Subj: PO 4471 — restock
+    <!-- CATALON -->
+    <div class="panel" role="tabpanel" id="panel-catalon" aria-labelledby="tab-catalon" data-demo="catalon" tabindex="0" hidden>
+      <div class="pane-desc">
+        <h3>Catalon</h3>
+        <p class="c-hook">AI automation for chemical commercial teams. Purchase-order processing, ~40&nbsp;min&nbsp;&rarr;&nbsp;~3&nbsp;sec.</p>
+        <p>As technical cofounder I built the agentic pipeline behind Catalon. It
+        reads an inbound PO email, classifies intent, resolves the customer against
+        their ERP, extracts and price-validates every line item &mdash;
+        chemical-synonym resolution, density-based lbs&harr;gal conversion,
+        customer rules &mdash; and drafts an ERP-ready order for one-click approval.
+        Sub-3-second latency, on top of existing systems, no rip-and-replace.</p>
+        <ul class="deep">
+          <li>Multi-stage state machine: deterministic prefilter &rarr; classify &rarr; SQL+LLM customer-resolve &rarr; schema extraction &rarr; self-healing retry &mdash; with circuit breaker, rate limiter and dead-letter queue.</li>
+          <li>Schema-decoupled: a reusable core with hot-swappable per-customer &ldquo;context cartridges.&rdquo; Eval-driven tuning, not fine-tuning &rarr; 99%+ accuracy.</li>
+          <li>2 paying distributors, $60K&nbsp;ARR and a $1.2M pipeline within 2 months &mdash; then exited.</li>
+        </ul>
+        <ul class="tags"><li>multi-agent</li><li>founder</li><li>exited</li></ul>
+        <a class="go" href="https://usecatalon.com" rel="noopener" target="_blank">usecatalon.com<span class="arr" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <div class="pane-demo">
+        <div class="demo" data-demo-body>
+          <div class="demo-head"><span class="demo-tag">try it</span> watch a messy email become a structured order</div>
+          <pre class="po-email">Subj: PO 4471 — restock
 please ship to our Houston dock:
   2 drums acetone, technical 99.5%
   500 gal isopropanol (usual grade)
 need by Friday — Net 30.</pre>
-            <button class="demo-btn" type="button" data-act="run">Process order ▸</button>
-            <div class="stages" aria-hidden="true">
-              <span data-s>prefilter</span><span data-s>classify</span><span data-s>resolve&nbsp;customer</span><span data-s>extract&nbsp;+&nbsp;validate</span><span data-s>draft&nbsp;ERP</span>
-            </div>
-            <div class="po-out" hidden></div>
+          <button class="demo-btn" type="button" data-act="run">Process order ▸</button>
+          <div class="stages" aria-hidden="true">
+            <span data-s>prefilter</span><span data-s>classify</span><span data-s>resolve&nbsp;customer</span><span data-s>extract&nbsp;+&nbsp;validate</span><span data-s>draft&nbsp;ERP</span>
           </div>
-          <ul class="tags"><li>multi-agent</li><li>founder</li><li>exited</li></ul>
-          <a class="go" href="https://usecatalon.com" rel="noopener" target="_blank">usecatalon.com<span class="arr" aria-hidden="true">&#8599;</span></a>
+          <div class="po-out" hidden></div>
         </div>
-      </details>
+      </div>
+    </div>
+
+    <!-- SEISMIC -->
+    <div class="panel" role="tabpanel" id="panel-seismic" aria-labelledby="tab-seismic" data-demo="seismic" tabindex="0" hidden>
+      <div class="pane-desc">
+        <h3>3D-Software-MCP-Server</h3>
+        <p class="c-hook">Natural language &rarr; 3D seismic navigation inside pro software &ldquo;Tornado.&rdquo;</p>
+        <p>Professional seismic software has a brutal learning curve and expert
+        time is scarce. I wrapped it in an agent: describe what you want to see and
+        an LLM turns it into live, validated commands against the
+        application&rsquo;s API &mdash; like a seismologist driving it for you.</p>
+        <ul class="deep">
+          <li>NL &rarr; JSON-RPC via an LLM, gated by a command validator (only whitelisted calls run), with multi-LLM fallback and a queued listener.</li>
+          <li>20-level undo/redo; bookmark engine; bidirectional transform between seismic (inline/crossline/depth) and Cartesian space.</li>
+          <li>Built solo in ~3 weeks at Viridien on my own initiative; drew interest from teams across China, the Netherlands, the US and Singapore.</li>
+        </ul>
+        <ul class="tags"><li>MCP</li><li>seismic</li><li>agentic</li></ul>
+        <a class="go" href="https://github.com/owenloh/3D-Software-MCP-Server" rel="noopener" target="_blank">github.com/owenloh/3D-Software-MCP-Server<span class="arr" aria-hidden="true">&#8599;</span></a>
+      </div>
+      <div class="pane-demo">
+        <div class="demo" data-demo-body>
+          <div class="demo-head"><span class="demo-tag">try it</span> drive the section by command</div>
+          <canvas class="seis" width="560" height="220" role="img" aria-label="Synthetic seismic section you can navigate by command"></canvas>
+          <div class="cmdline"><span class="prompt" aria-hidden="true">&rsaquo;</span><input type="text" class="cmd" placeholder="try: go to the fault · zoom in · toggle velocity · reset" aria-label="Seismic navigation command"></div>
+          <div class="chips">
+            <button type="button" data-cmd="go to the fault">go to fault</button>
+            <button type="button" data-cmd="zoom in">zoom in</button>
+            <button type="button" data-cmd="zoom out">zoom out</button>
+            <button type="button" data-cmd="toggle velocity">toggle velocity</button>
+            <button type="button" data-cmd="reset">reset</button>
+          </div>
+          <div class="cmd-echo" aria-live="polite">› the agent parses your words into validated navigation calls.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRISPR -->
+    <div class="panel" role="tabpanel" id="panel-crispr" aria-labelledby="tab-crispr" data-demo="crispr" tabindex="0" hidden>
+      <div class="pane-desc">
+        <h3>iGEM 2025 <span class="alt">(Oxford)</span></h3>
+        <p class="c-hook">Gold medal &mdash; high-performance CRISPR guide discovery.</p>
+        <p>Finding CRISPR guides that hit a target bacterium while sparing the
+        commensal flora is, underneath, a nearest-neighbour search over millions of
+        genomic sites by Hamming distance. Done the obvious way it is
+        <code>O(mn)</code> and takes years. I reframed it as a search-structure
+        problem and engineered it down to minutes.</p>
+        <ul class="deep">
+          <li>BK-trees for Hamming-distance search; tries truncated to the first checked bases to slash memory; bitwise genome masking; Cython inner loops, CUDA-batched lookups, shared-memory parallelism.</li>
+          <li>Complexity <code>O(mn)</code> &rarr; <code>O(m&middot;log&nbsp;n)</code>; 55M base pairs in under 30 seconds. ML &amp; algorithm lead; represented Oxford at iGEM 2025.</li>
+        </ul>
+        <ul class="tags"><li>bioinformatics</li><li>data structures</li><li>CUDA</li></ul>
+        <span class="go muted">Gold medal &mdash; private repo</span>
+      </div>
+      <div class="pane-demo">
+        <div class="demo" data-demo-body>
+          <div class="demo-head"><span class="demo-tag">try it</span> brute force <code>O(mn)</code> vs BK-tree <code>O(m&middot;log&nbsp;n)</code></div>
+          <canvas class="cplx" width="560" height="180" role="img" aria-label="Search cost versus genome size"></canvas>
+          <div class="ctrl"><label>genome size <output class="n-out">55M bp</output></label><input type="range" class="n" min="3" max="9" step="0.05" value="7.74"></div>
+          <div class="cplx-out">
+            <div><span>brute force <code>O(mn)</code></span><b class="t-naive">—</b></div>
+            <div><span>BK-tree <code>O(m·log n)</code></span><b class="t-fast">—</b></div>
+            <div><span>speed-up</span><b class="t-speed">—</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATTERY -->
+    <div class="panel" role="tabpanel" id="panel-battery" aria-labelledby="tab-battery" data-demo="battery" tabindex="0" hidden>
+      <div class="pane-desc">
+        <h3>Battery State-of-Health</h3>
+        <p class="meta-line">Imperial College London &middot; Faraday Institution &middot; ongoing publication</p>
+        <p>A cell&rsquo;s health is usually read by tearing it down. I treat it as
+        an inverse problem instead: reconstruct the full-cell OCV from its cathode
+        and anode contributions, and the way they have shifted reveals exactly
+        which electrode lost capacity &mdash; non-invasively. The standard fit
+        misbehaves for NMC811&ndash;graphite because <code>scipy.curve_fit</code>
+        returns a <em>local</em> minimum.</p>
+        <ul class="deep">
+          <li><b>Differential Evolution</b> for a true global fit &mdash; least-squares 0.0004 vs 0.005.</li>
+          <li><b>DV_fit</b>: differential-voltage feature-matching via optimised Dynamic Time Warping &mdash; peak/dip <em>locations</em> are invariant in lithiation.</li>
+          <li><b>Degraded_OCV_fit</b> over a Pchip-DTW manifold &mdash; the most consistent modes so far. NMC811&ndash;graphite, 41 cells; awaiting experimental verification.</li>
+        </ul>
+      </div>
+      <div class="pane-demo">
+        <div class="demo" data-demo-body>
+          <div class="demo-head"><span class="demo-tag">try it</span> decompose the full-cell OCV into electrode contributions</div>
+          <canvas class="ocv" width="560" height="220" role="img" aria-label="Open-circuit-voltage decomposition fit"></canvas>
+          <div class="ctrl"><label>cathode capacity loss &middot; LAM <output class="lam-out">—</output></label><input type="range" class="lam" min="0" max="40" step="0.5" value="6"></div>
+          <div class="ctrl"><label>anode slippage &middot; LLI <output class="lli-out">—</output></label><input type="range" class="lli" min="-15" max="15" step="0.5" value="5"></div>
+          <div class="ocv-out"><div><span>RMSE</span><b class="rmse">—</b></div><div><span>fit quality</span><b class="fitq">—</b></div></div>
+          <p class="demo-note">The dotted curve is a measured degraded cell. Recover its hidden degradation modes by matching the reconstructed OCV (solid) &mdash; minimising this RMSE robustly is what DV_fit and Degraded_OCV_fit automate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE WORK -->
+  <section class="block" id="work" aria-labelledby="work-h">
+    <div class="block-head">
+      <h2 id="work-h">more work</h2>
+      <span class="count" aria-hidden="true">04 · click to expand</span>
+    </div>
+    <p class="lead">More across <em>agentic AI</em>, <em>ML</em> and <em>hardware</em> &mdash; click any to expand.</p>
+
+    <div class="grid">
 
       <details class="card">
         <summary>
-          <span class="idx" aria-hidden="true">02</span>
-          <span class="c-title">PourDynamics</span>
-          <span class="c-hook">A multiscale physics engine mapping brewing variables to coffee flavour.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>A 2D-axisymmetric Doyle&ndash;Fuller&ndash;Newman model ported from
-          lithium-ion battery electrochemistry &mdash; coffee extraction and a
-          battery are, mathematically, the same equations.</p>
-          <ul class="deep">
-            <li>Particle-scale diffusion coupled to a bed-scale advection&ndash;dispersion&ndash;extraction PDE; validated against Crank&rsquo;s analytical sphere solution (sub-0.2%).</li>
-            <li>Sensory layer: dose-over-threshold &rarr; Weber&ndash;Fechner compression &rarr; taste-weight mix &rarr; cross-modal masking, turning concentrations into perceived taste.</li>
-            <li>The prize is <code>J = dy/dx</code> &mdash; the Jacobian of which knobs move flavour. Strategy: open the method, close the product.</li>
-          </ul>
-          <ul class="tags"><li>DFN / P2D</li><li>simulation</li><li>flagship</li></ul>
-          <a class="go" href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics<span class="arr" aria-hidden="true">&#8599;</span></a>
-        </div>
-      </details>
-
-      <details class="card" data-demo="seismic">
-        <summary>
-          <span class="idx" aria-hidden="true">03</span>
-          <span class="c-title">3D-Software-MCP-Server</span>
-          <span class="c-hook"><span class="badge">▶ live demo</span> Natural language &rarr; 3D seismic navigation inside pro software &ldquo;Tornado&rdquo;.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>Professional seismic-interpretation software has a brutal learning
-          curve, and expert time is scarce. I wrapped it in an agent: you describe
-          what you want to see &mdash; &ldquo;go to the gas area, rotate, toggle the
-          velocity model&rdquo; &mdash; and an LLM turns it into live, validated
-          commands against the application&rsquo;s API. Like having a seismologist
-          drive the software next to you, available around the clock.</p>
-          <ul class="deep">
-            <li>Natural language &rarr; JSON-RPC via an LLM, gated by a command validator (only whitelisted function calls execute), with multi-LLM fallback, a SQLite/Firebase command queue, and a listener that applies commands to the software one at a time.</li>
-            <li>20-level undo/redo over view state; a bookmark engine reading/writing the software&rsquo;s view XML; a bidirectional coordinate transform between seismic (inline / crossline / depth) and Cartesian space.</li>
-            <li>Built solo in ~3 weeks at Viridien on my own initiative; drew interest from teams across China, the Netherlands, the US and Singapore.</li>
-          </ul>
-          <div class="demo" data-demo-body>
-            <div class="demo-head"><span class="demo-tag">try it</span> drive the section by command</div>
-            <canvas class="seis" width="560" height="210" role="img" aria-label="Synthetic seismic section you can navigate by command"></canvas>
-            <div class="cmdline"><span class="prompt" aria-hidden="true">&rsaquo;</span><input type="text" class="cmd" placeholder="try: go to the fault · zoom in · toggle velocity · reset" aria-label="Seismic navigation command"></div>
-            <div class="chips">
-              <button type="button" data-cmd="go to the fault">go to fault</button>
-              <button type="button" data-cmd="zoom in">zoom in</button>
-              <button type="button" data-cmd="zoom out">zoom out</button>
-              <button type="button" data-cmd="toggle velocity">toggle velocity</button>
-              <button type="button" data-cmd="reset">reset</button>
-            </div>
-            <div class="cmd-echo" aria-live="polite">› the agent parses your words into validated navigation calls.</div>
-          </div>
-          <ul class="tags"><li>MCP</li><li>seismic</li><li>agentic</li></ul>
-          <a class="go" href="https://github.com/owenloh/3D-Software-MCP-Server" rel="noopener" target="_blank">github.com/owenloh/3D-Software-MCP-Server<span class="arr" aria-hidden="true">&#8599;</span></a>
-        </div>
-      </details>
-
-      <details class="card">
-        <summary>
-          <span class="idx" aria-hidden="true">04</span>
+          <span class="idx" aria-hidden="true">01</span>
           <span class="c-title">Agentic-SEGY-Metadata-Parser</span>
           <span class="c-hook">AI extraction of SEG-Y seismic metadata &mdash; 90%+ accuracy.</span>
           <span class="chev" aria-hidden="true"></span>
@@ -298,7 +342,7 @@ need by Friday — Net 30.</pre>
 
       <details class="card">
         <summary>
-          <span class="idx" aria-hidden="true">05</span>
+          <span class="idx" aria-hidden="true">02</span>
           <span class="c-title">FlowR <span class="alt">(MellowDrip)</span></span>
           <span class="c-hook">A physics-informed smart coffee brewer.</span>
           <span class="chev" aria-hidden="true"></span>
@@ -318,7 +362,7 @@ need by Friday — Net 30.</pre>
 
       <details class="card">
         <summary>
-          <span class="idx" aria-hidden="true">06</span>
+          <span class="idx" aria-hidden="true">03</span>
           <span class="c-title">Aurox CV suite</span>
           <span class="c-hook">Four real-time microscopy image-processing modules.</span>
           <span class="chev" aria-hidden="true"></span>
@@ -337,7 +381,7 @@ need by Friday — Net 30.</pre>
 
       <details class="card">
         <summary>
-          <span class="idx" aria-hidden="true">07</span>
+          <span class="idx" aria-hidden="true">04</span>
           <span class="c-title">Alistair-MCP</span>
           <span class="c-hook">The backend for my personal-assistant OS.</span>
           <span class="chev" aria-hidden="true"></span>
@@ -354,82 +398,8 @@ need by Friday — Net 30.</pre>
         </div>
       </details>
 
-      <details class="card" data-demo="crispr">
-        <summary>
-          <span class="idx" aria-hidden="true">08</span>
-          <span class="c-title">iGEM 2025 <span class="alt">(Oxford)</span></span>
-          <span class="c-hook"><span class="badge">▶ live demo</span> Gold medal &mdash; high-performance CRISPR guide discovery.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>Finding CRISPR guides that hit a target bacterium while sparing the
-          commensal flora is, underneath, a nearest-neighbour search over millions
-          of genomic sites by Hamming distance. Done the obvious way it is
-          <code>O(mn)</code> and takes years. I reframed it as a search-structure
-          problem and engineered it down to minutes.</p>
-          <ul class="deep">
-            <li>BK-trees for Hamming-distance nearest-neighbour search; tries truncated to the first checked bases to slash memory; bitwise genome masking; Cython inner loops, CUDA-batched lookups and shared-memory parallelism across processes.</li>
-            <li>Complexity <code>O(mn)</code> &rarr; <code>O(m&middot;log&nbsp;n)</code>; 55M base pairs in under 30 seconds. ML &amp; algorithm lead; represented Oxford at iGEM 2025.</li>
-          </ul>
-          <div class="demo" data-demo-body>
-            <div class="demo-head"><span class="demo-tag">try it</span> brute force <code>O(mn)</code> vs BK-tree <code>O(m&middot;log&nbsp;n)</code></div>
-            <canvas class="cplx" width="560" height="180" role="img" aria-label="Search cost versus genome size"></canvas>
-            <div class="ctrl"><label>genome size <output class="n-out">55M bp</output></label><input type="range" class="n" min="3" max="9" step="0.05" value="7.74"></div>
-            <div class="cplx-out">
-              <div><span>brute force <code>O(mn)</code></span><b class="t-naive">—</b></div>
-              <div><span>BK-tree <code>O(m·log n)</code></span><b class="t-fast">—</b></div>
-              <div><span>speed-up</span><b class="t-speed">—</b></div>
-            </div>
-          </div>
-          <ul class="tags"><li>bioinformatics</li><li>data structures</li><li>CUDA</li></ul>
-          <span class="go muted">Gold medal &mdash; private repo</span>
-        </div>
-      </details>
-
     </div>
   </section>
-
-  <!-- RESEARCH -->
-  <section class="block" id="research" aria-labelledby="research-h">
-    <div class="block-head">
-      <h2 id="research-h">research</h2>
-      <span class="count" aria-hidden="true">01</span>
-    </div>
-    <details class="card wide" data-demo="battery" open>
-      <summary>
-        <span class="idx" aria-hidden="true">&#9656;</span>
-        <span class="c-title">Battery State-of-Health</span>
-        <span class="c-hook"><span class="badge">▶ live demo</span> Recovering how a cell degraded &mdash; from its voltage curves, without opening it.</span>
-        <span class="chev" aria-hidden="true"></span>
-      </summary>
-      <div class="c-body">
-        <p class="meta-line">Imperial College London &middot; Faraday Institution &middot; ongoing publication</p>
-        <p>A lithium-ion cell&rsquo;s health is usually read by tearing it down. I
-        treat it instead as an inverse problem: reconstruct the full-cell
-        open-circuit-voltage curve from its cathode and anode contributions, and
-        the way they have shifted tells you exactly which electrode lost capacity
-        and why &mdash; non-invasively. The catch is that the standard fit
-        misbehaves for NMC811&ndash;graphite, returning spurious, even negative,
-        degradation modes. The root cause I found: <code>scipy.curve_fit</code>
-        returns a <em>local</em> minimum, heavily dependent on the initial
-        stoichiometric parameters.</p>
-        <ul class="deep">
-          <li><b>Differential Evolution</b> for a true global fit &mdash; least-squares 0.0004 vs 0.005, and OCV fits that actually track the data.</li>
-          <li><b>DV_fit</b>: differential-voltage (dV/dQ) feature-matching via optimised Dynamic Time Warping &mdash; peak/dip <em>locations</em> are invariant in lithiation even as their shape changes, so they anchor the fit.</li>
-          <li><b>Degraded_OCV_fit</b>: uses DV_fit&rsquo;s predicted degraded cathode OCPs over a Pchip-DTW degradation manifold &mdash; the most consistent modes so far. NMC811&ndash;graphite, 41 cells; awaiting experimental verification.</li>
-        </ul>
-        <div class="demo" data-demo-body>
-          <div class="demo-head"><span class="demo-tag">try it</span> decompose the full-cell OCV into electrode contributions</div>
-          <canvas class="ocv" width="560" height="220" role="img" aria-label="Open-circuit-voltage decomposition fit"></canvas>
-          <div class="ctrl"><label>cathode capacity loss &middot; LAM <output class="lam-out">—</output></label><input type="range" class="lam" min="0" max="40" step="0.5" value="6"></div>
-          <div class="ctrl"><label>anode slippage &middot; LLI <output class="lli-out">—</output></label><input type="range" class="lli" min="-15" max="15" step="0.5" value="5"></div>
-          <div class="ocv-out"><div><span>RMSE</span><b class="rmse">—</b></div><div><span>fit quality</span><b class="fitq">—</b></div></div>
-          <p class="demo-note">The dotted curve is a measured degraded cell. Recover its hidden degradation modes by matching the reconstructed OCV (solid). Minimising this RMSE &mdash; robustly, without landing in a local minimum &mdash; is exactly what DV_fit and Degraded_OCV_fit automate.</p>
-        </div>
-      </div>
-    </details>
-  </section>
-
 
 </main>
 
@@ -446,7 +416,7 @@ need by Friday — Net 30.</pre>
 <div class="palette" id="palette" hidden>
   <div class="palette-backdrop" data-close></div>
   <div class="palette-box" role="dialog" aria-modal="true" aria-label="Command palette">
-    <input id="palette-input" class="palette-input" type="text" placeholder="Jump to… or type to filter (esc to close)" autocomplete="off" spellcheck="false">
+    <input id="palette-input" class="palette-input" type="text" placeholder="Jump to a demo… or type to filter (esc to close)" autocomplete="off" spellcheck="false">
     <ul id="palette-list" class="palette-list" role="listbox" aria-label="Commands"></ul>
   </div>
 </div>
