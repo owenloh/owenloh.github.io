@@ -211,6 +211,9 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; 
 .deep b { color: var(--text); }
 .tags { list-style: none; display: flex; flex-wrap: wrap; gap: .35rem; padding: 0; margin: 0 0 1rem; }
 .tags li { font-family: var(--mono); font-size: .72rem; color: var(--muted); border: 1px solid var(--line-soft); border-radius: 6px; padding: .15rem .45rem; background: var(--bg-soft); }
+.c-shot { margin: 0 0 1.1rem; }
+.c-shot img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.c-shot figcaption { margin-top: .5rem; font-family: var(--mono); font-size: .72rem; color: var(--faint); line-height: 1.45; }
 .go { font-family: var(--mono); font-size: .82rem; text-decoration: none; color: var(--accent); display: inline-flex; align-items: center; gap: .3rem; word-break: break-word; }
 a.go { border-bottom: 1px solid transparent; width: fit-content; }
 a.go:hover { border-bottom-color: var(--accent); }
