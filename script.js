@@ -271,24 +271,29 @@
       var cx = cellsCv.getContext("2d");
       var w = cellsCv.clientWidth || 220, h = w * (cellsCv.height / cellsCv.width), d = dpr();
       cellsCv.width = w * d; cellsCv.height = h * d; cellsCv.style.height = h + "px"; cx.setTransform(d, 0, 0, d, 0, 0);
-      var W = w, H = h, line = css("--line"), faint = css("--faint"), accent = css("--accent"), a2 = css("--accent-2"), text = css("--text");
+      var W = w, H = h, line = css("--line"), faint = css("--faint"), accent = css("--accent"), text = css("--text"), muted = css("--muted");
       cx.clearRect(0, 0, W, H);
-      var cathodeCap = 100 - Lv, lithium = 100 + Sv, soh = clamp(Math.min(cathodeCap, lithium), 0, 100);
-      var barW = Math.min(54, (W - 60) / 2), gap = (W - barW * 2) / 3, topPad = 30, baseY = H - 24, fullH = baseY - topPad;
+      var cathodeCap = clamp(100 - Lv, 0, 100), lithium = clamp(100 + Sv, 0, 120), soh = clamp(Math.min(cathodeCap, lithium), 0, 100);
+      var barW = Math.min(48, (W - 54) / 2), gap = (W - barW * 2) / 3, topPad = 34, baseY = H - 30, fullH = baseY - topPad;
       cx.font = "10px ui-monospace,monospace";
-      function bar(x, pct, col, label) {
-        cx.strokeStyle = line; cx.lineWidth = 1; cx.strokeRect(x, topPad, barW, fullH);
-        var hh = fullH * clamp(pct, 0, 110) / 100;
-        cx.fillStyle = col; cx.globalAlpha = .85; cx.fillRect(x, baseY - hh, barW, hh); cx.globalAlpha = 1;
-        cx.textAlign = "center";
-        cx.fillStyle = text; cx.fillText(Math.round(pct) + "%", x + barW / 2, baseY - hh - 5);
-        cx.fillStyle = faint; cx.fillText(label, x + barW / 2, H - 9);
+      function rr(x, y, wd, ht, r) { cx.beginPath(); cx.moveTo(x + r, y); cx.arcTo(x + wd, y, x + wd, y + ht, r); cx.arcTo(x + wd, y + ht, x, y + ht, r); cx.arcTo(x, y + ht, x, y, r); cx.arcTo(x, y, x + wd, y, r); cx.closePath(); }
+      function yFor(p) { return baseY - fullH * clamp(p, 0, 100) / 100; }
+      function battery(x, cap, label) {
+        cx.fillStyle = line; cx.fillRect(x + barW * 0.34, topPad - 6, barW * 0.32, 6);   // terminal nub (pop-up)
+        cx.strokeStyle = line; cx.lineWidth = 1.5; rr(x, topPad, barW, fullH, 5); cx.stroke();   // battery body
+        var us = Math.min(cap, soh), uy = yFor(us);
+        cx.save(); rr(x, topPad, barW, fullH, 5); cx.clip();
+        cx.fillStyle = accent; cx.globalAlpha = .92; cx.fillRect(x, uy, barW, baseY - uy); cx.globalAlpha = 1;        // usable (blue-green)
+        if (cap > soh + 0.5) { var ey = yFor(cap); cx.fillStyle = muted; cx.globalAlpha = .25; cx.fillRect(x, ey, barW, uy - ey); cx.globalAlpha = 1; }  // excess (wasted)
+        cx.restore();
+        cx.textAlign = "center"; cx.fillStyle = text; cx.fillText(Math.round(cap) + "%", x + barW / 2, H - 19);
+        cx.fillStyle = faint; cx.fillText(label, x + barW / 2, H - 7);
       }
-      bar(gap, cathodeCap, accent, "cathode");
-      bar(gap * 2 + barW, lithium, a2, "Li / anode");
-      var ys = baseY - fullH * clamp(soh, 0, 110) / 100;
-      cx.strokeStyle = text; cx.globalAlpha = .45; cx.setLineDash([3, 3]); cx.beginPath(); cx.moveTo(gap - 6, ys); cx.lineTo(W - gap + 6, ys); cx.stroke(); cx.setLineDash([]); cx.globalAlpha = 1;
-      cx.fillStyle = text; cx.textAlign = "left"; cx.fillText("usable / SoH " + Math.round(soh) + "%", 6, 14);
+      battery(gap, cathodeCap, "cathode");
+      battery(gap * 2 + barW, lithium, "anode·Li");
+      var ys = yFor(soh);
+      cx.strokeStyle = accent; cx.globalAlpha = .8; cx.setLineDash([4, 3]); cx.lineWidth = 1.4; cx.beginPath(); cx.moveTo(gap - 7, ys); cx.lineTo(W - gap + 7, ys); cx.stroke(); cx.setLineDash([]); cx.globalAlpha = 1;
+      cx.fillStyle = accent; cx.textAlign = "left"; cx.fillText("usable / SoH " + Math.round(soh) + "%", 4, 13);
     }
     function cathode(z) { return 4.2 - 0.9 * z - 0.25 * Math.tanh((z - 0.5) * 6); }
     function anode(z) { return 0.09 + 0.34 * Math.exp(-z * 7) + 0.09 * Math.exp(-(z - 0.5) * (z - 0.5) * 38); }
@@ -303,7 +308,7 @@
       rmseO.textContent = rmse.toFixed(4) + " V";
       var q = rmse < 0.004 ? "excellent ✓" : rmse < 0.012 ? "good" : rmse < 0.03 ? "fair" : "poor";
       fitO.textContent = q; fitO.style.color = rmse < 0.012 ? css("--accent") : css("--accent-2");
-      if (sohO) sohO.textContent = Math.round(clamp(Math.min(100 - L, 100 + S), 0, 100)) + "%";
+      if (sohO) { sohO.textContent = Math.round(clamp(Math.min(100 - L, 100 + S), 0, 100)) + "%"; sohO.style.color = css("--accent"); }
       ctx = sizeCanvas(cv); var W = cv._w, H = cv._h, padL = 34, padR = 10, padT = 14, padB = 22, vmin = 2.6, vmax = 4.35;
       var line = css("--line"), faint = css("--faint"), accent = css("--accent");
       function X(s) { return padL + s * (W - padL - padR); } function Y(v) { return (H - padB) - ((v - vmin) / (vmax - vmin)) * (H - padT - padB); }

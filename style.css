@@ -215,6 +215,7 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; 
 a.go { border-bottom: 1px solid transparent; width: fit-content; }
 a.go:hover { border-bottom-color: var(--accent); }
 .go.muted { color: var(--muted); }
+.pane-links { display: flex; flex-wrap: wrap; gap: .35rem 1.2rem; margin-top: .2rem; }
 /* smooth open animation (enhancement; native details still works) */
 @media (prefers-reduced-motion: no-preference) {
   .card[open] .c-body { animation: fadein .3s ease; }
