@@ -26,7 +26,7 @@
   })();
 </script>
 
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=8">
 
 <script type="application/ld+json">
 {
@@ -108,17 +108,16 @@
     <!-- COFFEE -->
     <div class="panel" role="tabpanel" id="panel-coffee" aria-labelledby="tab-coffee" tabindex="0">
       <div class="pane-desc">
-        <h3>PourDynamics</h3>
+        <h3>PourDynamics engine</h3>
         <p class="c-hook">A multiscale physics engine mapping brewing variables to coffee flavour.</p>
-        <p>A 2D-axisymmetric Doyle&ndash;Fuller&ndash;Newman model ported from
-        lithium-ion battery electrochemistry &mdash; coffee extraction and a
-        battery are, mathematically, the same equations &mdash; validated against
-        Crank&rsquo;s analytical sphere solution (sub-0.2%).</p>
-        <ul class="deep">
-          <li>A sensory layer turns simulated concentrations into perceived taste: dose-over-threshold &rarr; Weber&ndash;Fechner compression &rarr; taste-weight mix &rarr; cross-modal masking.</li>
-          <li>The prize is <code>J = dy/dx</code> &mdash; the Jacobian of which knobs actually move flavour. Strategy: open the method, close the product.</li>
-        </ul>
-        <ul class="tags"><li>DFN / P2D</li><li>simulation</li><li>flagship</li></ul>
+        <p>Two coupled physics: <b>Darcy flow</b> of water through the porous coffee
+        bed (advection&ndash;dispersion), and a 2D-axisymmetric
+        Doyle&ndash;Fuller&ndash;Newman extraction model ported from lithium-ion
+        batteries &mdash; coffee and a battery are, mathematically, the same
+        equations &mdash; validated to sub-0.2%. A sensory layer then maps
+        concentrations to taste. Drag the two controls and read off
+        <code>J = dy/dx</code>: which knobs actually move the cup.</p>
+        <ul class="tags"><li>Darcy + DFN</li><li>simulation</li><li>flagship</li></ul>
         <a class="go" href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics<span class="arr" aria-hidden="true">&#8599;</span></a>
       </div>
       <div class="pane-demo">
@@ -173,6 +172,11 @@
               <figcaption>flavour radar</figcaption>
             </figure>
           </div>
+          <div class="flavour" aria-live="polite">
+            <span class="flavour-tag">predicted cup</span>
+            <p class="flavour-note" id="flavour-note">Drag the controls to brew a cup.</p>
+            <ul class="flavour-tags" id="flavour-tags"></ul>
+          </div>
         </div>
         <p class="caption">An interactive <em>toy</em> model &mdash; directional,
         not calibrated. The real engine (a DFN model validated against the
@@ -184,8 +188,9 @@
     <!-- CATALON -->
     <div class="panel" role="tabpanel" id="panel-catalon" aria-labelledby="tab-catalon" data-demo="catalon" tabindex="0" hidden>
       <div class="pane-desc">
-        <h3>Catalon</h3>
+        <h3>Catalon <span class="alt">(technical cofounder)</span></h3>
         <p class="c-hook">AI automation for chemical commercial teams. Purchase-order processing, ~40&nbsp;min&nbsp;&rarr;&nbsp;~3&nbsp;sec.</p>
+        <p class="meta-line">technical cofounder &middot; founded, built &amp; exited</p>
         <p>As technical cofounder I built the agentic pipeline behind Catalon. It
         reads an inbound PO email, classifies intent, resolves the customer against
         their ERP, extracts and price-validates every line item &mdash;
@@ -212,7 +217,14 @@ need by Friday — Net 30.</pre>
           <div class="stages" aria-hidden="true">
             <span data-s>prefilter</span><span data-s>classify</span><span data-s>resolve&nbsp;customer</span><span data-s>extract&nbsp;+&nbsp;validate</span><span data-s>draft&nbsp;ERP</span>
           </div>
-          <div class="po-out" hidden></div>
+          <div class="po-out po-empty">
+            <div class="po-meta">structured order appears here &rarr;</div>
+            <div class="po-row"><span>customer</span><span>—</span></div>
+            <div class="po-row"><span>line items</span><span>—</span></div>
+            <div class="po-row"><span>terms</span><span>—</span></div>
+            <div class="po-row"><span>status</span><span>—</span></div>
+          </div>
+          <p class="demo-note">Real inbound POs are messy &mdash; wrong units, chemical synonyms, free text. The pipeline normalises all of it and drafts an ERP-ready order in ~3 seconds, with a human making the final one-click approval.</p>
         </div>
       </div>
     </div>
@@ -220,7 +232,7 @@ need by Friday — Net 30.</pre>
     <!-- SEISMIC -->
     <div class="panel" role="tabpanel" id="panel-seismic" aria-labelledby="tab-seismic" data-demo="seismic" tabindex="0" hidden>
       <div class="pane-desc">
-        <h3>3D-Software-MCP-Server</h3>
+        <h3>Seismic Copilot</h3>
         <p class="c-hook">Natural language &rarr; 3D seismic navigation inside pro software &ldquo;Tornado.&rdquo;</p>
         <p>Professional seismic software has a brutal learning curve and expert
         time is scarce. I wrapped it in an agent: describe what you want to see and
@@ -229,7 +241,7 @@ need by Friday — Net 30.</pre>
         <ul class="deep">
           <li>NL &rarr; JSON-RPC via an LLM, gated by a command validator (only whitelisted calls run), with multi-LLM fallback and a queued listener.</li>
           <li>20-level undo/redo; bookmark engine; bidirectional transform between seismic (inline/crossline/depth) and Cartesian space.</li>
-          <li>Built solo in ~3 weeks at Viridien on my own initiative; drew interest from teams across China, the Netherlands, the US and Singapore.</li>
+          <li>Built solo in ~3 weeks at Viridien on my own initiative; drew immediate traction from teams across China, the Netherlands, the US and Singapore.</li>
         </ul>
         <ul class="tags"><li>MCP</li><li>seismic</li><li>agentic</li></ul>
         <a class="go" href="https://github.com/owenloh/3D-Software-MCP-Server" rel="noopener" target="_blank">github.com/owenloh/3D-Software-MCP-Server<span class="arr" aria-hidden="true">&#8599;</span></a>
@@ -256,28 +268,35 @@ need by Friday — Net 30.</pre>
       <div class="pane-desc">
         <h3>iGEM 2025 <span class="alt">(Oxford)</span></h3>
         <p class="c-hook">Gold medal &mdash; high-performance CRISPR guide discovery.</p>
-        <p>Finding CRISPR guides that hit a target bacterium while sparing the
-        commensal flora is, underneath, a nearest-neighbour search over millions of
-        genomic sites by Hamming distance. Done the obvious way it is
-        <code>O(mn)</code> and takes years. I reframed it as a search-structure
-        problem and engineered it down to minutes.</p>
+        <p>The job: find guide RNAs that hit a target bacterium while sparing the
+        commensal flora &mdash; a nearest-neighbour search by Hamming distance over
+        millions of genomic sites. I built a two-layer engine: a <b>trie</b> prefix
+        filter (exact first 13&nbsp;nt) drops ~85% of candidates, then a
+        <b>BK-tree</b> Hamming search over a <b>2-bit-packed</b> genome handles the
+        rest.</p>
         <ul class="deep">
-          <li>BK-trees for Hamming-distance search; tries truncated to the first checked bases to slash memory; bitwise genome masking; Cython inner loops, CUDA-batched lookups, shared-memory parallelism.</li>
-          <li>Complexity <code>O(mn)</code> &rarr; <code>O(m&middot;log&nbsp;n)</code>; 55M base pairs in under 30 seconds. ML &amp; algorithm lead; represented Oxford at iGEM 2025.</li>
+          <li>Brute force is <code>O(N&middot;M&middot;L)</code> &mdash; every target guide against every commensal guide. The hybrid is <code>O(N&middot;(k + log&nbsp;M&middot;L))</code>: linear in targets, with the database term dropping from <em>M</em> to <em>log&nbsp;M</em>.</li>
+          <li>~2.3M indexed guides across 50 genomes; ~3&nbsp;s per guide; ~2000&times; faster than the BLAST equivalent; 1.2&nbsp;GB bit-packed vs 4.8&nbsp;GB as strings; 100% accuracy. ML &amp; algorithm lead at iGEM 2025.</li>
         </ul>
-        <ul class="tags"><li>bioinformatics</li><li>data structures</li><li>CUDA</li></ul>
+        <ul class="tags"><li>BK-tree + trie</li><li>bit-packed DNA</li><li>CUDA</li></ul>
         <span class="go muted">Gold medal &mdash; private repo</span>
       </div>
       <div class="pane-demo">
         <div class="demo" data-demo-body>
-          <div class="demo-head"><span class="demo-tag">try it</span> brute force <code>O(mn)</code> vs BK-tree <code>O(m&middot;log&nbsp;n)</code></div>
-          <canvas class="cplx" width="560" height="180" role="img" aria-label="Search cost versus genome size"></canvas>
-          <div class="ctrl"><label>genome size <output class="n-out">55M bp</output></label><input type="range" class="n" min="3" max="9" step="0.05" value="7.74"></div>
-          <div class="cplx-out">
-            <div><span>brute force <code>O(mn)</code></span><b class="t-naive">—</b></div>
-            <div><span>BK-tree <code>O(m·log n)</code></span><b class="t-fast">—</b></div>
-            <div><span>speed-up</span><b class="t-speed">—</b></div>
+          <div class="demo-head"><span class="demo-tag">try it</span> is this guide unique, or an off-target risk?</div>
+          <div class="crispr-stage">
+            <div class="seq-row"><span class="seq-label">target guide</span><code class="seq" id="cr-target"></code></div>
+            <div class="seq-row"><span class="seq-label">nearest commensal</span><code class="seq" id="cr-match"></code></div>
           </div>
+          <div class="cr-stats">
+            <div><span>Hamming distance</span><b id="cr-ham">—</b></div>
+            <div><span>similarity</span><b id="cr-sim">—</b></div>
+            <div><span>scanned</span><b>2.3M guides</b></div>
+          </div>
+          <div class="ctrl"><label>similarity threshold <output id="cr-thr-o">70%</output></label><input type="range" id="cr-thr" min="50" max="100" step="1" value="70"></div>
+          <div class="cr-verdict" id="cr-verdict">—</div>
+          <button class="demo-btn" type="button" id="cr-gen">Generate new guide ▸</button>
+          <p class="demo-note">The trie + BK-tree finds the nearest commensal match (mismatches in amber). At or above the threshold = off-target risk, rejected; below = a unique guide, safe to target. Real runs: ~3&nbsp;s per guide over 2.3M, ~2000&times; faster than BLAST.</p>
         </div>
       </div>
     </div>
@@ -301,12 +320,15 @@ need by Friday — Net 30.</pre>
       </div>
       <div class="pane-demo">
         <div class="demo" data-demo-body>
-          <div class="demo-head"><span class="demo-tag">try it</span> decompose the full-cell OCV into electrode contributions</div>
-          <canvas class="ocv" width="560" height="220" role="img" aria-label="Open-circuit-voltage decomposition fit"></canvas>
+          <div class="demo-head"><span class="demo-tag">try it</span> fit the OCV &mdash; and watch the electrodes shrink</div>
+          <div class="batt-viz">
+            <figure class="batt-fig"><canvas class="ocv" width="520" height="240" role="img" aria-label="Open-circuit-voltage decomposition fit"></canvas><figcaption>full-cell OCV &mdash; reconstructed vs measured</figcaption></figure>
+            <figure class="batt-fig"><canvas class="cells" width="220" height="240" role="img" aria-label="Electrode capacity schematic"></canvas><figcaption>electrode capacity &rarr; state of health</figcaption></figure>
+          </div>
           <div class="ctrl"><label>cathode capacity loss &middot; LAM <output class="lam-out">—</output></label><input type="range" class="lam" min="0" max="40" step="0.5" value="6"></div>
-          <div class="ctrl"><label>anode slippage &middot; LLI <output class="lli-out">—</output></label><input type="range" class="lli" min="-15" max="15" step="0.5" value="5"></div>
-          <div class="ocv-out"><div><span>RMSE</span><b class="rmse">—</b></div><div><span>fit quality</span><b class="fitq">—</b></div></div>
-          <p class="demo-note">The dotted curve is a measured degraded cell. Recover its hidden degradation modes by matching the reconstructed OCV (solid) &mdash; minimising this RMSE robustly is what DV_fit and Degraded_OCV_fit automate.</p>
+          <div class="ctrl"><label>anode / lithium slippage &middot; LLI <output class="lli-out">—</output></label><input type="range" class="lli" min="-15" max="15" step="0.5" value="5"></div>
+          <div class="ocv-out"><div><span>RMSE</span><b class="rmse">—</b></div><div><span>fit quality</span><b class="fitq">—</b></div><div><span>state of health</span><b class="soh">—</b></div></div>
+          <p class="demo-note">Left: match the reconstructed OCV (solid) to the measured degraded cell (dotted). Right: the same two numbers as physical capacity &mdash; the <em>smaller</em> electrode sets the cell&rsquo;s state of health.</p>
         </div>
       </div>
     </div>
@@ -424,6 +446,6 @@ need by Friday — Net 30.</pre>
   </div>
 </div>
 
-<script src="script.js?v=6" defer></script>
+<script src="script.js?v=8" defer></script>
 </body>
 </html>

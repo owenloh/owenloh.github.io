@@ -241,6 +241,7 @@ a.go:hover { border-bottom-color: var(--accent); }
 
 /* ---------- Tabbed showcase (browser-style folder tabs) ---------- */
 .showcase { scroll-margin-top: 4rem; }
+.block.showcase { max-width: min(96vw, 1180px); }
 .tabs { display: flex; flex-wrap: wrap; gap: .3rem; position: relative; z-index: 2; }
 .tabs button {
   flex: 0 0 auto; font-family: var(--mono); font-size: .85rem; color: var(--muted);
@@ -272,6 +273,31 @@ a.go:hover { border-bottom-color: var(--accent); }
 .pane-demo .demo { margin: 0; }
 @media (max-width: 820px) { .panel { grid-template-columns: 1fr; gap: 1.2rem; } }
 
+/* Coffee panel: wide, horizontal — controls | curve | radar (side), flavour below */
+#panel-coffee:not([hidden]) { display: block; }
+#panel-coffee .pane-desc { max-width: 80ch; margin-bottom: 1.4rem; }
+#panel-coffee .pane-demo .rig { display: grid; grid-template-columns: minmax(250px, 310px) minmax(0, 1fr) minmax(230px, 300px); gap: 1.3rem; align-items: start; }
+#panel-coffee .pane-demo .viz { display: contents; }
+#panel-coffee #curve { max-height: 250px; }
+#panel-coffee #radar { max-width: 290px; }
+#panel-coffee .flavour { grid-column: 1 / -1; margin-top: .2rem; }
+@media (max-width: 900px) {
+  #panel-coffee .pane-demo .rig { grid-template-columns: 1fr; }
+  #panel-coffee .pane-demo .viz { display: block; }
+  #panel-coffee #curve { max-height: none; }
+  #panel-coffee #radar { max-width: 320px; }
+}
+
+/* Flavour card (coffee simulation outcome) */
+.flavour { background: color-mix(in srgb, var(--accent) 8%, var(--bg-soft)); border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--line)); border-radius: 11px; padding: .9rem 1.1rem; }
+.flavour-tag { display: inline-block; font-family: var(--mono); font-size: .6rem; text-transform: uppercase; letter-spacing: .05em; color: var(--accent-ink); background: var(--accent); border-radius: 4px; padding: .12rem .45rem; }
+.flavour-note { margin: .55rem 0 .65rem; font-size: 1.05rem; line-height: 1.45; color: var(--text); }
+.flavour-tags { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; padding: 0; margin: 0; }
+.flavour-tags li { font-family: var(--mono); font-size: .72rem; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line)); border-radius: 6px; padding: .16rem .55rem; }
+
+/* Catalon: persistent output placeholder */
+.po-out.po-empty, .po-out.po-empty .po-meta, .po-out.po-empty .po-row span { color: var(--faint); }
+
 /* ---------- Interactive project demos ---------- */
 .badge { display: inline-block; font-family: var(--mono); font-size: .6rem; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 50%, var(--line)); border-radius: 5px; padding: .06rem .35rem; margin-right: .45rem; vertical-align: middle; white-space: nowrap; }
 .demo { margin: 1.1rem 0; padding: 1rem; border: 1px solid var(--line); border-radius: 11px; background: var(--bg-soft); }
@@ -291,6 +317,8 @@ a.go:hover { border-bottom-color: var(--accent); }
 .stages span.done { color: var(--muted); opacity: 1; }
 .po-out { margin-top: 1rem; font-family: var(--mono); font-size: .8rem; border-top: 1px dashed var(--line); padding-top: .9rem; }
 .po-meta { color: var(--accent); margin-bottom: .55rem; }
+.po-checks { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .3rem .8rem; padding: 0; margin: 0 0 .7rem; }
+.po-checks li { font-family: var(--mono); font-size: .76rem; color: var(--accent); }
 .po-row { display: flex; justify-content: space-between; gap: 1rem; padding: .32rem 0; border-bottom: 1px solid var(--line-soft); color: var(--muted); }
 .po-row:last-child { border-bottom: 0; }
 
@@ -308,6 +336,28 @@ a.go:hover { border-bottom-color: var(--accent); }
 .cplx-out > div, .ocv-out > div { background: var(--bg); border: 1px solid var(--line-soft); border-radius: 8px; padding: .6rem .7rem; }
 .cplx-out span, .ocv-out span { display: block; font-family: var(--mono); font-size: .65rem; color: var(--faint); margin-bottom: .15rem; }
 .cplx-out b, .ocv-out b { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+
+/* Battery electrode schematic */
+.batt-viz { display: grid; grid-template-columns: minmax(0, 1fr) minmax(170px, 220px); gap: 1rem; align-items: stretch; margin-bottom: .3rem; }
+.batt-fig { margin: 0; background: var(--bg-soft); border: 1px solid var(--line-soft); border-radius: 10px; padding: .8rem .8rem .5rem; }
+.batt-fig figcaption { font-family: var(--mono); font-size: .68rem; color: var(--faint); margin-top: .4rem; text-align: center; }
+.batt-fig .ocv, .batt-fig .cells { background: transparent; border: 0; width: 100%; height: auto; display: block; }
+@media (max-width: 620px) { .batt-viz { grid-template-columns: 1fr; } }
+
+/* CRISPR off-target scanner */
+.crispr-stage { background: var(--bg); border: 1px solid var(--line-soft); border-radius: 9px; padding: .9rem 1rem; margin-bottom: .9rem; overflow-x: auto; }
+.seq-row { display: flex; align-items: center; gap: .9rem; margin: .35rem 0; }
+.seq-label { font-family: var(--mono); font-size: .68rem; color: var(--faint); width: 8.5rem; flex: 0 0 auto; text-align: right; }
+.seq { font-family: var(--mono); font-size: 1.05rem; letter-spacing: .22em; white-space: nowrap; }
+.seq .m { color: var(--muted); }
+.seq .x { color: var(--accent-2); font-weight: 700; }
+.cr-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(115px, 1fr)); gap: .6rem; margin-bottom: .8rem; }
+.cr-stats > div { background: var(--bg); border: 1px solid var(--line-soft); border-radius: 8px; padding: .55rem .7rem; }
+.cr-stats span { display: block; font-family: var(--mono); font-size: .64rem; color: var(--faint); }
+.cr-stats b { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.cr-verdict { font-family: var(--mono); font-size: .88rem; border: 1px solid var(--line); border-radius: 8px; padding: .6rem .8rem; margin-bottom: .8rem; }
+.cr-verdict.good { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.cr-verdict.bad { color: var(--accent-2); border-color: color-mix(in srgb, var(--accent-2) 42%, var(--line)); background: color-mix(in srgb, var(--accent-2) 10%, transparent); }
 
 /* ---------- Focus + reveal ---------- */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }

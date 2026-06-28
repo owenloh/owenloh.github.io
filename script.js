@@ -89,6 +89,24 @@
       return (110 + r * Math.cos(RADAR_ANGLES[i])).toFixed(1) + "," + (110 + r * Math.sin(RADAR_ANGLES[i])).toFixed(1);
     }).join(" "));
   }
+  function renderFlavour(m) {
+    var note = document.getElementById("flavour-note"), tagsEl = document.getElementById("flavour-tags");
+    if (!note) return;
+    var lead = m.acidity > m.bitter + 0.08 ? "Bright and lively" : m.bitter > m.acidity + 0.08 ? "Bold and bitter-forward" : "Balanced and even";
+    var bodyW = m.body > 0.6 ? "a full, syrupy body" : m.body < 0.4 ? "a light, tea-like body" : "a medium body";
+    var fin = m.clarity > 0.58 ? "a clean finish" : "a rounded, heavier finish";
+    note.textContent = lead + ", with " + bodyW + " and " + fin + ". TDS " + m.tds.toFixed(2) + "% · EY " + m.ey.toFixed(1) + "%.";
+    if (tagsEl) {
+      var tags = [];
+      tags.push(m.acidity > m.bitter + 0.08 ? "bright" : m.bitter > m.acidity + 0.08 ? "bitter-leaning" : "balanced");
+      tags.push(m.body > 0.6 ? "full body" : m.body < 0.4 ? "light body" : "medium body");
+      if (m.clarity > 0.58) tags.push("clean");
+      if (m.sweet > 0.55) tags.push("sweet");
+      if (m.bitter > 0.7) tags.push("intense");
+      if (m.acidity > 0.72) tags.push("juicy");
+      tagsEl.innerHTML = tags.slice(0, 4).map(function (t) { return "<li>" + t + "</li>"; }).join("");
+    }
+  }
   var lastM = null;
   function update() {
     if (!grindEl || !flowEl) return;
@@ -97,7 +115,7 @@
     set("o-grind", Math.round(g) + " µm"); set("o-flow", f.toFixed(1) + " g/s");
     set("o-tds", m.tds.toFixed(2) + "%"); set("o-ey", m.ey.toFixed(1) + "%");
     setJac("j1", partial("bitter", g, f, "flow")); setJac("j2", partial("acidity", g, f, "grind")); setJac("j3", partial("body", g, f, "grind"));
-    drawCurve(m); drawRadar(m);
+    drawCurve(m); drawRadar(m); renderFlavour(m);
   }
   if (grindEl && flowEl) {
     grindEl.addEventListener("input", update); flowEl.addEventListener("input", update);
@@ -149,14 +167,14 @@
     if (!btn) return;
     function rowEl(a, b) { return '<div class="po-row"><span>' + a + '</span><span>' + b + '</span></div>'; }
     btn.addEventListener("click", function () {
-      btn.disabled = true; out.hidden = true; out.innerHTML = ""; stages.forEach(function (s) { s.className = ""; });
+      btn.disabled = true; out.classList.remove("po-empty"); out.innerHTML = ""; stages.forEach(function (s) { s.className = ""; });
       var i = 0;
       (function step() {
         if (i > 0) stages[i - 1].className = "done";
         if (i < stages.length) { stages[i].className = "on"; i++; setTimeout(step, 380); }
         else {
-          out.hidden = false;
-          out.innerHTML = '<div class="po-meta">&#10003; customer resolved &middot; ERP draft ready &middot; 2.7 s</div>' +
+          out.innerHTML = '<div class="po-meta">customer resolved &middot; processed in 2.7 s</div>' +
+            '<ul class="po-checks"><li>&#10003; inventory checked</li><li>&#10003; pricing matched</li><li>&#10003; email reply drafted</li><li>&#10003; ERP order ready</li></ul>' +
             rowEl("Acetone &middot; technical 99.5%", "2 drums &rarr; 110 gal") +
             rowEl("Isopropanol &middot; usual grade", "500 gal") +
             rowEl("terms", "Net 30 &middot; deliver Fri") +
@@ -207,40 +225,71 @@
   }
 
   function crispr(box) {
-    var cv = box.querySelector(".cplx"); if (!cv) return;
-    var ctx = cv.getContext("2d"), sl = box.querySelector(".n"), nO = box.querySelector(".n-out");
-    var tN = box.querySelector(".t-naive"), tF = box.querySelector(".t-fast"), tS = box.querySelector(".t-speed");
-    var C_FAST = 1.09, C_NAIVE = 1.545, LO = 3, HI = 9;
-    function fmtN(n) { return n >= 1e9 ? (n / 1e9).toFixed(1) + "B bp" : n >= 1e6 ? (n / 1e6).toFixed(0) + "M bp" : n >= 1e3 ? (n / 1e3).toFixed(0) + "k bp" : Math.round(n) + " bp"; }
-    function fmtT(s) { return s < 1 ? (s * 1000).toFixed(0) + " ms" : s < 90 ? s.toFixed(1) + " s" : s < 5400 ? (s / 60).toFixed(1) + " min" : s < 172800 ? (s / 3600).toFixed(1) + " h" : s < 3.15e7 ? (s / 86400).toFixed(1) + " days" : (s / 3.15e7).toFixed(1) + " yr"; }
-    function fmtBig(x) { return x >= 1e6 ? (x / 1e6).toFixed(1) + "M" : x >= 1e3 ? (x / 1e3).toFixed(0) + "k" : Math.round(x).toString(); }
-    function draw() {
-      var n = Math.pow(10, +sl.value), naive = n * C_NAIVE, fast = Math.log2(n) * C_FAST;
-      nO.textContent = fmtN(n);
-      tN.textContent = fmtT(naive); tN.style.color = css("--accent-2");
-      tF.textContent = fmtT(fast); tF.style.color = css("--accent");
-      tS.textContent = "×" + fmtBig(naive / fast);
-      ctx = sizeCanvas(cv); var W = cv._w, H = cv._h, padL = 8, padR = 8, padT = 10, padB = 10;
-      var accent = css("--accent"), a2 = css("--accent-2"), faint = css("--faint");
-      ctx.clearRect(0, 0, W, H);
-      var tmin = Math.log2(Math.pow(10, LO)) * C_FAST, tmax = Math.pow(10, HI) * C_NAIVE, lgmin = Math.log10(tmin), lgmax = Math.log10(tmax);
-      function X(l) { return padL + ((l - LO) / (HI - LO)) * (W - padL - padR); }
-      function Y(t) { return (H - padB) - ((Math.log10(Math.max(t, 1e-6)) - lgmin) / (lgmax - lgmin)) * (H - padT - padB); }
-      function plot(f, c) { ctx.strokeStyle = c; ctx.lineWidth = 2; ctx.beginPath(); for (var l = LO; l <= HI; l += .05) { var x = X(l), y = Y(f(l)); l === LO ? ctx.moveTo(x, y) : ctx.lineTo(x, y); } ctx.stroke(); }
-      plot(function (l) { return Math.pow(10, l) * C_NAIVE; }, a2);
-      plot(function (l) { return Math.log2(Math.pow(10, l)) * C_FAST; }, accent);
-      var lc = Math.log10(n); ctx.strokeStyle = faint; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(X(lc), padT); ctx.lineTo(X(lc), H - padB); ctx.stroke(); ctx.setLineDash([]);
-      function dot(y, c) { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(X(lc), y, 3.5, 0, 7); ctx.fill(); }
-      dot(Y(naive), a2); dot(Y(fast), accent);
+    var L = 20, bases = "ACGT";
+    var tEl = box.querySelector("#cr-target"), mEl = box.querySelector("#cr-match");
+    var hamEl = box.querySelector("#cr-ham"), simEl = box.querySelector("#cr-sim");
+    var thr = box.querySelector("#cr-thr"), thrO = box.querySelector("#cr-thr-o"), verdict = box.querySelector("#cr-verdict"), gen = box.querySelector("#cr-gen");
+    if (!tEl || !thr) return;
+    var target = "", nearest = "", ham = 0, sim = 0;
+    function rseq(n) { var s = ""; for (var i = 0; i < n; i++) s += bases[Math.floor(Math.random() * 4)]; return s; }
+    function hd(a, b) { var d = 0; for (var i = 0; i < a.length; i++) if (a[i] !== b[i]) d++; return d; }
+    function mutate(seq, k) {
+      var arr = seq.split(""), idx = [], i, j, t;
+      for (i = 0; i < seq.length; i++) idx.push(i);
+      for (i = idx.length - 1; i > 0; i--) { j = Math.floor(Math.random() * (i + 1)); t = idx[i]; idx[i] = idx[j]; idx[j] = t; }
+      for (i = 0; i < k; i++) { var p = idx[i], nb; do { nb = bases[Math.floor(Math.random() * 4)]; } while (nb === arr[p]); arr[p] = nb; }
+      return arr.join("");
     }
-    sl.addEventListener("input", draw); draw(); return draw;
+    function spans(seq, ref) { return seq.split("").map(function (c, i) { return '<span class="' + (c === ref[i] ? "m" : "x") + '">' + c + "</span>"; }).join(""); }
+    function evaluate() {
+      var t = +thr.value; thrO.textContent = t + "%";
+      var risk = sim >= t;
+      verdict.textContent = risk ? "✗ off-target risk — rejected (≥ " + t + "% similar to a commensal)" : "✓ unique guide — safe to target";
+      verdict.className = "cr-verdict " + (risk ? "bad" : "good");
+    }
+    function gen2() {
+      target = rseq(L);
+      nearest = mutate(target, 3 + Math.floor(Math.random() * 7));
+      ham = hd(target, nearest); sim = Math.round((L - ham) / L * 100);
+      tEl.innerHTML = spans(target, nearest); mEl.innerHTML = spans(nearest, target);
+      hamEl.textContent = ham + " / " + L; simEl.textContent = sim + "%";
+      evaluate();
+    }
+    thr.addEventListener("input", evaluate);
+    if (gen) gen.addEventListener("click", gen2);
+    gen2();
   }
 
   function battery(box) {
     var cv = box.querySelector(".ocv"); if (!cv) return;
     var ctx = cv.getContext("2d"), lam = box.querySelector(".lam"), lli = box.querySelector(".lli");
-    var lamO = box.querySelector(".lam-out"), lliO = box.querySelector(".lli-out"), rmseO = box.querySelector(".rmse"), fitO = box.querySelector(".fitq");
+    var lamO = box.querySelector(".lam-out"), lliO = box.querySelector(".lli-out"), rmseO = box.querySelector(".rmse"), fitO = box.querySelector(".fitq"), sohO = box.querySelector(".soh");
+    var cellsCv = box.querySelector(".cells");
     var TRUE = { lam: 15, lli: -4 };
+    function drawCells(Lv, Sv) {
+      if (!cellsCv) return;
+      var cx = cellsCv.getContext("2d");
+      var w = cellsCv.clientWidth || 220, h = w * (cellsCv.height / cellsCv.width), d = dpr();
+      cellsCv.width = w * d; cellsCv.height = h * d; cellsCv.style.height = h + "px"; cx.setTransform(d, 0, 0, d, 0, 0);
+      var W = w, H = h, line = css("--line"), faint = css("--faint"), accent = css("--accent"), a2 = css("--accent-2"), text = css("--text");
+      cx.clearRect(0, 0, W, H);
+      var cathodeCap = 100 - Lv, lithium = 100 + Sv, soh = clamp(Math.min(cathodeCap, lithium), 0, 100);
+      var barW = Math.min(54, (W - 60) / 2), gap = (W - barW * 2) / 3, topPad = 30, baseY = H - 24, fullH = baseY - topPad;
+      cx.font = "10px ui-monospace,monospace";
+      function bar(x, pct, col, label) {
+        cx.strokeStyle = line; cx.lineWidth = 1; cx.strokeRect(x, topPad, barW, fullH);
+        var hh = fullH * clamp(pct, 0, 110) / 100;
+        cx.fillStyle = col; cx.globalAlpha = .85; cx.fillRect(x, baseY - hh, barW, hh); cx.globalAlpha = 1;
+        cx.textAlign = "center";
+        cx.fillStyle = text; cx.fillText(Math.round(pct) + "%", x + barW / 2, baseY - hh - 5);
+        cx.fillStyle = faint; cx.fillText(label, x + barW / 2, H - 9);
+      }
+      bar(gap, cathodeCap, accent, "cathode");
+      bar(gap * 2 + barW, lithium, a2, "Li / anode");
+      var ys = baseY - fullH * clamp(soh, 0, 110) / 100;
+      cx.strokeStyle = text; cx.globalAlpha = .45; cx.setLineDash([3, 3]); cx.beginPath(); cx.moveTo(gap - 6, ys); cx.lineTo(W - gap + 6, ys); cx.stroke(); cx.setLineDash([]); cx.globalAlpha = 1;
+      cx.fillStyle = text; cx.textAlign = "left"; cx.fillText("usable / SoH " + Math.round(soh) + "%", 6, 14);
+    }
     function cathode(z) { return 4.2 - 0.9 * z - 0.25 * Math.tanh((z - 0.5) * 6); }
     function anode(z) { return 0.09 + 0.34 * Math.exp(-z * 7) + 0.09 * Math.exp(-(z - 0.5) * (z - 0.5) * 38); }
     function cell(soc, L, S) { var peLo = 0.03 + L / 100 * 0.55, peHi = 0.97 - L / 100 * 0.55, neLo = 0.02 + S / 100, neHi = 0.95 + S / 100; return cathode(peLo + soc * (peHi - peLo)) - anode(clamp(neLo + soc * (neHi - neLo), 0, 1)); }
@@ -254,6 +303,7 @@
       rmseO.textContent = rmse.toFixed(4) + " V";
       var q = rmse < 0.004 ? "excellent ✓" : rmse < 0.012 ? "good" : rmse < 0.03 ? "fair" : "poor";
       fitO.textContent = q; fitO.style.color = rmse < 0.012 ? css("--accent") : css("--accent-2");
+      if (sohO) sohO.textContent = Math.round(clamp(Math.min(100 - L, 100 + S), 0, 100)) + "%";
       ctx = sizeCanvas(cv); var W = cv._w, H = cv._h, padL = 34, padR = 10, padT = 14, padB = 22, vmin = 2.6, vmax = 4.35;
       var line = css("--line"), faint = css("--faint"), accent = css("--accent");
       function X(s) { return padL + s * (W - padL - padR); } function Y(v) { return (H - padB) - ((v - vmin) / (vmax - vmin)) * (H - padT - padB); }
@@ -265,6 +315,7 @@
       ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.beginPath();
       for (var j = 0; j < cur.length; j++) { var x2 = X(j / 60), y2 = Y(cur[j]); j ? ctx.lineTo(x2, y2) : ctx.moveTo(x2, y2); } ctx.stroke();
       ctx.fillStyle = accent; ctx.fillText("— reconstructed", padL + 2, padT + 2); ctx.fillStyle = faint; ctx.fillText("··· measured", padL + 110, padT + 2);
+      drawCells(L, S);
     }
     lam.addEventListener("input", draw); lli.addEventListener("input", draw); draw(); return draw;
   }
@@ -286,7 +337,7 @@
     { label: "Book a call", key: "↗", act: function () { open_("https://calendar.app.google/BHBN9vUJ483jwWfq5"); } },
     { label: "Portfolio slides", key: "↗", act: function () { open_("https://1drv.ms/p/c/d26535d430fe7580/IQBM79UHrJJxT45lu3gBuvORAS9xCkHieKY0bC6gUYEi07g?e=sDbysZ"); } },
     { label: "PourDynamics repo", key: "↗", act: function () { open_("https://github.com/owenloh/PourDynamics"); } },
-    { label: "3D-Software-MCP-Server repo", key: "↗", act: function () { open_("https://github.com/owenloh/3D-Software-MCP-Server"); } },
+    { label: "Seismic Copilot repo (3D-MCP)", key: "↗", act: function () { open_("https://github.com/owenloh/3D-Software-MCP-Server"); } },
     { label: "Agentic-SEGY-Metadata-Parser repo", key: "↗", act: function () { open_("https://github.com/owenloh/Agentic-SEGY-Metadata-Parser"); } },
     { label: "Alistair-MCP repo", key: "↗", act: function () { open_("https://github.com/owenloh/Alistair-MCP"); } },
     { label: "usecatalon.com", key: "↗", act: function () { open_("https://usecatalon.com"); } },
