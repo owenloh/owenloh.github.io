@@ -1,4 +1,4 @@
-/* Owen Loh — portfolio v5. Progressive enhancement only; page works without JS. */
+/* Owen Loh — portfolio */
 (function () {
   "use strict";
   var root = document.documentElement;

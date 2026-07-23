@@ -1,8 +1,7 @@
 # owenloh.github.io — personal portfolio
 
-A fast, single static page for **Owen Loh** that behaves like an instrument, not
-a résumé: drag two controls and watch a live extraction curve, flavour radar and
-`J = dy/dx` sensitivities respond.
+Personal portfolio for **Owen Loh**. Drag the two brew controls and the
+extraction curve, flavour radar and `J = dy/dx` sensitivities respond live.
 
 - `index.html` — markup, meta/Open Graph, JSON-LD `Person` schema, the
   instrument, expandable `<details>` deep-dives, and the command-palette template
@@ -14,9 +13,8 @@ a résumé: drag two controls and watch a live extraction curve, flavour radar a
 - `.github/workflows/deploy-pages.yml` — self-enabling GitHub Pages deploy
 - `.nojekyll` — serve files as-is
 
-No build step, no frameworks, no external requests, no trackers. The page is
-fully readable and navigable with JavaScript disabled; the interactivity is
-enhancement on top.
+The page is readable with JavaScript disabled; the interactive demos layer on
+top.
 
 ```sh
 python3 -m http.server 8000   # then visit http://localhost:8000
