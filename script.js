@@ -1,4 +1,4 @@
-/* Owen Loh — portfolio v5. Progressive enhancement only; page works without JS. */
+/* Owen Loh - portfolio */
 (function () {
   "use strict";
   var root = document.documentElement;
@@ -215,7 +215,7 @@
       else if (/left|west/.test(cmd)) { tg.cx = clamp(tg.cx - .16, .1, .9); m = "→ pan left"; }
       else if (/right|east/.test(cmd)) { tg.cx = clamp(tg.cx + .16, .1, .9); m = "→ pan right"; }
       else if (/reset|home|default/.test(cmd)) { tg.cx = .5; tg.zoom = 1; tg.vel = 0; m = "→ reset to default view"; }
-      else { m = "? couldn't parse — try: go to the fault · zoom in · toggle velocity · reset"; }
+      else { m = "? couldn't parse - try: go to the fault · zoom in · toggle velocity · reset"; }
       echo.textContent = m; animate();
     }
     if (input) input.addEventListener("keydown", function (e) { if (e.key === "Enter") { run(input.value); input.value = ""; } });
@@ -244,7 +244,7 @@
     function evaluate() {
       var t = +thr.value; thrO.textContent = t + "%";
       var risk = sim >= t;
-      verdict.textContent = risk ? "✗ off-target risk — rejected (≥ " + t + "% similar to a commensal)" : "✓ unique guide — safe to target";
+      verdict.textContent = risk ? "✗ off-target risk - rejected (≥ " + t + "% similar to a commensal)" : "✓ unique guide - safe to target";
       verdict.className = "cr-verdict " + (risk ? "bad" : "good");
     }
     function gen2() {
@@ -319,7 +319,7 @@
       for (var t = 0; t < target.length; t++) { var x = X(t / 60), y = Y(target[t]); t ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.setLineDash([]);
       ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.beginPath();
       for (var j = 0; j < cur.length; j++) { var x2 = X(j / 60), y2 = Y(cur[j]); j ? ctx.lineTo(x2, y2) : ctx.moveTo(x2, y2); } ctx.stroke();
-      ctx.fillStyle = accent; ctx.fillText("— reconstructed", padL + 2, padT + 2); ctx.fillStyle = faint; ctx.fillText("··· measured", padL + 110, padT + 2);
+      ctx.fillStyle = accent; ctx.fillText("- reconstructed", padL + 2, padT + 2); ctx.fillStyle = faint; ctx.fillText("··· measured", padL + 110, padT + 2);
       drawCells(L, S);
     }
     lam.addEventListener("input", draw); lli.addEventListener("input", draw); draw(); return draw;
@@ -331,11 +331,11 @@
   function jump(sel) { var el = document.querySelector(sel); if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); }
   function open_(url) { window.open(url, url.indexOf("mailto:") === 0 ? "_self" : "_blank", "noopener"); }
   var COMMANDS = [
-    { label: "Coffee engine — physics demo", key: "tab", act: function () { activateTabByName("coffee"); } },
-    { label: "Catalon — agentic AI demo", key: "tab", act: function () { activateTabByName("catalon"); } },
-    { label: "Seismic — voice agent demo", key: "tab", act: function () { activateTabByName("seismic"); } },
-    { label: "CRISPR — complexity demo", key: "tab", act: function () { activateTabByName("crispr"); } },
-    { label: "Battery — OCV fit demo", key: "tab", act: function () { activateTabByName("battery"); } },
+    { label: "Coffee engine - physics demo", key: "tab", act: function () { activateTabByName("coffee"); } },
+    { label: "Catalon - agentic AI demo", key: "tab", act: function () { activateTabByName("catalon"); } },
+    { label: "Seismic - voice agent demo", key: "tab", act: function () { activateTabByName("seismic"); } },
+    { label: "CRISPR - complexity demo", key: "tab", act: function () { activateTabByName("crispr"); } },
+    { label: "Battery - OCV fit demo", key: "tab", act: function () { activateTabByName("battery"); } },
     { label: "More work", key: "go", act: function () { jump("#work"); } },
     { label: "Open GitHub", key: "↗", act: function () { open_("https://github.com/owenloh"); } },
     { label: "Open LinkedIn", key: "↗", act: function () { open_("https://www.linkedin.com/in/olzm"); } },
