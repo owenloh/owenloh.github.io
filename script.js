@@ -215,7 +215,7 @@
       else if (/left|west/.test(cmd)) { tg.cx = clamp(tg.cx - .16, .1, .9); m = "→ pan left"; }
       else if (/right|east/.test(cmd)) { tg.cx = clamp(tg.cx + .16, .1, .9); m = "→ pan right"; }
       else if (/reset|home|default/.test(cmd)) { tg.cx = .5; tg.zoom = 1; tg.vel = 0; m = "→ reset to default view"; }
-      else { m = "? couldn't parse — try: go to the fault · zoom in · toggle velocity · reset"; }
+      else { m = "? couldn't parse - try: go to the fault · zoom in · toggle velocity · reset"; }
       echo.textContent = m; animate();
     }
     if (input) input.addEventListener("keydown", function (e) { if (e.key === "Enter") { run(input.value); input.value = ""; } });
@@ -244,7 +244,7 @@
     function evaluate() {
       var t = +thr.value; thrO.textContent = t + "%";
       var risk = sim >= t;
-      verdict.textContent = risk ? "✗ off-target risk — rejected (≥ " + t + "% similar to a commensal)" : "✓ unique guide — safe to target";
+      verdict.textContent = risk ? "✗ off-target risk - rejected (≥ " + t + "% similar to a commensal)" : "✓ unique guide - safe to target";
       verdict.className = "cr-verdict " + (risk ? "bad" : "good");
     }
     function gen2() {
