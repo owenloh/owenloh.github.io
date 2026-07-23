@@ -1,4 +1,4 @@
-/* Owen Loh — portfolio */
+/* Owen Loh - portfolio */
 
 /* ---------- Theme tokens ---------- */
 :root {
@@ -218,7 +218,7 @@ summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; 
 a.go { border-bottom: 1px solid transparent; width: fit-content; }
 a.go:hover { border-bottom-color: var(--accent); }
 .go.muted { color: var(--muted); }
-/* "live website" link — green pulsing dot signals the deployed, working app */
+/* "live website" link - green pulsing dot signals the deployed, working app */
 .go-live { color: #2ecc71; }
 a.go-live:hover { border-bottom-color: #2ecc71; }
 .live-dot { width: .5rem; height: .5rem; border-radius: 50%; background: #2ecc71; flex: none; box-shadow: 0 0 0 0 rgba(46, 204, 113, .55); }
@@ -312,7 +312,7 @@ a.go-live:hover { border-bottom-color: #2ecc71; }
   .crispr-stage .seq { font-size: .78rem; letter-spacing: .1em; }
 }
 
-/* Coffee panel: wide, horizontal — controls | curve | radar (side), flavour below */
+/* Coffee panel: wide, horizontal - controls | curve | radar (side), flavour below */
 #panel-coffee:not([hidden]) { display: block; }
 #panel-coffee .pane-desc { max-width: 80ch; margin-bottom: 1.4rem; }
 #panel-coffee .pane-demo .rig { display: grid; grid-template-columns: minmax(250px, 310px) minmax(0, 1fr) minmax(230px, 300px); gap: 1.3rem; align-items: start; }

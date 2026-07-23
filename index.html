@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Owen Loh — Physics × Artificial Intelligence</title>
-<meta name="description" content="Owen Loh — physics × Artificial Intelligence. I turn messy real-world domains (batteries, coffee, seismic, CRISPR) into physics problems with computable sensitivities, then build the AI and ML systems that compute, automate and validate them.">
+<title>Owen Loh - Physics × Artificial Intelligence</title>
+<meta name="description" content="Owen Loh - physics × Artificial Intelligence. I turn messy real-world domains (batteries, coffee, seismic, CRISPR) into physics problems with computable sensitivities, then build the AI and ML systems that compute, automate and validate them.">
 <meta name="author" content="Owen Loh">
 <meta name="theme-color" content="#0a0c0e">
 <link rel="canonical" href="https://owenloh.github.io/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Owen Loh — Physics × Artificial Intelligence">
+<meta property="og:title" content="Owen Loh - Physics × Artificial Intelligence">
 <meta property="og:description" content="I turn messy real-world domains into physics problems with computable sensitivities (J = dy/dx), then build the AI systems that compute, automate and validate them. With playable demos.">
 <meta property="og:url" content="https://owenloh.github.io/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Owen Loh — Physics × Artificial Intelligence">
+<meta name="twitter:title" content="Owen Loh - Physics × Artificial Intelligence">
 <meta name="twitter:description" content="A portfolio you can operate: tab through playable demos of an agentic order pipeline, NL seismic navigation, an algorithmic speed-up, a battery fit, and a coffee-physics engine.">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0e'/%3E%3Ctext x='16' y='22' font-family='ui-monospace,monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%237ad3c4'%3Eol%3C/text%3E%3C/svg%3E">
@@ -48,7 +48,7 @@
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="topbar">
-  <a class="mark" href="#top" aria-label="Owen Loh — top">ol<span class="cursor" aria-hidden="true">_</span></a>
+  <a class="mark" href="#top" aria-label="Owen Loh - top">ol<span class="cursor" aria-hidden="true">_</span></a>
   <nav class="nav" aria-label="Primary">
     <a href="#play">interactive</a>
     <a href="#work">work</a>
@@ -139,9 +139,9 @@
             </div>
             <div class="jac" aria-live="polite">
               <p class="jac-title">local sensitivities <span class="dim">(finite-difference Jacobian)</span></p>
-              <div class="jrow"><code>&part;(bitter)/&part;(flow)</code><b id="j1">—</b></div>
-              <div class="jrow"><code>&part;(acidity)/&part;(grind)</code><b id="j2">—</b></div>
-              <div class="jrow"><code>&part;(body)/&part;(grind)</code><b id="j3">—</b></div>
+              <div class="jrow"><code>&part;(bitter)/&part;(flow)</code><b id="j1">-</b></div>
+              <div class="jrow"><code>&part;(acidity)/&part;(grind)</code><b id="j2">-</b></div>
+              <div class="jrow"><code>&part;(body)/&part;(grind)</code><b id="j3">-</b></div>
             </div>
           </div>
           <div class="viz">
@@ -208,21 +208,21 @@
       <div class="pane-demo">
         <div class="demo" data-demo-body>
           <div class="demo-head"><span class="demo-tag">try it</span> watch a messy email become a structured order</div>
-          <pre class="po-email">Subj: PO 4471 — restock
+          <pre class="po-email">Subj: PO 4471 - restock
 please ship to our Houston dock:
   2 drums acetone, technical 99.5%
   500 gal isopropanol (usual grade)
-need by Friday — Net 30.</pre>
+need by Friday - Net 30.</pre>
           <button class="demo-btn" type="button" data-act="run">Process order ▸</button>
           <div class="stages" aria-hidden="true">
             <span data-s>prefilter</span><span data-s>classify</span><span data-s>resolve&nbsp;customer</span><span data-s>extract&nbsp;+&nbsp;validate</span><span data-s>draft&nbsp;ERP</span>
           </div>
           <div class="po-out po-empty">
             <div class="po-meta">structured order appears here &rarr;</div>
-            <div class="po-row"><span>customer</span><span>—</span></div>
-            <div class="po-row"><span>line items</span><span>—</span></div>
-            <div class="po-row"><span>terms</span><span>—</span></div>
-            <div class="po-row"><span>status</span><span>—</span></div>
+            <div class="po-row"><span>customer</span><span>-</span></div>
+            <div class="po-row"><span>line items</span><span>-</span></div>
+            <div class="po-row"><span>terms</span><span>-</span></div>
+            <div class="po-row"><span>status</span><span>-</span></div>
           </div>
           <p class="demo-note">Real inbound POs are messy - wrong units, chemical synonyms, free text. The pipeline normalises all of it and drafts an ERP-ready order in ~3 seconds, with a human making the final one-click approval.</p>
         </div>
@@ -295,12 +295,12 @@ need by Friday — Net 30.</pre>
             <div class="seq-row"><span class="seq-label">nearest commensal</span><code class="seq" id="cr-match"></code></div>
           </div>
           <div class="cr-stats">
-            <div><span>Hamming distance</span><b id="cr-ham">—</b></div>
-            <div><span>similarity</span><b id="cr-sim">—</b></div>
+            <div><span>Hamming distance</span><b id="cr-ham">-</b></div>
+            <div><span>similarity</span><b id="cr-sim">-</b></div>
             <div><span>scanned</span><b>2.3M guides</b></div>
           </div>
           <div class="ctrl"><label>similarity threshold <output id="cr-thr-o">70%</output></label><input type="range" id="cr-thr" min="50" max="100" step="1" value="70"></div>
-          <div class="cr-verdict" id="cr-verdict">—</div>
+          <div class="cr-verdict" id="cr-verdict">-</div>
           <button class="demo-btn" type="button" id="cr-gen">Generate new guide ▸</button>
           <p class="demo-note">The trie + BK-tree finds the nearest commensal match (mismatches in amber). At or above the threshold = off-target risk, rejected; below = a unique guide, safe to target. Real runs: ~3&nbsp;s per guide over 2.3M, ~2000&times; faster than BLAST.</p>
         </div>
@@ -331,9 +331,9 @@ need by Friday — Net 30.</pre>
             <figure class="batt-fig"><canvas class="ocv" width="520" height="240" role="img" aria-label="Open-circuit-voltage decomposition fit"></canvas><figcaption>full-cell OCV - reconstructed vs measured</figcaption></figure>
             <figure class="batt-fig"><canvas class="cells" width="220" height="240" role="img" aria-label="Electrode capacity schematic"></canvas><figcaption>electrode capacity &rarr; state of health</figcaption></figure>
           </div>
-          <div class="ctrl"><label>cathode capacity loss &middot; LAM <output class="lam-out">—</output></label><input type="range" class="lam" min="0" max="40" step="0.5" value="6"></div>
-          <div class="ctrl"><label>anode / lithium slippage &middot; LLI <output class="lli-out">—</output></label><input type="range" class="lli" min="-15" max="15" step="0.5" value="5"></div>
-          <div class="ocv-out"><div><span>RMSE</span><b class="rmse">—</b></div><div><span>fit quality</span><b class="fitq">—</b></div><div><span>state of health</span><b class="soh">—</b></div></div>
+          <div class="ctrl"><label>cathode capacity loss &middot; LAM <output class="lam-out">-</output></label><input type="range" class="lam" min="0" max="40" step="0.5" value="6"></div>
+          <div class="ctrl"><label>anode / lithium slippage &middot; LLI <output class="lli-out">-</output></label><input type="range" class="lli" min="-15" max="15" step="0.5" value="5"></div>
+          <div class="ocv-out"><div><span>RMSE</span><b class="rmse">-</b></div><div><span>fit quality</span><b class="fitq">-</b></div><div><span>state of health</span><b class="soh">-</b></div></div>
           <p class="demo-note">Left: match the reconstructed OCV (solid) to the measured degraded cell (dotted). Right: the same two numbers as physical capacity - the <em>smaller</em> electrode sets the cell&rsquo;s state of health.</p>
         </div>
       </div>
