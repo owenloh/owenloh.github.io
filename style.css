@@ -300,6 +300,18 @@ figcaption strong { font-weight: 600; }
    Demonstrations
    -------------------------------------------------------------------------- */
 
+/* Every diagram is sized explicitly rather than left to the grid to stretch
+   it. An SVG carrying a viewBox but no width is a replaced element with no
+   intrinsic width: Chromium happens to stretch it to the grid column, but
+   Safari falls back to the default 300x150, which pushes the flavour radar
+   out past the right edge of the page. .seis svg overrides the height below. */
+.demo svg,
+figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .demo {
   margin: 28px 0;
   padding: 18px 0 20px;
