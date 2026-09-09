@@ -128,6 +128,14 @@ img { max-width: 100%; height: auto; }
   letter-spacing: -.005em;
 }
 
+/* Pinned to the wider of the two strings, measured once the webfont is in, so
+   the substitution never reflows the page. Transient frames may overhang a
+   little to the right, where there is nothing to disturb. */
+.name {
+  display: inline-block;
+  white-space: pre;
+}
+
 .standfirst {
   margin: 0 0 20px;
   font-size: 20px;
@@ -710,6 +718,7 @@ input[type='range'] {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  /* script.js also drops the per-character churn and swaps the name outright */
   * { transition-duration: .01ms !important; }
 }
 

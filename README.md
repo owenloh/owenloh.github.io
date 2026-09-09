@@ -10,7 +10,7 @@ entries carry a working demonstration.
 | `style.css` | tokens, paper layout, demo components, responsive and print |
 | `script.js` | the five demonstration models and their render passes |
 | `assets/` | figures, fonts, the share card |
-| `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | the OL mark |
+| `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | the O1 mark |
 | `site.webmanifest`, `robots.txt`, `sitemap.xml`, `404.html` | the rest of a whole site |
 
 ## The demonstrations
@@ -34,11 +34,19 @@ the markup, so the document reads the same with scripting off.
 
 ## The mark
 
-`favicon.svg` is OL set in Source Serif 4 at weight 650 and optical size 8 -
+`favicon.svg` is O1 set in Source Serif 4 at weight 650 and optical size 8 -
 the small-text master, so the strokes hold up at 16px - with the outlines
-converted to paths. Nothing about it depends on a font being installed. Every
-other icon, and the 1200x630 share card in `assets/og.png`, is rendered from
-that same source.
+converted to paths. Nothing about it depends on a font being installed. The
+digit is drawn shorter than the capital, so it is scaled to the cap band;
+sizing is by cap height rather than ink width, which keeps the letters the
+same size whatever the monogram spells. Every other icon, and the 1200x630
+share card in `assets/og.png`, is rendered from that same source.
+
+Hovering the masthead name resettles `Owen Loh` into `O1 Loh`, one character
+position at a time, which is where the mark comes from. The span is pinned to
+the wider of the two spellings so nothing on the page moves, the churn only
+uses characters the two spellings already contain, and `prefers-reduced-motion`
+swaps the name outright instead.
 
 ```sh
 python3 -m http.server 8000   # then visit http://localhost:8000

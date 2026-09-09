@@ -14,6 +14,8 @@
   var clamp = function (x, a, b) { return Math.min(b, Math.max(a, x)); };
   var pct = function (v) { return (clamp(v, 0, 1) * 100).toFixed(3) + '%'; };
   var svgEl = function (name) { return document.createElementNS('http://www.w3.org/2000/svg', name); };
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var canHover = window.matchMedia('(hover: hover)');
 
   /* ------------------------------------------------------------------------
      1. Catalon: order intake
@@ -504,6 +506,79 @@
     render();
   }
 
+
+  /* ------------------------------------------------------------------------
+     The masthead name
+
+     The mark reads O1, which only makes sense once you have seen the name do
+     it. On hover the letters resettle into it, one position at a time, drawing
+     only on the characters the two spellings already contain, so it reads as
+     the same name re-forming rather than as noise.
+     ------------------------------------------------------------------------ */
+
+  var SETTLE_MS = 26;   // one position locks every this often
+  var CHURN_MS = 45;    // unsettled positions re-draw at this rate
+
+  function nameSwap(el) {
+    var from = el.textContent;
+    var to = el.dataset.alt;
+    var pool = (from + to).replace(/ /g, '').split('');
+    var span = Math.max(from.length, to.length);
+    var timer = null;
+    var settleAt = 0;
+    var current = from;
+
+    // Hold the wider spelling's width so neither state moves the page.
+    function pin() {
+      el.style.width = '';
+      var w = Math.max(measure(from), measure(to));
+      el.style.width = w.toFixed(2) + 'px';
+    }
+
+    function measure(text) {
+      var prev = el.textContent;
+      el.textContent = text;
+      var w = el.getBoundingClientRect().width;
+      el.textContent = prev;
+      return w;
+    }
+
+    function frame(target) {
+      var out = '';
+      for (var i = 0; i < span; i++) {
+        if (i < settleAt) out += target[i] || '';
+        else if (i < current.length || i < target.length) {
+          out += pool[Math.floor(Math.random() * pool.length)];
+        }
+      }
+      el.textContent = out;
+    }
+
+    function run(target) {
+      clearInterval(timer);
+      if (reduceMotion.matches) { el.textContent = target; current = target; return; }
+      settleAt = 0;
+      var started = Date.now();
+      timer = setInterval(function () {
+        settleAt = Math.floor((Date.now() - started) / SETTLE_MS);
+        if (settleAt > span) {
+          clearInterval(timer);
+          el.textContent = target;
+          current = target;
+          return;
+        }
+        frame(target);
+      }, CHURN_MS);
+    }
+
+    pin();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(pin);
+    window.addEventListener('resize', pin);
+
+    el.addEventListener('pointerenter', function () { run(to); });
+    el.addEventListener('pointerleave', function () { run(from); });
+  }
+
   /* ---------------------------------------------------------------------- */
 
   var mount = [
@@ -518,4 +593,8 @@
     var root = $(pair[0]);
     if (root) pair[1](root);
   });
+
+  // Hover only: on a touch screen the swapped name would simply stick.
+  var name = $('.name');
+  if (name && canHover.matches) nameSwap(name);
 }());
