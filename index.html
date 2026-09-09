@@ -1,33 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Owen Loh - Physics × Artificial Intelligence</title>
-<meta name="description" content="Owen Loh - physics × Artificial Intelligence. I turn messy real-world domains (batteries, coffee, seismic, CRISPR) into physics problems with computable sensitivities, then build the AI and ML systems that compute, automate and validate them.">
+<title>Owen Loh</title>
+<meta name="description" content="Owen Loh, founder and physicist. Building private, affordable and unlimited AI. Previously cofounder of Catalon. Ten projects, five of them you can operate in the page.">
 <meta name="author" content="Owen Loh">
-<meta name="theme-color" content="#0a0c0e">
+<meta name="theme-color" content="#fdfdfb">
 <link rel="canonical" href="https://owenloh.github.io/">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Owen Loh - Physics × Artificial Intelligence">
-<meta property="og:description" content="I turn messy real-world domains into physics problems with computable sensitivities (J = dy/dx), then build the AI systems that compute, automate and validate them. With playable demos.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Owen Loh">
+<meta property="og:description" content="Founder and physicist. Ten projects, five of them you can operate in the page.">
 <meta property="og:url" content="https://owenloh.github.io/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Owen Loh - Physics × Artificial Intelligence">
-<meta name="twitter:description" content="A portfolio you can operate: tab through playable demos of an agentic order pipeline, NL seismic navigation, an algorithmic speed-up, a battery fit, and a coffee-physics engine.">
+<meta name="twitter:title" content="Owen Loh">
+<meta name="twitter:description" content="Founder and physicist. Ten projects, five of them you can operate in the page.">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c0e'/%3E%3Ctext x='16' y='22' font-family='ui-monospace,monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%237ad3c4'%3Eol%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%238f2c22'/%3E%3Ctext x='50' y='50' text-anchor='middle' dominant-baseline='central' font-family='Georgia,serif' font-size='30' fill='%23fdfdfb'%3EOL%3C/text%3E%3C/svg%3E">
 
-<script>
-  /* Set theme before paint. */
-  (function () {
-    try { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); } catch (e) {}
-  })();
-</script>
-
-<link rel="stylesheet" href="style.css?v=12">
-<link rel="preload" as="image" href="assets/microscopy-flatness.jpg" fetchpriority="low">
+<link rel="stylesheet" href="style.css">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/source-serif-4.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-mono-400.woff2" crossorigin>
 
 <script type="application/ld+json">
 {
@@ -35,451 +29,500 @@
   "@type": "Person",
   "name": "Owen Loh",
   "url": "https://owenloh.github.io/",
-  "jobTitle": "Physics & Artificial Intelligence engineer",
-  "description": "Physics and Artificial Intelligence engineer who turns messy real-world domains into physics problems with computable sensitivities, then builds the AI and ML systems to compute, automate and validate them.",
-  "alumniOf": "University of Oxford",
-  "homeLocation": "London, United Kingdom",
-  "sameAs": ["https://github.com/owenloh", "https://www.linkedin.com/in/olzm"]
+  "jobTitle": "Founder and physicist",
+  "description": "Founder and physicist. Building private, affordable and unlimited AI. Cofounder of Catalon, exited.",
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Oxford" },
+  "email": "mailto:owenloh0607@gmail.com",
+  "sameAs": [
+    "https://github.com/owenloh",
+    "https://www.linkedin.com/in/olzm"
+  ]
 }
 </script>
 </head>
 <body>
-<a class="skip" href="#play">Skip to demos</a>
-<div class="progress" id="progress" aria-hidden="true"></div>
 
-<header class="topbar">
-  <a class="mark" href="#top" aria-label="Owen Loh - top">ol<span class="cursor" aria-hidden="true">_</span></a>
-  <nav class="nav" aria-label="Primary">
-    <a href="#play">interactive</a>
-    <a href="#work">work</a>
-    <button id="palette-open" class="kbtn" type="button" aria-haspopup="dialog" aria-label="Open command palette">
-      <span aria-hidden="true">⌘</span><kbd>K</kbd>
-    </button>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle light / dark">
-      <span aria-hidden="true">◐</span>
-    </button>
-  </nav>
-</header>
+<main class="paper">
 
-<main id="top">
+  <header class="masthead">
+    <h1>Owen Loh</h1>
+    <p class="standfirst">Founder and physicist.</p>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <canvas id="field" class="field" aria-hidden="true"></canvas>
-    <div class="hero-inner">
-      <p class="eyebrow">Malaysian in SF/London · <span class="dim">Physics × Artificial Intelligence</span></p>
-      <h1>Hi, it's Owen Loh</h1>
-      <p class="tagline">
-        Physics &times; Artificial Intelligence. I turn messy real-world domains -
-        <span class="hl">batteries</span>, <span class="hl">coffee</span>,
-        <span class="hl">seismic</span>, <span class="hl">CRISPR</span> -
-        into models with computable sensitivities, then build the AI and ML
-        systems that compute, automate and transcend them.
-      </p>
-      <p class="subline">
-        Physics at Oxford University, on-leave building in stealth.
-      </p>
-      <ul class="links" aria-label="Links">
-        <li><a href="https://github.com/owenloh" rel="me noopener" target="_blank">GitHub<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-        <li><a href="https://www.linkedin.com/in/olzm" rel="me noopener" target="_blank">LinkedIn<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-        <li><a href="https://tinyurl.com/mr3ndc72" rel="noopener" target="_blank">Slides<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-        <li><a class="cta" href="https://calendar.app.google/BHBN9vUJ483jwWfq5" rel="noopener" target="_blank">Book a call<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-      </ul>
-      <p class="hint" aria-hidden="true">↓ each project below is interactive - have a play</p>
-    </div>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>Building private, affordable and unlimited AI</dd></div>
+      <div><dt>Before</dt><dd>Cofounder of Catalon, $100K ARR, exited</dd></div>
+      <div><dt>Training</dt><dd>MPhys Physics, University of Oxford, on leave</dd></div>
+      <div><dt>Based</dt><dd>London and San Francisco, Malaysian</dd></div>
+    </dl>
+
+    <p class="links">
+      <a href="https://github.com/owenloh" target="_blank" rel="me noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/olzm" target="_blank" rel="me noopener">LinkedIn</a>
+      <a href="https://1drv.ms/p/c/d26535d430fe7580/IQBM79UHrJJxT45lu3gBuvORAS9xCkHieKY0bC6gUYEi07g?e=sDbysZ" target="_blank" rel="noopener">Slides</a>
+      <a href="https://calendar.app.google/BHBN9vUJ483jwWfq5" target="_blank" rel="noopener">Book a call</a>
+      <a href="mailto:owenloh0607@gmail.com">Email</a>
+    </p>
+  </header>
+
+  <section class="abstract" aria-label="Abstract">
+    <p class="kicker">Abstract</p>
+    <p>I am highly agentic, and so are the systems I build. Physics trained me to search breadth-first for the shape of a problem, then depth-first once I know where the north star sits.</p>
+    <p>That is usually how I work: understand the system quickly, wedge deep to isolate the few parameters that actually matter, and execute without losing sight of the bigger picture. I bring the same intensity to people, with an infectious energy that gets good people aligned to the same vision. So far, that approach has taken shape in the projects below. Feel free to interact with them.</p>
   </section>
 
-  <!-- INTERACTIVE SHOWCASE -->
-  <section class="block showcase" id="play" aria-labelledby="play-h">
-    <div class="block-head">
-      <h2 id="play-h">interactive</h2>
-      <span class="count" aria-hidden="true">play with the work - pick a tab</span>
-    </div>
+  <nav aria-label="Contents">
+    <p class="kicker">Contents</p>
+    <ol class="toc">
+      <li><a href="#catalon">Catalon: an agentic operating system for the chemical industry</a><span class="leader"></span><span class="year">2026</span></li>
+      <li><a href="#pourdynamics">PourDynamics: a coffee bed obeys the same equations as a cell</a><span class="leader"></span><span class="year">2024 to 2026</span></li>
+      <li><a href="#seispilot">SeisPilot: a voice agent that drives 3D seismic software</a><span class="leader"></span><span class="year">2025</span></li>
+      <li><a href="#discriminase">Discriminase: kill one bacterium, spare the microbiome</a><span class="leader"></span><span class="year">2025</span></li>
+      <li><a href="#battery">Battery state of health as an inverse problem</a><span class="leader"></span><span class="year">2024 to 2025</span></li>
+      <li><a href="#microscopy">Microscopy vision suite</a><span class="leader"></span><span class="year">2023</span></li>
+      <li><a href="#flowr">FlowR: the model named two variables, so I built the machine</a><span class="leader"></span><span class="year">2022 to 2023</span></li>
+      <li><a href="#segyscribe">SEGYScribe: recovers byte layouts nobody documented</a><span class="leader"></span><span class="year">2025</span></li>
+      <li><a href="#yttracker">YT Title Tracker: makes invisible title experiments visible</a><span class="leader"></span><span class="year">2025</span></li>
+      <li><a href="#alistair">Alistair MCP: one assistant identity across every client</a><span class="leader"></span><span class="year">2026</span></li>
+    </ol>
+  </nav>
 
-    <div class="tabs" role="tablist" aria-label="Interactive projects">
-      <button role="tab" id="tab-coffee"  aria-controls="panel-coffee"  aria-selected="true"  tabindex="0">Coffee&nbsp;engine <span class="t-sub">physics</span></button>
-      <button role="tab" id="tab-catalon" aria-controls="panel-catalon" aria-selected="false" tabindex="-1">Catalon <span class="t-sub">agentic AI</span></button>
-      <button role="tab" id="tab-seismic" aria-controls="panel-seismic" aria-selected="false" tabindex="-1">Seismic <span class="t-sub">voice&nbsp;agent</span></button>
-      <button role="tab" id="tab-crispr"  aria-controls="panel-crispr"  aria-selected="false" tabindex="-1">CRISPR <span class="t-sub">algorithms</span></button>
-      <button role="tab" id="tab-battery" aria-controls="panel-battery" aria-selected="false" tabindex="-1">Battery <span class="t-sub">ML&nbsp;research</span></button>
-    </div>
+  <noscript>
+    <p class="noscript">The five demonstrations below are interactive and need JavaScript. Everything else reads the same without it.</p>
+  </noscript>
 
-    <div class="panels">
-    <!-- COFFEE -->
-    <div class="panel" role="tabpanel" id="panel-coffee" aria-labelledby="tab-coffee" tabindex="0">
-      <div class="pane-desc">
-        <h3>PourDynamics engine</h3>
-        <p class="c-hook">A multiscale physics engine mapping brewing variables to coffee flavour.</p>
-        <p>Two coupled physics: <b>Darcy flow</b> of water through the porous coffee
-        bed (advection&ndash;dispersion), and a 2D-axisymmetric
-        Doyle&ndash;Fuller&ndash;Newman extraction model ported from lithium-ion
-        batteries - coffee and a battery are, mathematically, the same
-        equations - validated to sub-0.2%. A sensory layer then maps
-        concentrations to taste. Drag the two controls and read off
-        <code>J = dy/dx</code>: which knobs actually move the cup.</p>
-        <ul class="tags"><li>Darcy + DFN</li><li>simulation</li><li>flagship</li></ul>
-        <a class="go" href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics<span class="arr" aria-hidden="true">&#8599;</span></a>
-      </div>
-      <div class="pane-demo">
-        <div class="rig">
-          <div class="controls" role="group" aria-label="Brew controls">
-            <div class="ctrl">
-              <label for="grind">grind size <output id="o-grind">700 µm</output></label>
-              <input type="range" id="grind" min="200" max="1200" value="700" step="5">
-              <span class="scale" aria-hidden="true"><span>fine</span><span>coarse</span></span>
-            </div>
-            <div class="ctrl">
-              <label for="flow">flow rate <output id="o-flow">5.0 g/s</output></label>
-              <input type="range" id="flow" min="1" max="8" value="5" step="0.1">
-              <span class="scale" aria-hidden="true"><span>slow</span><span>fast</span></span>
-            </div>
-            <div class="readouts" aria-live="polite">
-              <div class="ro"><span>TDS</span><b id="o-tds">1.27%</b></div>
-              <div class="ro"><span>extraction yield</span><b id="o-ey">20.2%</b></div>
-            </div>
-            <div class="jac" aria-live="polite">
-              <p class="jac-title">local sensitivities <span class="dim">(finite-difference Jacobian)</span></p>
-              <div class="jrow"><code>&part;(bitter)/&part;(flow)</code><b id="j1">-</b></div>
-              <div class="jrow"><code>&part;(acidity)/&part;(grind)</code><b id="j2">-</b></div>
-              <div class="jrow"><code>&part;(body)/&part;(grind)</code><b id="j3">-</b></div>
-            </div>
-          </div>
-          <div class="viz">
-            <figure class="viz-fig">
-              <canvas id="curve" width="520" height="300" role="img" aria-label="Extraction yield versus contact time"></canvas>
-              <figcaption>extraction curve - yield vs contact time</figcaption>
-            </figure>
-            <figure class="viz-fig">
-              <svg id="radar" viewBox="-20 -10 260 240" role="img" aria-label="Flavour radar across acidity, sweetness, body, bitterness and clarity">
-                <g class="radar-grid" stroke-linejoin="round" fill="none">
-                  <polygon points="110,32 184.2,85.9 155.8,173.1 64.2,173.1 35.8,85.9"></polygon>
-                  <polygon points="110,71 147.1,98 132.9,141.5 87.1,141.5 72.9,98"></polygon>
-                  <line x1="110" y1="110" x2="110" y2="32"></line>
-                  <line x1="110" y1="110" x2="184.2" y2="85.9"></line>
-                  <line x1="110" y1="110" x2="155.8" y2="173.1"></line>
-                  <line x1="110" y1="110" x2="64.2" y2="173.1"></line>
-                  <line x1="110" y1="110" x2="35.8" y2="85.9"></line>
-                </g>
-                <polygon id="radar-shape" points="110,70 150,95 140,150 80,150 70,95"></polygon>
-                <g class="radar-label">
-                  <text x="110" y="22" text-anchor="middle">acidity</text>
-                  <text x="196" y="86" text-anchor="start">sweet</text>
-                  <text x="160" y="190" text-anchor="middle">body</text>
-                  <text x="60" y="190" text-anchor="middle">bitter</text>
-                  <text x="24" y="86" text-anchor="end">clarity</text>
-                </g>
-              </svg>
-              <figcaption>flavour radar</figcaption>
-            </figure>
-          </div>
-          <div class="flavour" aria-live="polite">
-            <span class="flavour-tag">predicted cup</span>
-            <p class="flavour-note" id="flavour-note">Drag the controls to brew a cup.</p>
-            <ul class="flavour-tags" id="flavour-tags"></ul>
-          </div>
-        </div>
-        <p class="caption">An interactive <em>toy</em> model - directional,
-        not calibrated. The real engine (a DFN model validated against the
-        analytical sphere solution) lives at
-        <a href="https://github.com/owenloh/PourDynamics" rel="noopener" target="_blank">github.com/owenloh/PourDynamics</a>.</p>
-      </div>
-    </div>
+  <!-- 1 ------------------------------------------------------------------ -->
+  <article class="entry" id="catalon">
+    <h2><span class="num">1</span>Catalon Inc</h2>
+    <p class="lede">An agentic operating system for the chemical industry.</p>
+    <p class="byline">Cofounder and CTO, exited. Incubated at Entrepreneur First. $100K ARR. San Francisco, 2026.</p>
 
-    <!-- CATALON -->
-    <div class="panel" role="tabpanel" id="panel-catalon" aria-labelledby="tab-catalon" data-demo="catalon" tabindex="0" hidden>
-      <div class="pane-desc">
-        <h3>Catalon <span class="alt">(startup cofounder)</span></h3>
-        <p class="c-hook">AI automation for chemical commercial teams. Purchase-order processing, ~40&nbsp;min&nbsp;&rarr;&nbsp;~3&nbsp;sec.</p>
-        <p class="meta-line">startup cofounder &middot; founded, built &amp; exited</p>
-        <p>As startup cofounder I built the agentic pipeline behind Catalon. It
-        reads an inbound PO email, classifies intent, resolves the customer against
-        their ERP, extracts and price-validates every line item -
-        chemical-synonym resolution, density-based lbs&harr;gal conversion,
-        customer rules - and drafts an ERP-ready order for one-click approval.
-        Sub-3-second latency, on top of existing systems, no rip-and-replace.</p>
-        <ul class="deep">
-          <li>Multi-stage state machine: deterministic prefilter &rarr; classify &rarr; SQL+LLM customer-resolve &rarr; schema extraction &rarr; self-healing retry - with circuit breaker, rate limiter and dead-letter queue.</li>
-          <li>Schema-decoupled: a reusable core with hot-swappable per-customer &ldquo;context cartridges.&rdquo; Eval-driven tuning, not fine-tuning &rarr; 99%+ accuracy.</li>
-          <li>2 paying distributors, $60K&nbsp;ARR and a $1.2M pipeline within 2 months - then exited.</li>
-        </ul>
-        <ul class="tags"><li>multi-agent</li><li>founder</li><li>exited</li></ul>
-        <a class="go" href="https://usecatalon.com" rel="noopener" target="_blank">usecatalon.com<span class="arr" aria-hidden="true">&#8599;</span></a>
+    <p>The long-term product is the whole operating layer for a distributor. Order intake is the beachhead. Inbound purchase orders arrive as free text: wrong units, chemical synonyms, trade names that never match the catalogue, quantities in gallons against a price book kept in pounds. Inside sales retypes all of it into the ERP by hand. Catalon reads the mail and drafts the order in about three seconds at 99.9% field accuracy, with a human making the final one-click approval. Reps get back roughly half their day, and spend it selling instead of retyping.</p>
+    <p>Mail is triaged before any model runs, so cost tracks orders rather than inbox volume. Each line is reconciled against the customer catalogue and price book and emitted as a validated ERP draft. Failures land in a queue a human can see. Each account keeps its pricing and packaging quirks in a readable cartridge outside the engine, so onboarding a new distributor is a tuning problem rather than a build, under two weeks. Nothing is trained.</p>
+
+    <section class="demo" id="d-po" aria-label="Demonstration 1, order intake">
+      <div class="demo-head">
+        <p class="demo-title"><span class="label">Demonstration 1.</span> Order intake.</p>
+        <span class="timing" data-po-time></span>
       </div>
-      <div class="pane-demo">
-        <div class="demo" data-demo-body>
-          <div class="demo-head"><span class="demo-tag">try it</span> watch a messy email become a structured order</div>
-          <pre class="po-email">Subj: PO 4471 - restock
-please ship to our Houston dock:
+
+      <div class="two">
+        <div class="panel">
+          <p class="panel-head"><span>inbox</span><span data-po-mailno>1 / 3</span></p>
+          <pre data-po-mail>Subj: PO 4471 restock
+ship to our Houston dock:
   2 drums acetone, technical 99.5%
   500 gal isopropanol (usual grade)
-need by Friday - Net 30.</pre>
-          <button class="demo-btn" type="button" data-act="run">Process order ▸</button>
-          <div class="stages" aria-hidden="true">
-            <span data-s>prefilter</span><span data-s>classify</span><span data-s>resolve&nbsp;customer</span><span data-s>extract&nbsp;+&nbsp;validate</span><span data-s>draft&nbsp;ERP</span>
-          </div>
-          <div class="po-out po-empty">
-            <div class="po-meta">structured order appears here &rarr;</div>
-            <div class="po-row"><span>customer</span><span>-</span></div>
-            <div class="po-row"><span>line items</span><span>-</span></div>
-            <div class="po-row"><span>terms</span><span>-</span></div>
-            <div class="po-row"><span>status</span><span>-</span></div>
-          </div>
-          <p class="demo-note">Real inbound POs are messy - wrong units, chemical synonyms, free text. The pipeline normalises all of it and drafts an ERP-ready order in ~3 seconds, with a human making the final one-click approval.</p>
+need by Friday, Net 30.</pre>
+        </div>
+        <div class="panel draft" data-state="empty">
+          <p class="panel-head"><span>ERP draft</span><span data-po-state>empty</span></p>
+          <dl data-po-rows>
+            <div class="draft-row"><dt>customer</dt><dd>&mdash;</dd></div>
+            <div class="draft-row"><dt>line 1</dt><dd>&mdash;</dd></div>
+            <div class="draft-row"><dt>line 2</dt><dd>&mdash;</dd></div>
+            <div class="draft-row"><dt>terms</dt><dd>&mdash;</dd></div>
+            <div class="draft-row is-status"><dt>status</dt><dd>idle</dd></div>
+          </dl>
         </div>
       </div>
-    </div>
 
-    <!-- SEISMIC -->
-    <div class="panel" role="tabpanel" id="panel-seismic" aria-labelledby="tab-seismic" data-demo="seismic" tabindex="0" hidden>
-      <div class="pane-desc">
-        <h3>SeisPilot</h3>
-        <p class="c-hook">Voice + natural language &rarr; 3D seismic navigation inside pro software &ldquo;Tornado.&rdquo;</p>
-        <p>Professional seismic software has a brutal learning curve and expert
-        time is scarce. I wrapped it in an agent: describe what you want to see and
-        an LLM turns it into live, validated commands against the
-        application&rsquo;s API - like a seismologist driving it for you.</p>
-        <ul class="deep">
-          <li>NL &rarr; JSON-RPC via an LLM, gated by a command validator (only whitelisted calls run), with multi-LLM fallback and a queued listener.</li>
-          <li>20-level undo/redo; bookmark engine; bidirectional transform between seismic (inline/crossline/depth) and Cartesian space.</li>
-          <li>Built solo in ~3 weeks at Viridien on my own initiative; drew immediate traction from teams across China, the Netherlands, the US and Singapore.</li>
-        </ul>
-        <ul class="tags"><li>MCP</li><li>seismic</li><li>agentic</li></ul>
-        <a class="go" href="https://github.com/owenloh/SeisPilot" rel="noopener" target="_blank">github.com/owenloh/SeisPilot<span class="arr" aria-hidden="true">&#8599;</span></a>
+      <div class="rail" data-po-rail>
+        <div class="rail-node"><span class="rail-line"></span><span class="rail-mark"><span class="rail-dot"></span><span class="rail-name">triage</span></span></div>
+        <div class="rail-node"><span class="rail-line"></span><span class="rail-mark"><span class="rail-dot"></span><span class="rail-name">classify</span></span></div>
+        <div class="rail-node"><span class="rail-line"></span><span class="rail-mark"><span class="rail-dot"></span><span class="rail-name">match customer</span></span></div>
+        <div class="rail-node"><span class="rail-line"></span><span class="rail-mark"><span class="rail-dot"></span><span class="rail-name">extract and price</span></span></div>
+        <div class="rail-node"><span class="rail-line"></span><span class="rail-mark"><span class="rail-dot"></span><span class="rail-name">ERP draft</span></span></div>
       </div>
-      <div class="pane-demo">
-        <div class="demo" data-demo-body>
-          <div class="demo-head"><span class="demo-tag">try it</span> drive the section by command</div>
-          <canvas class="seis" width="560" height="220" role="img" aria-label="Synthetic seismic section you can navigate by command"></canvas>
-          <div class="cmdline"><span class="prompt" aria-hidden="true">&rsaquo;</span><input type="text" class="cmd" placeholder="try: go to the fault · zoom in · toggle velocity · reset" aria-label="Seismic navigation command"></div>
-          <div class="chips">
-            <button type="button" data-cmd="go to the fault">go to fault</button>
-            <button type="button" data-cmd="zoom in">zoom in</button>
-            <button type="button" data-cmd="zoom out">zoom out</button>
-            <button type="button" data-cmd="toggle velocity">toggle velocity</button>
-            <button type="button" data-cmd="reset">reset</button>
-          </div>
-          <div class="cmd-echo" aria-live="polite">› the agent parses your words into validated navigation calls.</div>
-        </div>
-      </div>
-    </div>
 
-    <!-- CRISPR -->
-    <div class="panel" role="tabpanel" id="panel-crispr" aria-labelledby="tab-crispr" data-demo="crispr" tabindex="0" hidden>
-      <div class="pane-desc">
-        <h3>iGEM 2025 <span class="alt">(Oxford University)</span></h3>
-        <p class="c-hook">Gold medal - high-performance CRISPR guide discovery.</p>
-        <p class="meta-line">Oxford University team &middot; Grand Jamboree, Paris 2025</p>
-        <p>The job: find guide RNAs that hit a target bacterium while sparing the
-        commensal flora - a nearest-neighbour search by Hamming distance over
-        millions of genomic sites. I built a two-layer engine: a <b>trie</b> prefix
-        filter (exact first 13&nbsp;nt) drops ~85% of candidates, then a
-        <b>BK-tree</b> Hamming search over a <b>2-bit-packed</b> genome handles the
-        rest.</p>
-        <ul class="deep">
-          <li>Brute force is <code>O(N&middot;M&middot;L)</code> - every target guide against every commensal guide. The hybrid is <code>O(N&middot;(k + log&nbsp;M&middot;L))</code>: linear in targets, with the database term dropping from <em>M</em> to <em>log&nbsp;M</em>.</li>
-          <li>~2.3M indexed guides across 50 genomes; ~3&nbsp;s per guide; ~2000&times; faster than the BLAST equivalent; 1.2&nbsp;GB bit-packed vs 4.8&nbsp;GB as strings; 100% accuracy. ML &amp; algorithm lead at iGEM 2025.</li>
-        </ul>
-        <ul class="tags"><li>BK-tree + trie</li><li>bit-packed DNA</li><li>CUDA</li></ul>
-        <div class="pane-links">
-          <a class="go" href="https://2025.igem.wiki/oxford/software" rel="noopener" target="_blank">iGEM software wiki<span class="arr" aria-hidden="true">&#8599;</span></a>
-          <a class="go" href="https://docs.google.com/document/d/116QzXVYPG7VPX7hpSdX9yLE3PTauvGjEwLQnfTb2M1A/edit?tab=t.0" rel="noopener" target="_blank">algorithm write-up<span class="arr" aria-hidden="true">&#8599;</span></a>
-          <a class="go" href="https://github.com/owenloh/Discriminase" rel="noopener" target="_blank">GitHub repo<span class="arr" aria-hidden="true">&#8599;</span></a>
-          <a class="go go-live" href="https://discriminase-production.up.railway.app/" rel="noopener" target="_blank"><span class="live-dot" aria-hidden="true"></span>live website<span class="arr" aria-hidden="true">&#8599;</span></a>
-        </div>
+      <div class="controls">
+        <button type="button" class="btn btn-primary" data-po-run>Process</button>
+        <button type="button" class="btn" data-po-next>Another order</button>
       </div>
-      <div class="pane-demo">
-        <div class="demo" data-demo-body>
-          <div class="demo-head"><span class="demo-tag">try it</span> is this guide unique, or an off-target risk?</div>
-          <div class="crispr-stage">
-            <div class="seq-row"><span class="seq-label">target guide</span><code class="seq" id="cr-target"></code></div>
-            <div class="seq-row"><span class="seq-label">nearest commensal</span><code class="seq" id="cr-match"></code></div>
-          </div>
-          <div class="cr-stats">
-            <div><span>Hamming distance</span><b id="cr-ham">-</b></div>
-            <div><span>similarity</span><b id="cr-sim">-</b></div>
-            <div><span>scanned</span><b>2.3M guides</b></div>
-          </div>
-          <div class="ctrl"><label>similarity threshold <output id="cr-thr-o">70%</output></label><input type="range" id="cr-thr" min="50" max="100" step="1" value="70"></div>
-          <div class="cr-verdict" id="cr-verdict">-</div>
-          <button class="demo-btn" type="button" id="cr-gen">Generate new guide ▸</button>
-          <p class="demo-note">The trie + BK-tree finds the nearest commensal match (mismatches in amber). At or above the threshold = off-target risk, rejected; below = a unique guide, safe to target. Real runs: ~3&nbsp;s per guide over 2.3M, ~2000&times; faster than BLAST.</p>
-        </div>
-      </div>
-    </div>
+      <p class="demo-note" data-po-note></p>
+    </section>
 
-    <!-- BATTERY -->
-    <div class="panel" role="tabpanel" id="panel-battery" aria-labelledby="tab-battery" data-demo="battery" tabindex="0" hidden>
-      <div class="pane-desc">
-        <h3>Battery State-of-Health</h3>
-        <p class="meta-line">Imperial College London &middot; Faraday Institution &middot; ongoing publication</p>
-        <p>A cell&rsquo;s health is usually read by tearing it down. I treat it as
-        an inverse problem instead: reconstruct the full-cell OCV from its cathode
-        and anode contributions, and the way they have shifted reveals exactly
-        which electrode lost capacity - non-invasively. The standard fit
-        misbehaves for NMC811&ndash;graphite because <code>scipy.curve_fit</code>
-        returns a <em>local</em> minimum.</p>
-        <ul class="deep">
-          <li><b>Differential Evolution</b> for a true global fit - least-squares 0.0004 vs 0.005.</li>
-          <li><b>DV_fit</b>: differential-voltage feature-matching via optimised Dynamic Time Warping - peak/dip <em>locations</em> are invariant in lithiation.</li>
-          <li><b>Degraded_OCV_fit</b> over a Pchip-DTW manifold - the most consistent modes so far. NMC811&ndash;graphite, 41 cells; awaiting experimental verification.</li>
-        </ul>
-      </div>
-      <div class="pane-demo">
-        <div class="demo" data-demo-body>
-          <div class="demo-head"><span class="demo-tag">try it</span> fit the OCV - and watch the electrodes shrink</div>
-          <div class="batt-viz">
-            <figure class="batt-fig"><canvas class="ocv" width="520" height="240" role="img" aria-label="Open-circuit-voltage decomposition fit"></canvas><figcaption>full-cell OCV - reconstructed vs measured</figcaption></figure>
-            <figure class="batt-fig"><canvas class="cells" width="220" height="240" role="img" aria-label="Electrode capacity schematic"></canvas><figcaption>electrode capacity &rarr; state of health</figcaption></figure>
+    <p class="source"><a href="https://usecatalon.com" target="_blank" rel="noopener">usecatalon.com</a></p>
+  </article>
+
+  <!-- 2 ------------------------------------------------------------------ -->
+  <article class="entry" id="pourdynamics">
+    <h2><span class="num">2</span>PourDynamics</h2>
+    <p class="byline">Multiscale extraction engine. Open source, 2024 to 2026.</p>
+
+    <p>The engine works at two scales at once. Darcy flow sets how water moves through the packed bed and how long it dwells at each depth; inside every grain, solubles diffuse out of a porous solid into that moving water. The intra-particle problem is the same boundary value problem as lithium diffusing out of a cathode particle, so the solver came across from the battery work intact, and a sensory layer maps dissolved concentration to what you taste. Validated against the analytical sphere solution to under 0.2%.</p>
+    <p>What matters is the derivative rather than the prediction itself. Differentiate the cup with respect to every brewing variable and most of the columns collapse: grind size and flow rate carry nearly all of the sensitivity, and most of what gets traded as technique sits well below them.</p>
+
+    <section class="demo" id="d-brew" aria-label="Demonstration 2, two variables, one cup">
+      <p class="demo-title"><span class="label">Demonstration 2.</span> Two variables, one cup.</p>
+
+      <div class="two two-wide">
+        <div>
+          <label class="knob-label" for="grind">grind <output id="out-grind" for="grind">700 &micro;m</output></label>
+          <input type="range" id="grind" min="200" max="1200" step="5" value="700">
+          <div class="knob-ends"><span>fine</span><span>coarse</span></div>
+
+          <label class="knob-label" for="flow">flow <output id="out-flow" for="flow">5.0 g/s</output></label>
+          <input type="range" id="flow" min="1" max="8" step="0.1" value="5">
+          <div class="knob-ends"><span>slow</span><span>fast</span></div>
+
+          <p class="readout">
+            <span>TDS <strong data-brew-tds>1.28%</strong></span>
+            <span>Yield <strong data-brew-ey>19.8%</strong></span>
+          </p>
+
+          <div class="jacobian" data-brew-jac>
+            <div><span class="k">bitter / flow</span><span>-0.057 per g/s</span></div>
+            <div><span class="k">acidity / grind</span><span>+0.049 per 100 &micro;m</span></div>
+            <div><span class="k">body / grind</span><span>-0.084 per 100 &micro;m</span></div>
           </div>
-          <div class="ctrl"><label>cathode capacity loss &middot; LAM <output class="lam-out">-</output></label><input type="range" class="lam" min="0" max="40" step="0.5" value="6"></div>
-          <div class="ctrl"><label>anode / lithium slippage &middot; LLI <output class="lli-out">-</output></label><input type="range" class="lli" min="-15" max="15" step="0.5" value="5"></div>
-          <div class="ocv-out"><div><span>RMSE</span><b class="rmse">-</b></div><div><span>fit quality</span><b class="fitq">-</b></div><div><span>state of health</span><b class="soh">-</b></div></div>
-          <p class="demo-note">Left: match the reconstructed OCV (solid) to the measured degraded cell (dotted). Right: the same two numbers as physical capacity - the <em>smaller</em> electrode sets the cell&rsquo;s state of health.</p>
+        </div>
+
+        <svg viewBox="-24 -14 268 248" role="img" aria-label="Flavour radar: acidity, sweetness, body, bitterness, clarity">
+          <g fill="none" stroke="#e2dfd7">
+            <polygon points="110,32 184.2,85.9 155.8,173.1 64.2,173.1 35.8,85.9"></polygon>
+            <polygon points="110,71 147.1,98 132.9,141.5 87.1,141.5 72.9,98"></polygon>
+            <line x1="110" y1="110" x2="110" y2="32"></line>
+            <line x1="110" y1="110" x2="184.2" y2="85.9"></line>
+            <line x1="110" y1="110" x2="155.8" y2="173.1"></line>
+            <line x1="110" y1="110" x2="64.2" y2="173.1"></line>
+            <line x1="110" y1="110" x2="35.8" y2="85.9"></line>
+          </g>
+          <polygon data-brew-radar points="110.0,55.2 183.7,86.1 142.1,154.2 79.8,151.5 60.8,94.0" fill="var(--acc)" fill-opacity="0.12" stroke="var(--acc)" stroke-width="1.5"></polygon>
+          <g font-family="'IBM Plex Mono',monospace" font-size="10" fill="#6a675f">
+            <text x="110" y="22" text-anchor="middle">acidity</text>
+            <text x="196" y="86">sweet</text>
+            <text x="160" y="190" text-anchor="middle">body</text>
+            <text x="60" y="190" text-anchor="middle">bitter</text>
+            <text x="24" y="86" text-anchor="end">clarity</text>
+          </g>
+        </svg>
+      </div>
+
+      <p class="demo-note" data-brew-cup>Balanced. Sweet through the middle, acidity present but not sharp.</p>
+    </section>
+
+    <figure>
+      <img src="assets/pourdynamics-lab.jpg" width="1500" height="819" loading="lazy" decoding="async" alt="PourDynamics Lab Pro showing particle size distribution, a live bed drawdown simulation and measured extraction yield.">
+      <figcaption><strong>Figure 1.</strong> The full engine: particle size distribution, bed drawdown, measured extraction yield.</figcaption>
+    </figure>
+
+    <p class="source"><a href="https://github.com/owenloh/PourDynamics" target="_blank" rel="noopener">github.com/owenloh/PourDynamics</a></p>
+  </article>
+
+  <!-- 3 ------------------------------------------------------------------ -->
+  <article class="entry" id="seispilot">
+    <h2><span class="num">3</span>SeisPilot</h2>
+    <p class="lede">A voice agent that drives Tornado, professional 3D seismic interpretation software.</p>
+    <p class="byline">Viridien, 2025. Built solo, my own initiative.</p>
+
+    <p>A geologist says &ldquo;take me to the fault at inline 2410, turn the velocity on, bookmark it&rdquo; and the 3D volume moves. Nobody opens a menu or writes a script. SeisPilot listens, plans a queue of operations against the application's own API, runs them on the live scene and answers back in speech.</p>
+    <p>It behaves as an agent rather than a phrasebook of commands. It holds the session state, resolves references like &ldquo;that fault&rdquo; or &ldquo;go back two steps&rdquo; through a twenty-deep undo history, chains several steps out of one sentence, and asks when a request is ambiguous. Every call it proposes is checked against a whitelist before it reaches the software, so nothing destructive can run. A coordinate transform keeps the agent and the geologist talking about the same point in the earth.</p>
+    <p>Tornado is powerful software that takes months to learn properly, and the people who can drive it fluently are in short supply. SeisPilot puts that fluency within reach of any geologist who can describe what they want. It launched internally at Viridien and was taken up by teams in its offices worldwide.</p>
+
+    <section class="demo" id="d-seis" aria-label="Demonstration 3, speak to the 3D volume">
+      <p class="demo-title"><span class="label">Demonstration 3.</span> Speak to the 3D volume.</p>
+      <p class="say">say one of these</p>
+
+      <div class="chips" data-seis-chips></div>
+
+      <div class="seis">
+        <svg data-seis-svg viewBox="0.0 0.0 420.0 230.0" preserveAspectRatio="none" role="img" aria-label="Seismic section with reflectors and a picked fault">
+          <g data-seis-bands></g>
+          <g data-seis-refl>
+            <path d="M0.0 16.0L10.0 17.0L20.0 17.9L30.0 18.6L40.0 19.0L50.0 19.1L60.0 18.9L70.0 18.7L80.0 18.4L90.0 18.2L100.0 18.1L110.0 18.2L120.0 18.4L130.0 18.7L140.0 18.9L150.0 19.0L160.0 18.8L170.0 18.3L180.0 17.6L190.0 16.7L200.0 15.6L210.0 14.6L220.0 13.8L230.0 13.2L240.0 12.9L250.0 23.2L260.0 23.4L270.0 23.7L280.0 24.0L290.0 24.3L300.0 24.3L310.0 24.2L320.0 24.0L330.0 23.8L340.0 23.6L350.0 23.6L360.0 23.8L370.0 24.4L380.0 25.1L390.0 26.1L400.0 27.2L410.0 28.1L420.0 28.9" fill="none" stroke="#151412" stroke-width="1.5" stroke-opacity="0.85"></path>
+            <path d="M0.0 41.0L10.0 41.1L20.0 40.8L30.0 40.2L40.0 39.5L50.0 38.9L60.0 38.5L70.0 38.3L80.0 38.4L90.0 38.6L100.0 38.9L110.0 38.9L120.0 38.6L130.0 37.9L140.0 36.8L150.0 35.4L160.0 33.9L170.0 32.4L180.0 31.1L190.0 30.2L200.0 29.8L210.0 29.8L220.0 30.3L230.0 30.9L240.0 31.7L250.0 44.2L260.0 44.6L270.0 44.8L280.0 44.7L290.0 44.5L300.0 44.3L310.0 44.3L320.0 44.7L330.0 45.5L340.0 46.7L350.0 48.1L360.0 49.6L370.0 51.1L380.0 52.3L390.0 53.0L400.0 53.3L410.0 53.1L420.0 52.6" fill="none" stroke="#151412" stroke-width="0.9" stroke-opacity="0.45"></path>
+            <path d="M0.0 60.4L10.0 59.2L20.0 58.3L30.0 57.8L40.0 57.6L50.0 57.7L60.0 57.8L70.0 57.8L80.0 57.4L90.0 56.6L100.0 55.2L110.0 53.5L120.0 51.6L130.0 49.7L140.0 48.0L150.0 46.9L160.0 46.5L170.0 46.7L180.0 47.5L190.0 48.7L200.0 49.9L210.0 51.1L220.0 52.0L230.0 52.5L240.0 52.7L250.0 66.1L260.0 66.0L270.0 66.1L280.0 66.6L290.0 67.5L300.0 68.9L310.0 70.7L320.0 72.6L330.0 74.5L340.0 75.9L350.0 76.9L360.0 77.1L370.0 76.7L380.0 75.8L390.0 74.5L400.0 73.2L410.0 72.0L420.0 71.2" fill="none" stroke="#151412" stroke-width="0.9" stroke-opacity="0.45"></path>
+            <path d="M0.0 75.0L10.0 74.9L20.0 75.0L30.0 74.9L40.0 74.8L50.0 74.5L60.0 73.9L70.0 73.2L80.0 72.3L90.0 71.5L100.0 70.8L110.0 70.3L120.0 70.2L130.0 70.4L140.0 70.9L150.0 71.5L160.0 72.3L170.0 73.0L180.0 73.6L190.0 74.0L200.0 74.2L210.0 74.2L220.0 74.2L230.0 74.2L240.0 74.4L250.0 89.8L260.0 90.4L270.0 91.2L280.0 92.0L290.0 92.8L300.0 93.5L310.0 93.8L320.0 93.9L330.0 93.6L340.0 93.0L350.0 92.3L360.0 91.5L370.0 90.8L380.0 90.3L390.0 89.9L400.0 89.7L410.0 89.7L420.0 89.7" fill="none" stroke="#151412" stroke-width="0.9" stroke-opacity="0.45"></path>
+            <path d="M0.0 93.2L10.0 92.8L20.0 92.2L30.0 91.3L40.0 90.2L50.0 89.1L60.0 88.1L70.0 87.6L80.0 87.5L90.0 87.9L100.0 88.7L110.0 89.9L120.0 91.3L130.0 92.5L140.0 93.6L150.0 94.4L160.0 94.8L170.0 95.0L180.0 95.0L190.0 94.9L200.0 95.1L210.0 95.5L220.0 96.1L230.0 97.1L240.0 98.2L250.0 115.9L260.0 116.7L270.0 117.1L280.0 117.1L290.0 116.5L300.0 115.6L310.0 114.3L320.0 112.9L330.0 111.6L340.0 110.6L350.0 109.9L360.0 109.5L370.0 109.4L380.0 109.4L390.0 109.5L400.0 109.3L410.0 108.9L420.0 108.2" fill="none" stroke="#151412" stroke-width="1.5" stroke-opacity="0.85"></path>
+            <path d="M0.0 108.0L10.0 106.8L20.0 105.8L30.0 105.2L40.0 105.2L50.0 105.9L60.0 107.2L70.0 109.0L80.0 110.9L90.0 112.9L100.0 114.5L110.0 115.7L120.0 116.4L130.0 116.7L140.0 116.6L150.0 116.4L160.0 116.4L170.0 116.6L180.0 117.2L190.0 118.2L200.0 119.3L210.0 120.4L220.0 121.3L230.0 121.7L240.0 121.5L250.0 138.9L260.0 137.4L270.0 135.6L280.0 133.5L290.0 131.6L300.0 130.0L310.0 128.9L320.0 128.4L330.0 128.2L340.0 128.3L350.0 128.5L360.0 128.6L370.0 128.3L380.0 127.7L390.0 126.7L400.0 125.6L410.0 124.6L420.0 123.8" fill="none" stroke="#151412" stroke-width="0.9" stroke-opacity="0.45"></path>
+            <path d="M0.0 129.4L10.0 129.8L20.0 130.5L30.0 131.4L40.0 132.4L50.0 133.4L60.0 134.3L70.0 134.9L80.0 135.3L90.0 135.4L100.0 135.3L110.0 135.1L120.0 135.0L130.0 134.9L140.0 135.0L150.0 135.3L160.0 135.7L170.0 136.1L180.0 136.4L190.0 136.6L200.0 136.4L210.0 135.9L220.0 135.2L230.0 134.3L240.0 133.2L250.0 152.0L260.0 151.2L270.0 150.6L280.0 150.3L290.0 150.3L300.0 150.4L310.0 150.6L320.0 150.7L330.0 150.8L340.0 150.7L350.0 150.4L360.0 150.0L370.0 149.6L380.0 149.4L390.0 149.3L400.0 149.5L410.0 150.1L420.0 150.9" fill="none" stroke="#151412" stroke-width="0.9" stroke-opacity="0.45"></path>
+            <path d="M0.0 152.6L10.0 154.2L20.0 155.6L30.0 156.6L40.0 157.1L50.0 157.2L60.0 157.0L70.0 156.6L80.0 156.1L90.0 155.8L100.0 155.7L110.0 155.8L120.0 156.2L130.0 156.6L140.0 156.9L150.0 157.0L160.0 156.7L170.0 156.0L180.0 154.8L190.0 153.4L200.0 151.8L210.0 150.2L220.0 149.0L230.0 148.1L240.0 147.6L250.0 169.0L260.0 169.3L270.0 169.7L280.0 170.2L290.0 170.6L300.0 170.7L310.0 170.5L320.0 170.2L330.0 169.8L340.0 169.5L350.0 169.5L360.0 169.9L370.0 170.8L380.0 172.0L390.0 173.5L400.0 175.1L410.0 176.6L420.0 177.8" fill="none" stroke="#151412" stroke-width="0.9" stroke-opacity="0.45"></path>
+            <path d="M0.0 185.5L10.0 185.5L20.0 185.0L30.0 184.2L40.0 183.3L50.0 182.5L60.0 182.0L70.0 181.8L80.0 181.9L90.0 182.2L100.0 182.5L110.0 182.5L120.0 182.1L130.0 181.1L140.0 179.6L150.0 177.7L160.0 175.6L170.0 173.6L180.0 171.9L190.0 170.8L200.0 170.3L210.0 170.4L220.0 171.0L230.0 171.9L240.0 172.9L250.0 196.6L260.0 197.1L270.0 197.3L280.0 197.1L290.0 196.8L300.0 196.6L310.0 196.7L320.0 197.3L330.0 198.4L340.0 200.0L350.0 201.9L360.0 204.0L370.0 205.9L380.0 207.5L390.0 208.5L400.0 208.8L410.0 208.5L420.0 207.8" fill="none" stroke="#151412" stroke-width="1.5" stroke-opacity="0.85"></path>
+            <path d="M0.0 200.1L10.0 199.5L20.0 199.1L30.0 198.8L40.0 198.8L50.0 198.8L60.0 198.8L70.0 198.8L80.0 198.6L90.0 198.2L100.0 197.6L110.0 196.7L120.0 195.8L130.0 194.8L140.0 194.1L150.0 193.6L160.0 193.4L170.0 193.5L180.0 193.9L190.0 194.5L200.0 195.1L210.0 195.7L220.0 196.1L230.0 196.3L240.0 196.4L250.0 220.8L260.0 220.7L270.0 220.8L280.0 221.0L290.0 221.5L300.0 222.2L310.0 223.1L320.0 224.0L330.0 224.9L340.0 225.6L350.0 226.0L360.0 226.1L370.0 225.9L380.0 225.4L390.0 224.8L400.0 224.2L410.0 223.6L420.0 223.2" fill="none" stroke="#151412" stroke-width="0.9" stroke-opacity="0.45"></path>
+            <path d="M0.0 217.7L10.0 217.7L20.0 217.7L30.0 217.6L40.0 217.4L50.0 216.9L60.0 216.0L70.0 214.9L80.0 213.6L90.0 212.3L100.0 211.3L110.0 210.6L120.0 210.4L130.0 210.7L140.0 211.5L150.0 212.6L160.0 213.7L170.0 214.8L180.0 215.7L190.0 216.3L200.0 216.5L210.0 216.6L220.0 216.6L230.0 216.6L240.0 216.9L250.0 243.5L260.0 244.4L270.0 245.6L280.0 246.8L290.0 248.0L300.0 249.0L310.0 249.5L320.0 249.6L330.0 249.1L340.0 248.2L350.0 247.1L360.0 245.9L370.0 244.8L380.0 244.0L390.0 243.4L400.0 243.2L410.0 243.2L420.0 243.2" fill="none" stroke="#151412" stroke-width="0.9" stroke-opacity="0.45"></path>
+          </g>
+          <path d="M243.6 4 L255.6 226" fill="none" stroke="var(--acc)" stroke-width="1.6" stroke-dasharray="5 4"></path>
+        </svg>
+        <span class="seis-zoom" data-seis-zoom>&times;1.0</span>
+      </div>
+
+      <div class="calls" data-seis-calls>
+        <div class="call is-idle"><span class="call-mark">&middot;</span><span class="call-name">awaiting an instruction</span><span class="call-status"></span></div>
+      </div>
+
+      <p class="demo-note">The sentence is planned into calls, validated, then run against the live volume. &ldquo;delete the survey&rdquo; is not on the whitelist, so the validator refuses it and writes it to the audit log.</p>
+    </section>
+
+    <figure>
+      <img class="on-black" src="assets/seispilot-tornado.jpg" width="1500" height="928" loading="lazy" decoding="async" alt="An interpreted 3D seismic volume in Tornado beside the SeisPilot voice console.">
+      <figcaption><strong>Figure 2.</strong> SeisPilot driving an interpreted 3D volume inside Tornado at Viridien.</figcaption>
+    </figure>
+
+    <p class="source"><a href="https://github.com/owenloh/SeisPilot" target="_blank" rel="noopener">github.com/owenloh/SeisPilot</a></p>
+  </article>
+
+  <!-- 4 ------------------------------------------------------------------ -->
+  <article class="entry" id="discriminase">
+    <h2><span class="num">4</span>Discriminase</h2>
+    <p class="byline">ML and algorithms lead, Oxford iGEM, 2025.</p>
+
+    <p>Finding a CRISPR guide that hits one pathogen and spares the commensals around it is a nearest neighbour problem in Hamming space over millions of protospacer sites. Sequence aligners are built for homology search, not for exhaustive small-mismatch neighbourhoods, so running the question honestly with BLAST is too slow to sit inside a design loop.</p>
+    <p>The speed comes from the representation and the search structure. Guides are packed two bits per base, so a mismatch count becomes an XOR and a popcount over machine words instead of a character comparison. Then, because Hamming distance is a true metric, the triangle inequality prunes: a BK-tree over the packed database lets whole subtrees be discarded once they cannot possibly fall inside the tolerance, which takes the database term from linear to logarithmic. A trie over exact prefixes runs in front of that and throws out most candidates before any distance is computed at all.</p>
+    <p>About three seconds per guide against 2.3 million sites, roughly 2000&times; faster than BLAST for the same answer. That is fast enough to check every candidate in a design run instead of assuming the promising ones are clean.</p>
+
+    <section class="demo" id="d-guide" aria-label="Demonstration 4, guide search">
+      <p class="demo-title"><span class="label">Demonstration 4.</span> Guide search.</p>
+
+      <div class="two two-even">
+        <div>
+          <label class="knob-label" for="mm">mismatch tolerance <output id="out-mm" for="mm">&le; 3</output></label>
+          <input type="range" id="mm" min="0" max="4" step="1" value="3">
+          <div class="knob-ends"><span>strict</span><span>permissive</span></div>
+
+          <label class="knob-label" for="pre">exact prefix <output id="out-pre" for="pre">13 nt</output></label>
+          <input type="range" id="pre" min="6" max="16" step="1" value="13">
+          <div class="knob-ends"><span>short</span><span>long</span></div>
+        </div>
+
+        <dl class="bars" data-guide-bars>
+          <div class="bar is-total">
+            <div class="bar-head"><dt>candidates screened</dt><dd>2,300,000</dd></div>
+            <div class="bar-track"><div class="bar-fill" style="width:100.000%"></div></div>
+          </div>
+          <div class="bar">
+            <div class="bar-head"><dt>survive prefix filter</dt><dd>197</dd></div>
+            <div class="bar-track"><div class="bar-fill" style="width:0.009%"></div></div>
+          </div>
+          <div class="bar is-hit">
+            <div class="bar-head"><dt>on target, pathogen</dt><dd>31</dd></div>
+            <div class="bar-track"><div class="bar-fill" style="width:51.667%"></div></div>
+          </div>
+          <div class="bar is-offtarget">
+            <div class="bar-head"><dt>off target, commensals</dt><dd>15</dd></div>
+            <div class="bar-track"><div class="bar-fill" style="width:25.000%"></div></div>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hit-line">
+        <p class="hit-label">closest off-target, <span data-guide-closest>2 mismatches</span></p>
+        <div class="guide" data-guide-seq>
+          <span>G</span><span>A</span><span>C</span><span>C</span><span>T</span><span>T</span><span>G</span><span>C</span><span>A</span><span>A</span><span>G</span><span class="is-mismatch">C</span><span>G</span><span>C</span><span>C</span><span>G</span><span>A</span><span class="is-mismatch">G</span><span>A</span><span>A</span>
+        </div>
+        <p class="demo-note" data-guide-verdict>Too permissive. This guide would cut the microbiome as well as the target.</p>
+      </div>
+    </section>
+
+    <p class="source"><a href="https://discriminase-production.up.railway.app/" target="_blank" rel="noopener">live tool</a> &middot; <a href="https://2025.igem.wiki/oxford/software" target="_blank" rel="noopener">iGEM wiki</a> &middot; <a href="https://github.com/owenloh/Discriminase" target="_blank" rel="noopener">source</a></p>
+  </article>
+
+  <!-- 5 ------------------------------------------------------------------ -->
+  <article class="entry" id="battery">
+    <h2><span class="num">5</span>Battery state of health as an inverse problem</h2>
+    <p class="byline">Imperial College London, 2024 to 2025. Paper pending with Dr Derek Siu.</p>
+
+    <p>Cell health is normally read by taking the cell apart. As an inverse problem it need not be: a full cell curve is the difference of two half cell curves, so if you can recover how each electrode's curve has been stretched and slid, you know how much active material each one lost and how much lithium inventory went with it. The smaller electrode then sets the state of health.</p>
+    <p>The features in dQ/dV and dV/dQ are staging phase transitions in the graphite and in the layered oxide. They behave like a boiling point: the transition happens at a fixed composition, but move the surrounding conditions and the point at which you meet it moves too. Lose lithium inventory or active material and the same transition appears at a different place in capacity space, smoothly and non-uniformly, while its underlying thermodynamics stay put. The diagnostic information therefore sits in where the features are relative to each other rather than in how tall they are. A pointwise least squares residual reads that badly, and on NMC811 with graphite it lands the optimiser in a local minimum that returns a plausible wrong answer.</p>
+    <p>I score the fit with dynamic time warping instead, which lets the capacity axis stretch and shift the way a real phase shift does and charges the cost for misaligned features rather than for a curve being a few millivolts off everywhere. The resulting cost surface is still non-convex, so the parameter search runs globally, using differential evolution over the electrode loss and lithium inventory terms with a local refinement at the end. What comes out is per-electrode degradation from a charge curve alone, without opening the cell.</p>
+
+    <section class="demo" id="d-cell" aria-label="Demonstration 5, degrade a cell and read the curve">
+      <p class="demo-title"><span class="label">Demonstration 5.</span> Degrade a cell, read the curve.</p>
+
+      <div class="two two-knobs">
+        <div>
+          <div class="knob">
+            <label class="knob-label" for="lamP">cathode loss <output id="out-lamP" for="lamP">8%</output></label>
+            <input type="range" id="lamP" min="0" max="40" step="1" value="8">
+          </div>
+          <div class="knob">
+            <label class="knob-label" for="lamN">anode loss <output id="out-lamN" for="lamN">22%</output></label>
+            <input type="range" id="lamN" min="0" max="40" step="1" value="22">
+          </div>
+          <div class="knob">
+            <label class="knob-label" for="lli">lithium lost <output id="out-lli" for="lli">14%</output></label>
+            <input type="range" id="lli" min="0" max="40" step="1" value="14">
+          </div>
+          <p class="soh">State of health <strong data-cell-soh>75%</strong></p>
+        </div>
+
+        <div>
+          <svg viewBox="0 0 420 190" role="img" aria-label="Differential voltage against capacity, fresh cell dashed and degraded cell solid">
+            <g stroke="#151412" stroke-width="1">
+              <line x1="34" y1="6" x2="34" y2="164"></line>
+              <line x1="34" y1="164" x2="412" y2="164"></line>
+            </g>
+            <path data-cell-fresh d="M34.0 138.7 L35.4 138.6 L36.9 138.6 L38.3 138.6 L39.8 138.6 L41.2 138.6 L42.7 138.6 L44.1 138.6 L45.6 138.5 L47.0 138.5 L48.4 138.5 L49.9 138.4 L51.3 138.4 L52.8 138.3 L54.2 138.2 L55.7 138.2 L57.1 138.1 L58.5 137.9 L60.0 137.8 L61.4 137.6 L62.9 137.4 L64.3 137.2 L65.8 136.9 L67.2 136.6 L68.7 136.2 L70.1 135.7 L71.5 135.1 L73.0 134.5 L74.4 133.8 L75.9 132.9 L77.3 132.0 L78.8 130.9 L80.2 129.7 L81.7 128.5 L83.1 127.1 L84.5 125.6 L86.0 124.1 L87.4 122.6 L88.9 121.2 L90.3 119.9 L91.8 118.8 L93.2 118.0 L94.6 117.5 L96.1 117.3 L97.5 117.4 L99.0 117.8 L100.4 118.6 L101.9 119.6 L103.3 120.7 L104.8 121.9 L106.2 123.2 L107.6 124.5 L109.1 125.7 L110.5 126.8 L112.0 127.8 L113.4 128.6 L114.9 129.3 L116.3 129.9 L117.8 130.3 L119.2 130.6 L120.6 130.8 L122.1 130.8 L123.5 130.7 L125.0 130.6 L126.4 130.3 L127.9 129.9 L129.3 129.4 L130.7 128.8 L132.2 128.1 L133.6 127.3 L135.1 126.3 L136.5 125.3 L138.0 124.2 L139.4 123.0 L140.9 121.6 L142.3 120.1 L143.7 118.5 L145.2 116.7 L146.6 114.8 L148.1 112.8 L149.5 110.6 L151.0 108.2 L152.4 105.6 L153.9 102.9 L155.3 100.0 L156.7 97.0 L158.2 93.7 L159.6 90.3 L161.1 86.7 L162.5 83.0 L164.0 79.1 L165.4 75.1 L166.8 71.0 L168.3 66.8 L169.7 62.6 L171.2 58.3 L172.6 54.1 L174.1 49.9 L175.5 45.8 L177.0 41.9 L178.4 38.2 L179.8 34.7 L181.3 31.5 L182.7 28.6 L184.2 26.1 L185.6 24.0 L187.1 22.3 L188.5 21.1 L190.0 20.3 L191.4 20.0 L192.8 20.1 L194.3 20.5 L195.7 21.3 L197.2 22.4 L198.6 23.8 L200.1 25.2 L201.5 26.8 L202.9 28.3 L204.4 29.7 L205.8 31.0 L207.3 32.0 L208.7 32.8 L210.2 33.3 L211.6 33.7 L213.1 34.0 L214.5 34.3 L215.9 34.9 L217.4 35.9 L218.8 37.7 L220.3 40.3 L221.7 43.8 L223.2 48.2 L224.6 53.5 L226.1 59.4 L227.5 65.7 L228.9 72.2 L230.4 78.6 L231.8 84.9 L233.3 90.7 L234.7 96.1 L236.2 101.0 L237.6 105.4 L239.1 109.4 L240.5 112.8 L241.9 115.8 L243.4 118.5 L244.8 120.8 L246.3 122.8 L247.7 124.6 L249.2 126.1 L250.6 127.4 L252.0 128.5 L253.5 129.5 L254.9 130.4 L256.4 131.2 L257.8 131.8 L259.3 132.4 L260.7 132.9 L262.2 133.3 L263.6 133.6 L265.0 133.9 L266.5 134.1 L267.9 134.2 L269.4 134.3 L270.8 134.3 L272.3 134.3 L273.7 134.2 L275.2 134.1 L276.6 133.9 L278.0 133.6 L279.5 133.3 L280.9 132.8 L282.4 132.3 L283.8 131.7 L285.3 131.0 L286.7 130.2 L288.1 129.2 L289.6 128.1 L291.0 126.8 L292.5 125.4 L293.9 123.8 L295.4 122.0 L296.8 119.9 L298.3 117.6 L299.7 115.1 L301.1 112.2 L302.6 109.1 L304.0 105.7 L305.5 101.9 L306.9 97.9 L308.4 93.5 L309.8 88.8 L311.3 83.9 L312.7 78.7 L314.1 73.4 L315.6 67.9 L317.0 62.4 L318.5 57.0 L319.9 51.7 L321.4 46.7 L322.8 42.0 L324.2 37.9 L325.7 34.4 L327.1 31.5 L328.6 29.4 L330.0 27.9 L331.5 27.2 L332.9 27.2 L334.4 27.8 L335.8 28.8 L337.2 30.0 L338.7 31.5 L340.1 32.8 L341.6 34.0 L343.0 34.9 L344.5 35.4 L345.9 35.6 L347.4 35.5 L348.8 35.4 L350.2 35.5 L351.7 36.1 L353.1 37.6 L354.6 40.2 L356.0 44.1 L357.5 49.1 L358.9 55.3 L360.3 62.1 L361.8 69.4 L363.2 76.8 L364.7 83.9 L366.1 90.5 L367.6 96.5 L369.0 101.9 L370.5 106.5 L371.9 110.4 L373.3 113.6 L374.8 116.3 L376.2 118.4 L377.7 120.0 L379.1 121.2 L380.6 122.1 L382.0 122.6 L383.5 122.9 L384.9 122.9 L386.3 122.7 L387.8 122.3 L389.2 121.6 L390.7 120.8 L392.1 119.9 L393.6 118.7 L395.0 117.4 L396.4 115.8 L397.9 114.1 L399.3 117.3 L400.8 138.0 L402.2 138.1 L403.7 138.2 L405.1 138.3 L406.6 138.3 L408.0 138.4" fill="none" stroke="#b9b6ad" stroke-width="1.2" stroke-dasharray="3 3"></path>
+            <path data-cell-aged d="M34.0 110.3 L35.4 111.0 L36.9 112.4 L38.3 114.3 L39.8 116.4 L41.2 118.8 L42.7 121.2 L44.1 123.4 L45.6 125.5 L47.0 127.4 L48.4 129.0 L49.9 130.4 L51.3 131.5 L52.8 132.5 L54.2 133.2 L55.7 133.9 L57.1 134.4 L58.5 134.8 L60.0 135.1 L61.4 135.4 L62.9 135.5 L64.3 135.7 L65.8 135.8 L67.2 135.9 L68.7 136.0 L70.1 136.0 L71.5 136.0 L73.0 136.0 L74.4 136.1 L75.9 136.0 L77.3 136.0 L78.8 136.0 L80.2 136.0 L81.7 135.9 L83.1 135.8 L84.5 135.8 L86.0 135.7 L87.4 135.6 L88.9 135.5 L90.3 135.4 L91.8 135.3 L93.2 135.1 L94.6 134.9 L96.1 134.7 L97.5 134.4 L99.0 134.1 L100.4 133.7 L101.9 133.3 L103.3 132.8 L104.8 132.1 L106.2 131.3 L107.6 130.3 L109.1 129.1 L110.5 127.5 L112.0 125.7 L113.4 123.3 L114.9 120.4 L116.3 116.9 L117.8 112.6 L119.2 107.5 L120.6 101.6 L122.1 94.9 L123.5 87.6 L125.0 80.1 L126.4 72.8 L127.9 66.5 L129.3 61.6 L130.7 58.7 L132.2 58.0 L133.6 59.2 L135.1 62.1 L136.5 65.9 L138.0 70.0 L139.4 73.9 L140.9 77.1 L142.3 79.5 L143.7 80.9 L145.2 81.3 L146.6 80.8 L148.1 79.4 L149.5 77.3 L151.0 74.6 L152.4 71.4 L153.9 67.7 L155.3 63.6 L156.7 59.3 L158.2 54.7 L159.6 50.1 L161.1 45.3 L162.5 40.6 L164.0 35.9 L165.4 31.4 L166.8 27.2 L168.3 23.2 L169.7 19.7 L171.2 16.6 L172.6 14.0 L174.1 12.0 L175.5 12.0 L177.0 12.0 L178.4 12.0 L179.8 12.0 L181.3 12.0 L182.7 13.5 L184.2 15.9 L185.6 18.9 L187.1 22.4 L188.5 26.2 L190.0 30.5 L191.4 35.0 L192.8 39.7 L194.3 44.6 L195.7 49.5 L197.2 54.5 L198.6 59.4 L200.1 64.2 L201.5 68.9 L202.9 73.5 L204.4 77.8 L205.8 81.9 L207.3 85.7 L208.7 89.2 L210.2 92.3 L211.6 95.1 L213.1 97.5 L214.5 99.4 L215.9 100.8 L217.4 101.5 L218.8 101.4 L220.3 100.5 L221.7 98.6 L223.2 95.6 L224.6 91.3 L226.1 85.7 L227.5 79.1 L228.9 71.6 L230.4 64.0 L231.8 57.1 L233.3 51.9 L234.7 49.2 L236.2 49.5 L237.6 53.0 L239.1 59.1 L240.5 67.0 L241.9 75.6 L243.4 84.1 L244.8 91.9 L246.3 98.6 L247.7 104.1 L249.2 108.3 L250.6 111.5 L252.0 113.7 L253.5 115.0 L254.9 115.6 L256.4 115.5 L257.8 114.9 L259.3 113.8 L260.7 112.2 L262.2 110.2 L263.6 107.8 L265.0 104.9 L266.5 101.5 L267.9 97.6 L269.4 93.2 L270.8 117.5 L272.3 121.4 L273.7 119.4 L275.2 117.2 L276.6 114.6 L278.0 111.7 L279.5 108.4 L280.9 104.8 L282.4 100.8 L283.8 96.4 L285.3 91.6 L286.7 86.4 L288.1 80.8 L289.6 74.9 L291.0 68.8 L292.5 62.5 L293.9 56.2 L295.4 49.9 L296.8 43.8 L298.3 38.1 L299.7 33.0 L301.1 28.7 L302.6 25.2 L304.0 22.7 L305.5 21.4 L306.9 21.3 L308.4 22.3 L309.8 24.5 L311.3 27.7 L312.7 31.8 L314.1 36.8 L315.6 42.3 L317.0 48.3 L318.5 54.6 L319.9 60.9 L321.4 67.3 L322.8 73.5 L324.2 79.4 L325.7 85.1 L327.1 90.4 L328.6 95.4 L330.0 99.9 L331.5 104.1 L332.9 107.8 L334.4 111.2 L335.8 114.3 L337.2 117.0 L338.7 119.4 L340.1 121.5 L341.6 123.4 L343.0 125.1 L344.5 126.5 L345.9 127.8 L347.4 128.9 L348.8 129.9 L350.2 130.8 L351.7 131.5 L353.1 132.2 L354.6 132.8 L356.0 133.3 L357.5 133.7 L358.9 134.1 L360.3 134.4 L361.8 134.7 L363.2 134.9 L364.7 135.1 L366.1 135.3 L367.6 135.5 L369.0 135.6 L370.5 135.7 L371.9 135.8 L373.3 135.9 L374.8 136.0 L376.2 136.1 L377.7 136.1 L379.1 136.2 L380.6 136.2 L382.0 136.3 L383.5 136.3 L384.9 136.3 L386.3 136.3 L387.8 136.4 L389.2 136.4 L390.7 136.4 L392.1 136.4 L393.6 136.4 L395.0 155.0 L396.4 164.0 L397.9 164.0 L399.3 164.0 L400.8 164.0 L402.2 164.0 L403.7 164.0 L405.1 164.0 L406.6 164.0 L408.0 164.0" fill="none" stroke="var(--acc)" stroke-width="1.8"></path>
+            <g font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#6a675f">
+              <text x="34" y="180">0</text>
+              <text x="404" y="180" text-anchor="end">capacity</text>
+              <text x="28" y="12" text-anchor="end">dV/dQ</text>
+            </g>
+          </svg>
+          <p class="axis-note">Dashed, fresh cell. Solid, degraded. Peak positions carry the modes; heights do not.</p>
         </div>
       </div>
+
+      <p class="demo-note" data-cell-diag>Anode loss dominates. The graphite staging peaks compress first.</p>
+    </section>
+
+    <div class="figure-pair">
+      <figure>
+        <img src="assets/battery-ic-features.jpg" width="1085" height="820" loading="lazy" decoding="async" alt="Incremental capacity features migrating to lower voltage as state of health falls.">
+        <figcaption><strong>Figure 3.</strong> Features migrating down in voltage as capacity fades.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/battery-lam-lli.jpg" width="1397" height="709" loading="lazy" decoding="async" alt="Recovered loss of active material at both electrodes against lithium inventory loss for cell 011.">
+        <figcaption><strong>Figure 4.</strong> Recovered loss of active material at both electrodes against lithium inventory loss.</figcaption>
+      </figure>
     </div>
+  </article>
+
+  <!-- 6 ------------------------------------------------------------------ -->
+  <article class="entry" id="microscopy">
+    <h2><span class="num">6</span>Microscopy vision suite</h2>
+    <p class="lede">Four production inspection tools, written from scratch, first time I had touched computer vision.</p>
+    <p class="byline">Aurox, 2023. Solo, about two weeks each.</p>
+
+    <p>Aurox builds confocal microscopy hardware, and four steps of the build and QC process were being done by eye. There was no vision code for me to extend when I arrived, and I had never worked on computer vision before. I learned OpenCV, classical Fourier optics and enough deep learning to ship, then wrote four standalone applications that now run on the production floor. Mirror flatness interferometry, final product testing, calibration target alignment and triplet lens alignment.</p>
+    <p>The flatness tool is the one I like most. A mirror under interferometric illumination gives a fringe pattern; the surface height is encoded in the phase of that pattern, not its brightness. So the frame goes to a 2D FFT, the first harmonic carrying the surface information is isolated and windowed away from the carrier and its conjugate, and the inverse transform gives a wrapped phase field which is then unwrapped into an absolute height map and fitted for tilt and piston. It runs at camera rate, so the operator watches the surface deform while holding the part.</p>
+    <p>The other three lean on convolutional networks and classical CV together: segmentation and defect classification for final product testing, sub-pixel feature localisation for calibration target alignment, and a live alignment loop for triplet lenses that reads the optical response and tells the operator which way to move. All four are real-time video pipelines talking to live hardware, which made latency, dropped frames and lighting drift mine to handle.</p>
+
+    <figure>
+      <img src="assets/microscopy-flatness.jpg" width="1552" height="556" loading="lazy" decoding="async" alt="Mirror flatness interferometry: fringes, the Fourier view, and the reconstructed surface map.">
+      <figcaption><strong>Figure 5.</strong> Fringes (left), Fourier view (centre), reconstructed height map (right).</figcaption>
+    </figure>
+  </article>
+
+  <!-- 7 ------------------------------------------------------------------ -->
+  <article class="entry" id="flowr">
+    <h2><span class="num">7</span>FlowR</h2>
+    <p class="byline">Hardware, 2022 to 2023. Two builds.</p>
+
+    <p>Modelling immersion against percolation showed only two variables really matter: flow rate and grind size. Grind is set at the burr; flow was not controllable, so that became the build. Output flow is measured as the differential of two scales, feeding a PID loop on an ESP8266 that controls the input. v1 proved the concept; v2 added a case and an IoT app, and was showcased to 150 people.</p>
+
+    <div class="plate plate-wide">
+      <img src="assets/flowr-v2.jpg" width="616" height="772" loading="lazy" decoding="async" alt="FlowR v2: kettle, pump and dosing arm over a pour-over cone.">
+      <img src="assets/flowr-app.jpg" width="386" height="743" loading="lazy" decoding="async" alt="The FlowR app holding 3.46 grams per second against target.">
     </div>
+    <p class="plate-caption"><strong>Figure 6.</strong> v2 and its app.</p>
+
+    <div class="plate plate-tall">
+      <img src="assets/flowr-v1.jpg" width="573" height="553" loading="lazy" decoding="async" alt="A filter held above the first FlowR prototype.">
+      <img src="assets/flowr-showcase.jpg" width="886" height="813" loading="lazy" decoding="async" alt="The FlowR rig pouring at a public showcase.">
+    </div>
+    <p class="plate-caption"><strong>Figure 7.</strong> v1 under test, and the showcase.</p>
+  </article>
+
+  <!-- 8 ------------------------------------------------------------------ -->
+  <article class="entry" id="segyscribe">
+    <h2><span class="num">8</span>SEGYScribe</h2>
+    <p class="byline">Viridien, 2025. About two weeks.</p>
+
+    <p>Seismic files arrive in whatever dialect the vendor felt like, and locating the trace headers costs a geophysicist an afternoon per file. SEGYScribe reads the free-text header, proposes byte-location hypotheses, then tests each against the trace data until the numbers are physically consistent. Above 90% accuracy across an 80-plus attribute ontology, roughly 4,000 lines across 13 modules.</p>
+
+    <p class="source"><a href="https://github.com/owenloh/SEGYScribe" target="_blank" rel="noopener">github.com/owenloh/SEGYScribe</a></p>
+  </article>
+
+  <!-- 9 ------------------------------------------------------------------ -->
+  <article class="entry" id="yttracker">
+    <h2><span class="num">9</span>YT Title Tracker</h2>
+    <p class="byline">Side project, 2025.</p>
+
+    <p>YouTube A/B tests titles constantly, but each viewer is pinned to one variant, so from a single account the experiment cannot be seen. Rather than scrape fragile HTML, the tracker calls YouTube's internal InnerTube API and rotates a fresh visitor identity per request, so every sample looks like a different viewer. It watches 18-plus channels via RSS, samples new uploads immediately and re-samples hourly, then posts a timestamped variant history once a title stabilises.</p>
+
+    <p class="source"><a href="https://youtubetitleabtestcompiler-production.up.railway.app/" target="_blank" rel="noopener">live dashboard</a> &middot; <a href="https://github.com/owenloh/YT-Title-Tracker" target="_blank" rel="noopener">source</a></p>
+  </article>
+
+  <!-- 10 ----------------------------------------------------------------- -->
+  <article class="entry" id="alistair">
+    <h2><span class="num">10</span>Alistair MCP</h2>
+    <p class="lede">Every assistant I use runs off the same memory and the same tools.</p>
+    <p class="byline">Personal productivity infrastructure, 2026. MCP.</p>
+
+    <p>Every assistant wants to hold your context itself, so I was setting the same thing up repeatedly and ending up with several assistants that each knew a quarter of my life. Alistair keeps the context on my side instead. My memory, notes, calendar, mail, messages, repositories and in-tray sit behind one FastAPI bridge exposed as MCP, and the model provider is whatever happens to be pointed at it.</p>
+    <p>Moving from one provider to another now takes a URL. I do not re-integrate the tools or re-teach the history, and a new client reads the memory the last one was writing. Skills load at runtime from a manifest instead of being baked into a client, and the real-time voice front end streams replies while heavier agentic work carries on behind it.</p>
+
+    <figure>
+      <svg viewBox="0 0 764 292" font-family="'IBM Plex Mono',monospace" font-size="13" role="img" aria-label="Four clients converge on one Alistair MCP endpoint, which fans out to memory, Notion, Calendar, Gmail, WhatsApp and GitHub.">
+        <g fill="none" stroke="#c9c5bc">
+          <path d="M152 40 C212 40 212 144 272 144"></path>
+          <path d="M152 100 C212 100 212 144 272 144"></path>
+          <path d="M152 160 C212 160 212 144 272 144"></path>
+          <path d="M152 220 C212 220 212 144 272 144"></path>
+        </g>
+        <g fill="none" stroke="var(--acc)" stroke-opacity=".55">
+          <path d="M472 144 C532 144 532 26 584 26"></path>
+          <path d="M472 144 C532 144 532 70 584 70"></path>
+          <path d="M472 144 C532 144 532 114 584 114"></path>
+          <path d="M472 144 C532 144 532 158 584 158"></path>
+          <path d="M472 144 C532 144 532 202 584 202"></path>
+          <path d="M472 144 C532 144 532 246 584 246"></path>
+        </g>
+        <g fill="#fdfdfb" stroke="#151412">
+          <rect x="0" y="24" width="152" height="32"></rect>
+          <rect x="0" y="84" width="152" height="32"></rect>
+          <rect x="0" y="144" width="152" height="32"></rect>
+          <rect x="0" y="204" width="152" height="32"></rect>
+        </g>
+        <g fill="#151412" text-anchor="middle">
+          <text x="76" y="45">ChatGPT</text>
+          <text x="76" y="105">Claude</text>
+          <text x="76" y="165">ElevenLabs voice</text>
+          <text x="76" y="225">My own client</text>
+        </g>
+        <rect x="272" y="98" width="200" height="92" fill="#fff" stroke="var(--acc)" stroke-width="1.5"></rect>
+        <text x="372" y="130" text-anchor="middle" font-family="'Source Serif 4',Georgia,serif" font-size="18" fill="#151412">Alistair MCP</text>
+        <text x="372" y="152" text-anchor="middle" fill="#6a675f">one endpoint</text>
+        <text x="372" y="172" text-anchor="middle" fill="#6a675f">skills load at runtime</text>
+        <g fill="#f7f6f2" stroke="#b9b6ad">
+          <rect x="584" y="12" width="180" height="28"></rect>
+          <rect x="584" y="56" width="180" height="28"></rect>
+          <rect x="584" y="100" width="180" height="28"></rect>
+          <rect x="584" y="144" width="180" height="28"></rect>
+          <rect x="584" y="188" width="180" height="28"></rect>
+          <rect x="584" y="232" width="180" height="28"></rect>
+        </g>
+        <g fill="#151412" text-anchor="middle">
+          <text x="674" y="31" font-weight="500">consolidated memory</text>
+          <text x="674" y="75">Notion</text>
+          <text x="674" y="119">Calendar</text>
+          <text x="674" y="163">Gmail</text>
+          <text x="674" y="207">WhatsApp</text>
+          <text x="674" y="251">GitHub, in-tray</text>
+        </g>
+        <g fill="#8a8780" font-size="11" letter-spacing="1">
+          <text x="0" y="278">CLIENTS</text>
+          <text x="764" y="278" text-anchor="end">MY CONTEXT</text>
+        </g>
+      </svg>
+      <figcaption><strong>Figure 8.</strong> Whichever client I talk to, it reads and writes the same memory and reaches the same tools.</figcaption>
+    </figure>
+
+    <p class="source"><a href="https://github.com/owenloh/Alistair-MCP" target="_blank" rel="noopener">github.com/owenloh/Alistair-MCP</a></p>
+  </article>
+
+  <section class="entry closing">
+    <h2>More depth, and the rest of it</h2>
+    <p>The slides go further than this page does. They have the derivations behind the models, screenshots and video of the tools running, and the projects I left out here.</p>
+    <p class="closing-links"><a href="https://1drv.ms/p/c/d26535d430fe7580/IQBM79UHrJJxT45lu3gBuvORAS9xCkHieKY0bC6gUYEi07g?e=sDbysZ" target="_blank" rel="noopener">Open the slides</a> &middot; <a href="https://calendar.app.google/BHBN9vUJ483jwWfq5" target="_blank" rel="noopener">or just book a call</a></p>
   </section>
 
-  <!-- MORE WORK -->
-  <section class="block" id="work" aria-labelledby="work-h">
-    <div class="block-head">
-      <h2 id="work-h">more work</h2>
-      <span class="count" aria-hidden="true">05 · click to expand</span>
-    </div>
-    <p class="lead">More across <em>agentic AI</em>, <em>ML</em> and <em>hardware</em> - click any to expand.</p>
-
-    <div class="grid">
-
-      <details class="card">
-        <summary>
-          <span class="idx" aria-hidden="true">01</span>
-          <span class="c-title">Microscopy Computer Vision Suite</span>
-          <span class="c-hook">Four real-time microscopy image-processing modules.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>Built solo at Aurox, each module from scratch in ~2 weeks, for
-          manufacturing and QC of microscopy equipment.</p>
-          <figure class="c-shot">
-            <img src="assets/microscopy-flatness.jpg" alt="Mirror-flatness interferometry app: interference fringes over the mirror region of interest, the Fourier view of the first harmonic, and the reconstructed mirror-surface colormap." decoding="async" fetchpriority="low">
-            <figcaption>Mirror-flatness interferometry - FFT fringe analysis, first-harmonic isolation, and reconstructed surface map. Built from scratch and shipped as a standalone app.</figcaption>
-          </figure>
-          <ul class="deep">
-            <li>Mirror-flatness interferometry (FFT/vision); a Photoshop-like GUI for final-product testing; calibration-target alignment; triplet-lens alignment.</li>
-            <li>OpenCV, tkinter, multithreading, camera-SDK integration - real-time throughout.</li>
-          </ul>
-          <ul class="tags"><li>computer vision</li><li>real-time</li><li>optics</li></ul>
-          <span class="go muted">Proprietary - no repo</span>
-        </div>
-      </details>
-
-      <details class="card">
-        <summary>
-          <span class="idx" aria-hidden="true">02</span>
-          <span class="c-title">FlowR <span class="alt">(MellowDrip)</span></span>
-          <span class="c-hook">A physics-informed smart coffee brewer.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>Modelling immersion vs percolation (Noyes&ndash;Whitney diffusion)
-          showed only two variables really matter: flow rate and grind size. So I
-          built hardware to control them.</p>
-          <ul class="deep">
-            <li>Measures <em>output</em> flow rate via the differential of two scales, feeding a PID loop on an ESP8266 (C++, real-time) that controls input flow.</li>
-            <li>FlowR v1 proved the concept; v2 added aesthetics and a Blynk IoT app. Showcased to 150 people.</li>
-          </ul>
-          <ul class="tags"><li>PID</li><li>ESP8266</li><li>hardware</li></ul>
-          <span class="go muted">Hardware build - no repo</span>
-        </div>
-      </details>
-
-      <details class="card">
-        <summary>
-          <span class="idx" aria-hidden="true">03</span>
-          <span class="c-title">SEGYScribe</span>
-          <span class="c-hook">AI extraction of SEG-Y seismic metadata - 90%+ accuracy.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>Clients ship SEG-Y files in every imaginable format; byte locations
-          for trace headers must usually be found by hand. This finds them.</p>
-          <ul class="deep">
-            <li>Chain-of-thought reasoning proposes byte-location hypotheses, statistically validated and refined in a loop until consistent.</li>
-            <li>80+ attribute ontology; 90%+ accuracy; ~4,000 lines across ~13 modules; built from scratch in ~2 weeks.</li>
-          </ul>
-          <ul class="tags"><li>chain-of-thought</li><li>SEG-Y</li><li>validation</li></ul>
-          <a class="go" href="https://github.com/owenloh/SEGYScribe" rel="noopener" target="_blank">github.com/owenloh/SEGYScribe<span class="arr" aria-hidden="true">&#8599;</span></a>
-        </div>
-      </details>
-
-      <details class="card">
-        <summary>
-          <span class="idx" aria-hidden="true">04</span>
-          <span class="c-title">YT Title Tracker</span>
-          <span class="c-hook">Makes YouTube&rsquo;s invisible title A/B tests visible.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>YouTube quietly A/B-tests video titles, but each viewer is locked to
-          one &ldquo;sticky&rdquo; variant - so the experiments are invisible.
-          After watching <em>Veritasium</em> reword the same video over and over, I
-          wanted to actually see what was being tested, so I built a tracker.</p>
-          <ul class="deep">
-            <li>The trick: rather than scrape fragile HTML, it calls YouTube&rsquo;s internal <b>InnerTube API</b> and rotates a fresh <code>visitorData</code> identity per request - so every sample looks like a different viewer, surfacing variants a single account never could.</li>
-            <li>Watches 18+ channels via RSS, samples new uploads immediately and re-samples hourly, then posts a timestamped variant history once a title stabilizes. Flask + PostgreSQL, deployed on Railway.</li>
-          </ul>
-          <ul class="tags"><li>InnerTube</li><li>identity rotation</li><li>Flask</li></ul>
-          <div class="pane-links">
-            <a class="go" href="https://youtubetitleabtestcompiler-production.up.railway.app/" rel="noopener" target="_blank">live dashboard<span class="arr" aria-hidden="true">&#8599;</span></a>
-            <a class="go" href="https://github.com/owenloh/YT_Title_Tracker" rel="noopener" target="_blank">github.com/owenloh/YT_Title_Tracker<span class="arr" aria-hidden="true">&#8599;</span></a>
-          </div>
-        </div>
-      </details>
-
-      <details class="card">
-        <summary>
-          <span class="idx" aria-hidden="true">05</span>
-          <span class="c-title">Alistair-MCP</span>
-          <span class="c-hook">The backend for my personal-assistant OS.</span>
-          <span class="chev" aria-hidden="true"></span>
-        </summary>
-        <div class="c-body">
-          <p>One assistant identity that follows me across clients, backed by a
-          single bridge instead of a pile of disconnected integrations.</p>
-          <ul class="deep">
-            <li>A FastAPI bridge unifying my memory, Notion, Whatsapp, Google Calendar, Gmail, Github and a Microsoft To-Do in-tray behind one HTTP/MCP API.</li>
-            <li>Skills are loaded at runtime from a manifest; Claude, Chatgpt or a real-time voice front end (Pipecat) streams from the model API while heavy agentic work runs in the background.</li>
-          </ul>
-          <ul class="tags"><li>FastAPI</li><li>MCP</li><li>personal OS</li></ul>
-          <a class="go" href="https://github.com/owenloh/Alistair-MCP" rel="noopener" target="_blank">github.com/owenloh/Alistair-MCP<span class="arr" aria-hidden="true">&#8599;</span></a>
-        </div>
-      </details>
-
-    </div>
-  </section>
+  <footer class="colophon">
+    <p>
+      <span>&copy; Owen Loh</span>
+      <span class="links">
+        <a href="https://github.com/owenloh" target="_blank" rel="me noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/olzm" target="_blank" rel="me noopener">LinkedIn</a>
+        <a href="https://1drv.ms/p/c/d26535d430fe7580/IQBM79UHrJJxT45lu3gBuvORAS9xCkHieKY0bC6gUYEi07g?e=sDbysZ" target="_blank" rel="noopener">Slides</a>
+        <a href="https://calendar.app.google/BHBN9vUJ483jwWfq5" target="_blank" rel="noopener">Book a call</a>
+        <a href="mailto:owenloh0607@gmail.com">Email</a>
+      </span>
+    </p>
+  </footer>
 
 </main>
 
-<footer class="footer">
-  <ul class="links" aria-label="Links">
-    <li><a href="https://github.com/owenloh" rel="me noopener" target="_blank">GitHub<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-    <li><a href="https://www.linkedin.com/in/olzm" rel="me noopener" target="_blank">LinkedIn<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-    <li><a href="https://1drv.ms/p/c/d26535d430fe7580/IQBM79UHrJJxT45lu3gBuvORAS9xCkHieKY0bC6gUYEi07g?e=sDbysZ" rel="noopener" target="_blank">Slides<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-    <li><a class="cta" href="https://calendar.app.google/BHBN9vUJ483jwWfq5" rel="noopener" target="_blank">Book a call<span class="arr" aria-hidden="true">&#8599;</span></a></li>
-  </ul>
-  <p class="colophon">&copy; Owen Loh</p>
-</footer>
-
-<!-- COMMAND PALETTE -->
-<div class="palette" id="palette" hidden>
-  <div class="palette-backdrop" data-close></div>
-  <div class="palette-box" role="dialog" aria-modal="true" aria-label="Command palette">
-    <input id="palette-input" class="palette-input" type="text" placeholder="Jump to a demo… or type to filter (esc to close)" autocomplete="off" spellcheck="false">
-    <ul id="palette-list" class="palette-list" role="listbox" aria-label="Commands"></ul>
-  </div>
-</div>
-
-<script src="script.js?v=11" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>
