@@ -9,7 +9,9 @@ entries carry a working demonstration.
 | `index.html` | the whole document, plus each demo's opening state |
 | `style.css` | tokens, paper layout, demo components, responsive and print |
 | `script.js` | the five demonstration models and their render passes |
-| `assets/` | figures |
+| `assets/` | figures, fonts, the share card |
+| `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | the OL mark |
+| `site.webmanifest`, `robots.txt`, `sitemap.xml`, `404.html` | the rest of a whole site |
 
 ## The demonstrations
 
@@ -29,6 +31,14 @@ engines. The real ones live in their own repositories, linked from each entry.
 
 The page is complete before JavaScript runs: every demo's opening state is in
 the markup, so the document reads the same with scripting off.
+
+## The mark
+
+`favicon.svg` is OL set in Source Serif 4 at weight 650 and optical size 8 -
+the small-text master, so the strokes hold up at 16px - with the outlines
+converted to paths. Nothing about it depends on a font being installed. Every
+other icon, and the 1200x630 share card in `assets/og.png`, is rendered from
+that same source.
 
 ```sh
 python3 -m http.server 8000   # then visit http://localhost:8000
