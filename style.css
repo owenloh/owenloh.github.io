@@ -707,11 +707,11 @@ input[type='range'] {
    desktop arrangement genuinely cannot survive the width. */
 
 @media (max-width: 640px) {
-  .paper { padding: 48px 16px 76px; font-size: 15px; }
+  .paper { padding: 40px 16px 72px; font-size: 15px; }
 
   /* Type scale */
   .masthead h1 { font-size: 30px; }
-  .standfirst { font-size: 17.5px; margin-bottom: 18px; }
+  .standfirst { font-size: 17.5px; margin-bottom: 15px; }
   .entry h2, .closing h2 { font-size: 19px; }
   .entry h2 .num { margin-right: 9px; }
   .lede { font-size: 15px; }
@@ -722,20 +722,23 @@ input[type='range'] {
 
   /* Rhythm */
   .entry { margin-bottom: 52px; }
-  .links { margin-bottom: 30px; }
-  .abstract { margin-bottom: 34px; padding-left: 22px; }
-  .abstract p { font-size: 14px; }
-  .toc { margin-bottom: 46px; font-size: 14px; }
+  .links { margin-bottom: 26px; }
+  .abstract { margin-bottom: 30px; padding-left: 20px; }
+  .abstract p { font-size: 13.5px; line-height: 1.55; margin-bottom: 10px; }
+  .toc { margin-bottom: 40px; font-size: 14px; }
 
-  .facts { font-size: 14.5px; margin-bottom: 20px; }
-  .facts > div { grid-template-columns: 58px minmax(0, 1fr); gap: 10px; }
+  .facts { font-size: 14px; line-height: 1.45; margin-bottom: 18px; }
+  .facts > div { grid-template-columns: 54px minmax(0, 1fr); gap: 9px; padding: 5px 0; }
   .facts dt { font-size: 9.5px; letter-spacing: .06em; padding-top: 4px; }
 
-  .toc li { flex-wrap: wrap; }
-  .toc a { flex: 1 1 0; min-width: 0; }
-  .toc .leader { display: none; }
-  .toc .year { flex: 0 0 100%; padding-left: 30px; }
+  /* One entry per line. The descriptive tail after each project name is what
+     forced three lines and 736px of contents before any content, so it goes;
+     the dotted leader and the year then fit inline exactly as on the desktop,
+     and the list reads as a printed index again. */
+  .toc .tail { display: none; }
+  .toc li { padding: 3px 0; }
   .toc li::before { width: 18px; }
+  .toc .year { font-size: 11px; }
 
   /* Demos: same grids as the desktop, tightened */
   .demo { padding: 15px 0 17px; margin: 22px 0; }
