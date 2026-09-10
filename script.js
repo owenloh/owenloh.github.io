@@ -511,13 +511,17 @@
      The masthead name
 
      The mark reads O1, which only makes sense once you have seen the name do
-     it. On hover the letters resettle into it, one position at a time, drawing
-     only on the characters the two spellings already contain, so it reads as
-     the same name re-forming rather than as noise.
+     it. The letters resettle into it one position at a time, drawing only on
+     the characters the two spellings already contain, so it reads as the same
+     name re-forming rather than as noise.
+
+     It runs on hover, and once unprompted on the reader's first scroll - a
+     phone has no hover, so without that nobody there would ever find it.
      ------------------------------------------------------------------------ */
 
   var SETTLE_MS = 26;   // one position locks every this often
   var CHURN_MS = 45;    // unsettled positions re-draw at this rate
+  var HOLD_MS = 1000;   // how long the reveal sits on O1 before going back
 
   function nameSwap(el) {
     var from = el.textContent;
@@ -575,8 +579,34 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(pin);
     window.addEventListener('resize', pin);
 
-    el.addEventListener('pointerenter', function () { run(to); });
-    el.addEventListener('pointerleave', function () { run(from); });
+    // Hover only where hover exists: bound on a touch screen, a tap would
+    // swap the name and leave it that way.
+    if (canHover.matches) {
+      el.addEventListener('pointerenter', function () { run(to); });
+      el.addEventListener('pointerleave', function () { run(from); });
+    }
+
+    return { run: run, to: to, from: from };
+  }
+
+  /* Once, on the first scroll: out to O1 Loh, a beat, then back. Skipped if
+     the reader has already scrolled the name out of view, since the whole
+     point is that they see it happen. */
+  function revealOnce(el, swap) {
+    if (reduceMotion.matches) return;
+
+    function onScroll() {
+      window.removeEventListener('scroll', onScroll);
+      var box = el.getBoundingClientRect();
+      if (box.bottom < 0 || box.top > window.innerHeight) return;
+      swap.run(swap.to);
+      setTimeout(function () {
+        // A reader who is hovering by now owns the name; pointerleave restores it.
+        if (!el.matches(':hover')) swap.run(swap.from);
+      }, HOLD_MS);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
   /* ---------------------------------------------------------------------- */
@@ -594,7 +624,6 @@
     if (root) pair[1](root);
   });
 
-  // Hover only: on a touch screen the swapped name would simply stick.
   var name = $('.name');
-  if (name && canHover.matches) nameSwap(name);
+  if (name) revealOnce(name, nameSwap(name));
 }());
