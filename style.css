@@ -103,12 +103,13 @@ img { max-width: 100%; height: auto; }
 .paper {
   max-width: var(--measure);
   margin: 0 auto;
-  /* The name opens at the golden section of the viewport, 1 - 0.618 down, so
-     the document starts with a title page's worth of quiet. svh rather than
-     vh: on a phone vh measures the viewport with the browser chrome retracted,
-     which would push the name below the fold before the reader scrolls. */
-  padding: clamp(44px, 38.2vh, 560px) 24px 120px;
-  padding-top: clamp(44px, 38.2svh, 560px);
+  /* The name opens a little under a fifth of the way down the viewport - half
+     the golden section - so the document starts with some quiet without making
+     the reader scroll to reach it. svh rather than vh: on a phone vh measures
+     the viewport with the browser chrome retracted, which would push the name
+     further down than intended. */
+  padding: clamp(32px, 19.1vh, 280px) 24px 120px;
+  padding-top: clamp(32px, 19.1svh, 280px);
   font-size: 17px;
   line-height: 1.55;
   text-wrap: pretty;

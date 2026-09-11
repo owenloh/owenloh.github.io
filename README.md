@@ -52,11 +52,11 @@ swaps the name outright and the scroll reveal does not run at all.
 
 ## The opening, and small screens
 
-The name sits at the golden section of the viewport, `1 - 0.618` down, so the
-document opens on a title page's worth of quiet. That offset is in `svh` rather
-than `vh`: on a phone `vh` measures the viewport with the browser chrome
-retracted, which would push the name below the fold before the reader has
-scrolled at all.
+The name sits a little under a fifth of the way down the viewport - half the
+golden section - so the document opens with some quiet without making the
+reader scroll to reach it. That offset is in `svh` rather than `vh`: on a phone
+`vh` measures the viewport with the browser chrome retracted, which would push
+the name further down than intended.
 
 Below 640px the layout keeps its desktop shape and steps the type down into it,
 rather than collapsing to one column - a stretched single column blows the
