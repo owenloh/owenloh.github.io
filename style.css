@@ -103,7 +103,12 @@ img { max-width: 100%; height: auto; }
 .paper {
   max-width: var(--measure);
   margin: 0 auto;
-  padding: 88px 24px 120px;
+  /* The name opens at the golden section of the viewport, 1 - 0.618 down, so
+     the document starts with a title page's worth of quiet. svh rather than
+     vh: on a phone vh measures the viewport with the browser chrome retracted,
+     which would push the name below the fold before the reader scrolls. */
+  padding: clamp(44px, 38.2vh, 560px) 24px 120px;
+  padding-top: clamp(44px, 38.2svh, 560px);
   font-size: 17px;
   line-height: 1.55;
   text-wrap: pretty;
@@ -707,7 +712,7 @@ input[type='range'] {
    desktop arrangement genuinely cannot survive the width. */
 
 @media (max-width: 640px) {
-  .paper { padding: 40px 16px 72px; font-size: 15px; }
+  .paper { padding-right: 16px; padding-bottom: 72px; padding-left: 16px; font-size: 15px; }
 
   /* Type scale */
   .masthead h1 { font-size: 30px; }
@@ -794,7 +799,7 @@ input[type='range'] {
 }
 
 @media (max-width: 380px) {
-  .paper { padding: 44px 13px 68px; font-size: 14.5px; }
+  .paper { padding-right: 13px; padding-bottom: 68px; padding-left: 13px; font-size: 14.5px; }
   .masthead h1 { font-size: 27px; }
   .two-wide, .two-knobs, .two-even { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .rail { grid-template-columns: minmax(0, 1fr); }
